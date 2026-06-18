@@ -1,4 +1,4 @@
-<h1 align="center">Hey 👋, Welcome to my Portfolio Website</h1>
+<h1 align="center">Hey 👋, Welcome to my Portfolio Repository</h1>
 
 <h3 align="center">
 💻 Full Stack Developer | 🚀 MERN Stack Developer | 🤖 AI/ML Enthusiast
