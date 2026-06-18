@@ -1,9 +1,29 @@
-import { useEffect, useRef, useState } from 'react'
-import { useTheme } from './hooks/useTheme'
-import Navbar from './components/Navbar'
-import { motion } from 'framer-motion'
-import { ShieldCheck, Award, Star, ExternalLink, Code2, Brain, BarChart2, Server, Layout, Database, Wrench, Cloud } from 'lucide-react'
-import { FaGithub, FaLinkedin, FaEnvelope, FaLaptopCode, FaCode, FaTrophy } from 'react-icons/fa'
+import { useEffect, useRef, useState } from "react";
+import { useTheme } from "./hooks/useTheme";
+import Navbar from "./components/Navbar";
+import { motion } from "framer-motion";
+import {
+  ShieldCheck,
+  Award,
+  Star,
+  ExternalLink,
+  Code2,
+  Brain,
+  BarChart2,
+  Server,
+  Layout,
+  Database,
+  Wrench,
+  Cloud,
+} from "lucide-react";
+import {
+  FaGithub,
+  FaLinkedin,
+  FaEnvelope,
+  FaLaptopCode,
+  FaCode,
+  FaTrophy,
+} from "react-icons/fa";
 import {
   SiPython,
   SiOpenjdk,
@@ -28,323 +48,372 @@ import {
   SiJupyter,
   SiVercel,
   SiCodeforces,
-} from 'react-icons/si'
-import { personalInfo, experiences, education, projects, skills, skillCategories, hobbies, certifications, badges } from './data/portfolio'
-import Magnetic from './components/ui/Magnetic'
-import CommandPalette from './components/ui/CommandPalette'
-import InteractiveTerminal from './components/ui/InteractiveTerminal'
-import TechMarquee from './components/ui/TechMarquee'
+} from "react-icons/si";
+import {
+  personalInfo,
+  experiences,
+  education,
+  projects,
+  skills,
+  skillCategories,
+  hobbies,
+  certifications,
+  badges,
+} from "./data/portfolio";
+import Magnetic from "./components/ui/Magnetic";
+import CommandPalette from "./components/ui/CommandPalette";
+import InteractiveTerminal from "./components/ui/InteractiveTerminal";
+import TechMarquee from "./components/ui/TechMarquee";
 
 const fade = {
   hidden: { opacity: 0, y: 22 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.5 } }
-}
+  show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+};
 
 function Section({ children, id, shouldAnimate = true }) {
   return (
     <motion.section
       id={id}
       variants={shouldAnimate ? fade : undefined}
-      initial={shouldAnimate ? 'hidden' : false}
-      whileInView={shouldAnimate ? 'show' : undefined}
-      viewport={shouldAnimate ? { once: true, margin: '-40px' } : undefined}
+      initial={shouldAnimate ? "hidden" : false}
+      whileInView={shouldAnimate ? "show" : undefined}
+      viewport={shouldAnimate ? { once: true, margin: "-40px" } : undefined}
       className="section-shell h-full"
     >
       {children}
     </motion.section>
-  )
+  );
 }
 
 function Label({ children }) {
-  return <p className="section-label">{children}</p>
+  return <p className="section-label">{children}</p>;
 }
 
-function ZidioMark({ className = '' }) {
+function ZidioMark({ className = "" }) {
   return (
-    <span className={`inline-flex items-center gap-1.5 align-middle ${className}`}>
+    <span
+      className={`inline-flex items-center gap-1.5 align-middle ${className}`}
+    >
       <span className="relative inline-flex h-3.5 w-[24px] items-center justify-center rounded-[3px] bg-[#6C63FF]">
-        <span className="text-[9px] font-bold text-white leading-none font-sans tracking-tight">ZD</span>
+        <span className="text-[9px] font-bold text-white leading-none font-sans tracking-tight">
+          ZD
+        </span>
       </span>
       <span>Zidio Development</span>
     </span>
-  )
+  );
 }
 
-function InfotactMark({ className = '' }) {
+function InfotactMark({ className = "" }) {
   return (
-    <span className={`inline-flex items-center gap-1.5 align-middle ${className}`}>
+    <span
+      className={`inline-flex items-center gap-1.5 align-middle ${className}`}
+    >
       <span className="relative inline-flex h-3.5 w-[22px] items-center justify-center rounded-[3px] bg-[#0EA5E9]">
-        <span className="text-[9px] font-bold text-white leading-none font-sans tracking-tight">IS</span>
+        <span className="text-[9px] font-bold text-white leading-none font-sans tracking-tight">
+          IS
+        </span>
       </span>
       <span>Infotact Solutions</span>
     </span>
-  )
+  );
 }
 
-function CreativeMark({ className = '' }) {
+function CreativeMark({ className = "" }) {
   return (
-    <span className={`inline-flex items-center gap-1.5 align-middle ${className}`}>
+    <span
+      className={`inline-flex items-center gap-1.5 align-middle ${className}`}
+    >
       <span className="relative inline-flex h-3.5 w-[22px] items-center justify-center rounded-[3px] bg-[#F59E0B]">
-        <span className="text-[9px] font-bold text-white leading-none font-sans tracking-tight">CI</span>
+        <span className="text-[9px] font-bold text-white leading-none font-sans tracking-tight">
+          CI
+        </span>
       </span>
       <span>Creative Insight IT Academy</span>
     </span>
-  )
+  );
 }
 
 export default function App() {
-  const { isDark, toggle } = useTheme()
-  const shouldAnimate = true
-  const audioContextRef = useRef(null)
-  const themeAudioRef = useRef(null)
-  const [typedName, setTypedName] = useState('')
-  const [catState, setCatState] = useState('idle')
-  const [catPawing, setCatPawing] = useState(false)
-  const [previewCert, setPreviewCert] = useState(null)
-  const pointerRef = useRef(null)
-  const pointerTargetRef = useRef({ x: 0, y: 0 })
-  const pointerCurrentRef = useRef({ x: 0, y: 0 })
-  const pointerFrameRef = useRef(null)
+  const { isDark, toggle } = useTheme();
+  const shouldAnimate = true;
+  const audioContextRef = useRef(null);
+  const themeAudioRef = useRef(null);
+  const [typedName, setTypedName] = useState("");
+  const [catState, setCatState] = useState("idle");
+  const [catPawing, setCatPawing] = useState(false);
+  const [previewCert, setPreviewCert] = useState(null);
+  const pointerRef = useRef(null);
+  const pointerTargetRef = useRef({ x: 0, y: 0 });
+  const pointerCurrentRef = useRef({ x: 0, y: 0 });
+  const pointerFrameRef = useRef(null);
 
   useEffect(() => {
     const playClickTone = () => {
-      const AudioCtx = window.AudioContext || window.webkitAudioContext
-      if (!AudioCtx) return
+      const AudioCtx = window.AudioContext || window.webkitAudioContext;
+      if (!AudioCtx) return;
 
       if (!audioContextRef.current) {
-        audioContextRef.current = new AudioCtx()
+        audioContextRef.current = new AudioCtx();
       }
 
-      const ctx = audioContextRef.current
-      if (ctx.state === 'suspended') {
-        ctx.resume()
+      const ctx = audioContextRef.current;
+      if (ctx.state === "suspended") {
+        ctx.resume();
       }
 
-      const now = ctx.currentTime
-      const oscillator = ctx.createOscillator()
-      const gain = ctx.createGain()
+      const now = ctx.currentTime;
+      const oscillator = ctx.createOscillator();
+      const gain = ctx.createGain();
 
-      oscillator.type = 'triangle'
-      oscillator.frequency.setValueAtTime(520, now)
-      oscillator.frequency.exponentialRampToValueAtTime(380, now + 0.06)
+      oscillator.type = "triangle";
+      oscillator.frequency.setValueAtTime(520, now);
+      oscillator.frequency.exponentialRampToValueAtTime(380, now + 0.06);
 
-      gain.gain.setValueAtTime(0.0001, now)
-      gain.gain.exponentialRampToValueAtTime(0.03, now + 0.01)
-      gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.08)
+      gain.gain.setValueAtTime(0.0001, now);
+      gain.gain.exponentialRampToValueAtTime(0.03, now + 0.01);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.08);
 
-      oscillator.connect(gain)
-      gain.connect(ctx.destination)
+      oscillator.connect(gain);
+      gain.connect(ctx.destination);
 
-      oscillator.start(now)
-      oscillator.stop(now + 0.09)
-    }
+      oscillator.start(now);
+      oscillator.stop(now + 0.09);
+    };
 
-    const onClick = event => {
-      const target = event.target
-      if (!(target instanceof Element)) return
-      if (target.closest('[data-theme-toggle="true"]')) return
-      if (target.closest('a, button')) {
-        playClickTone()
+    const onClick = (event) => {
+      const target = event.target;
+      if (!(target instanceof Element)) return;
+      if (target.closest('[data-theme-toggle="true"]')) return;
+      if (target.closest("a, button")) {
+        playClickTone();
       }
-    }
+    };
 
-    document.addEventListener('click', onClick, true)
-    return () => document.removeEventListener('click', onClick, true)
-  }, [])
+    document.addEventListener("click", onClick, true);
+    return () => document.removeEventListener("click", onClick, true);
+  }, []);
 
   const handleThemeToggle = () => {
     if (themeAudioRef.current) {
-      themeAudioRef.current.currentTime = 0
-      themeAudioRef.current.play().catch(() => { })
+      themeAudioRef.current.currentTime = 0;
+      themeAudioRef.current.play().catch(() => {});
     }
-    toggle()
-  }
+    toggle();
+  };
 
   const playCatTapTone = () => {
-    const AudioCtx = window.AudioContext || window.webkitAudioContext
-    if (!AudioCtx) return
+    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+    if (!AudioCtx) return;
 
     if (!audioContextRef.current) {
-      audioContextRef.current = new AudioCtx()
+      audioContextRef.current = new AudioCtx();
     }
 
-    const ctx = audioContextRef.current
-    if (ctx.state === 'suspended') {
-      ctx.resume()
+    const ctx = audioContextRef.current;
+    if (ctx.state === "suspended") {
+      ctx.resume();
     }
 
-    const oscillator = ctx.createOscillator()
-    const gain = ctx.createGain()
+    const oscillator = ctx.createOscillator();
+    const gain = ctx.createGain();
 
-    oscillator.connect(gain)
-    gain.connect(ctx.destination)
+    oscillator.connect(gain);
+    gain.connect(ctx.destination);
 
-    oscillator.frequency.setValueAtTime(800, ctx.currentTime)
-    oscillator.frequency.exponentialRampToValueAtTime(200, ctx.currentTime + 0.1)
-    gain.gain.setValueAtTime(0.3, ctx.currentTime)
-    gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.15)
+    oscillator.frequency.setValueAtTime(800, ctx.currentTime);
+    oscillator.frequency.exponentialRampToValueAtTime(
+      200,
+      ctx.currentTime + 0.1,
+    );
+    gain.gain.setValueAtTime(0.3, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.15);
 
-    oscillator.start(ctx.currentTime)
-    oscillator.stop(ctx.currentTime + 0.15)
-  }
+    oscillator.start(ctx.currentTime);
+    oscillator.stop(ctx.currentTime + 0.15);
+  };
 
   const handleCatTap = () => {
-    if (catPawing) return
-    setCatPawing(true)
-    setCatState('clicked')
-    playCatTapTone()
+    if (catPawing) return;
+    setCatPawing(true);
+    setCatState("clicked");
+    playCatTapTone();
 
     window.setTimeout(() => {
-      setCatPawing(false)
-      setCatState('idle')
-    }, 400)
-  }
+      setCatPawing(false);
+      setCatState("idle");
+    }, 400);
+  };
 
   useEffect(() => {
-    const fullName = personalInfo.name
-    let index = 0
-    let deleting = false
-    let timeoutId
+    const fullName = personalInfo.name;
+    let index = 0;
+    let deleting = false;
+    let timeoutId;
 
     const tick = () => {
       if (deleting) {
-        index = Math.max(0, index - 1)
+        index = Math.max(0, index - 1);
       } else {
-        index = Math.min(fullName.length, index + 1)
+        index = Math.min(fullName.length, index + 1);
       }
 
-      setTypedName(fullName.slice(0, index))
+      setTypedName(fullName.slice(0, index));
 
       if (!deleting && index === fullName.length) {
-        deleting = true
-        timeoutId = window.setTimeout(tick, 1100)
-        return
+        deleting = true;
+        timeoutId = window.setTimeout(tick, 1100);
+        return;
       }
 
       if (deleting && index === 0) {
-        deleting = false
-        timeoutId = window.setTimeout(tick, 220)
-        return
+        deleting = false;
+        timeoutId = window.setTimeout(tick, 220);
+        return;
       }
 
-      timeoutId = window.setTimeout(tick, deleting ? 55 : 90)
-    }
+      timeoutId = window.setTimeout(tick, deleting ? 55 : 90);
+    };
 
-    tick()
+    tick();
 
-    return () => window.clearTimeout(timeoutId)
-  }, [])
+    return () => window.clearTimeout(timeoutId);
+  }, []);
 
   useEffect(() => {
-    const pointer = pointerRef.current
-    if (!pointer) return
+    const pointer = pointerRef.current;
+    if (!pointer) return;
 
-    const onMove = event => {
-      pointerTargetRef.current = { x: event.clientX, y: event.clientY }
-      pointer.style.opacity = '1'
-    }
+    const onMove = (event) => {
+      pointerTargetRef.current = { x: event.clientX, y: event.clientY };
+      pointer.style.opacity = "1";
+    };
 
     const onLeave = () => {
-      pointer.style.opacity = '0'
-    }
+      pointer.style.opacity = "0";
+    };
 
     const render = () => {
-      const current = pointerCurrentRef.current
-      const target = pointerTargetRef.current
+      const current = pointerCurrentRef.current;
+      const target = pointerTargetRef.current;
 
-      current.x += (target.x - current.x) * 0.16
-      current.y += (target.y - current.y) * 0.16
+      current.x += (target.x - current.x) * 0.16;
+      current.y += (target.y - current.y) * 0.16;
 
-      pointer.style.transform = `translate3d(${current.x - 14}px, ${current.y - 14}px, 0)`
-      pointerFrameRef.current = window.requestAnimationFrame(render)
-    }
+      pointer.style.transform = `translate3d(${current.x - 14}px, ${current.y - 14}px, 0)`;
+      pointerFrameRef.current = window.requestAnimationFrame(render);
+    };
 
-    pointerFrameRef.current = window.requestAnimationFrame(render)
-    window.addEventListener('pointermove', onMove)
-    window.addEventListener('pointerleave', onLeave)
+    pointerFrameRef.current = window.requestAnimationFrame(render);
+    window.addEventListener("pointermove", onMove);
+    window.addEventListener("pointerleave", onLeave);
 
     return () => {
-      window.removeEventListener('pointermove', onMove)
-      window.removeEventListener('pointerleave', onLeave)
+      window.removeEventListener("pointermove", onMove);
+      window.removeEventListener("pointerleave", onLeave);
 
       if (pointerFrameRef.current) {
-        window.cancelAnimationFrame(pointerFrameRef.current)
+        window.cancelAnimationFrame(pointerFrameRef.current);
       }
-    }
-  }, [])
+    };
+  }, []);
 
   const socialItems = [
-    { label: 'LinkedIn', href: personalInfo.socials.linkedin, icon: FaLinkedin },
-    { label: 'GitHub', href: personalInfo.socials.github, icon: FaGithub },
-    { label: 'Mail', href: personalInfo.socials.email, icon: FaEnvelope },
-  ]
+    {
+      label: "LinkedIn",
+      href: personalInfo.socials.linkedin,
+      icon: FaLinkedin,
+    },
+    { label: "GitHub", href: personalInfo.socials.github, icon: FaGithub },
+    { label: "Mail", href: personalInfo.socials.email, icon: FaEnvelope },
+  ];
 
   const codingItems = [
-    { label: 'LeetCode', href: personalInfo.socials.leetcode, icon: FaLaptopCode },
-    { label: 'CodeChef', href: personalInfo.socials.codechef, icon: FaCode },
-    { label: 'Codeforces', href: personalInfo.socials.codeforces, icon: SiCodeforces },
-    { label: 'HackerRank', href: personalInfo.socials.hackerrank, icon: FaTrophy },
-    { label: 'Code360', href: personalInfo.socials.code360, icon: FaCode },
-  ]
+    {
+      label: "LeetCode",
+      href: personalInfo.socials.leetcode,
+      icon: FaLaptopCode,
+    },
+    { label: "CodeChef", href: personalInfo.socials.codechef, icon: FaCode },
+    {
+      label: "Codeforces",
+      href: personalInfo.socials.codeforces,
+      icon: SiCodeforces,
+    },
+    {
+      label: "HackerRank",
+      href: personalInfo.socials.hackerrank,
+      icon: FaTrophy,
+    },
+    { label: "Code360", href: personalInfo.socials.code360, icon: FaCode },
+  ];
 
   const skillIconMap = {
-    'Python': SiPython,
-    'SQL': SiMysql,
-    'Java': SiOpenjdk,
-    'JavaScript': SiJavascript,
-    'HTML5': SiHtml5,
-    'CSS3': SiHtml5,
-    'NumPy': SiNumpy,
-    'Pandas': SiPandas,
-    'Matplotlib': SiPython,
-    'Seaborn': SiPython,
-    'Scikit-Learn': SiScikitlearn,
-    'TensorFlow': SiTensorflow,
-    'OpenCV': SiOpencv,
-    'Tableau': ShieldCheck,
-    'Power BI': ShieldCheck,
-    'React': SiReact,
-    'Tailwind CSS': SiTailwindcss,
-    'Vite': SiVite,
-    'Node.js': SiNodedotjs,
-    'Express.js': SiExpress,
-    'FastAPI': SiFastapi,
-    'PostgreSQL': SiPostgresql,
-    'MySQL': SiMysql,
-    'MongoDB': SiMongodb,
-    'Git': SiGit,
-    'GitHub': SiGit,
-    'Postman': SiPostman,
-    'Jupyter Notebook': SiJupyter,
-    'VS Code': SiPython,
-    'Azure': ShieldCheck,
-    'Vercel': SiVercel,
-    'MongoDB Atlas': SiMongodb,
-  }
+    Python: SiPython,
+    SQL: SiMysql,
+    Java: SiOpenjdk,
+    JavaScript: SiJavascript,
+    HTML5: SiHtml5,
+    CSS3: SiHtml5,
+    NumPy: SiNumpy,
+    Pandas: SiPandas,
+    Matplotlib: SiPython,
+    Seaborn: SiPython,
+    "Scikit-Learn": SiScikitlearn,
+    TensorFlow: SiTensorflow,
+    OpenCV: SiOpencv,
+    Tableau: ShieldCheck,
+    "Power BI": ShieldCheck,
+    React: SiReact,
+    "Tailwind CSS": SiTailwindcss,
+    Vite: SiVite,
+    "Node.js": SiNodedotjs,
+    "Express.js": SiExpress,
+    FastAPI: SiFastapi,
+    PostgreSQL: SiPostgresql,
+    MySQL: SiMysql,
+    MongoDB: SiMongodb,
+    Git: SiGit,
+    GitHub: SiGit,
+    Postman: SiPostman,
+    "Jupyter Notebook": SiJupyter,
+    "VS Code": SiPython,
+    Azure: ShieldCheck,
+    Vercel: SiVercel,
+    "MongoDB Atlas": SiMongodb,
+  };
 
   return (
-    <div className={isDark ? 'dark' : ''}>
+    <div className={isDark ? "dark" : ""}>
       <div className="min-h-screen relative overflow-x-clip transition-colors duration-200">
-        <audio ref={themeAudioRef} src="/audio/theme-click.wav" preload="auto" />
+        <audio
+          ref={themeAudioRef}
+          src="/audio/theme-click.wav"
+          preload="auto"
+        />
         <div
           ref={pointerRef}
           className="pointer-events-none fixed left-0 top-0 z-40 hidden h-7 w-7 rounded-full border border-[color:var(--line)] bg-[color:var(--accent-soft)] opacity-0 transition-opacity duration-300 md:block"
         />
         <div className="pointer-events-none absolute -top-20 -left-20 h-[300px] w-[300px] rounded-full bg-stone-200/40 blur-2xl dark:bg-stone-800/35" />
         <div className="pointer-events-none absolute top-[28%] -right-16 h-[260px] w-[260px] rounded-full bg-emerald-100/30 blur-2xl dark:bg-emerald-400/10" />
-        <div className={`pointer-events-none absolute inset-0 mesh-overlay ${isDark ? 'opacity-25' : 'opacity-60'}`} />
+        <div
+          className={`pointer-events-none absolute inset-0 mesh-overlay ${isDark ? "opacity-25" : "opacity-60"}`}
+        />
 
         <Navbar isDark={isDark} toggle={handleThemeToggle} />
         <CommandPalette />
         <InteractiveTerminal />
 
-        <main id="top" className="relative max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 pt-28 pb-20 space-y-6">
-
+        <main
+          id="top"
+          className="relative max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 pt-28 pb-20 space-y-6"
+        >
           {/* Hero */}
           <motion.div
             variants={shouldAnimate ? fade : undefined}
-            initial={shouldAnimate ? 'hidden' : false}
-            animate={shouldAnimate ? 'show' : undefined}
+            initial={shouldAnimate ? "hidden" : false}
+            animate={shouldAnimate ? "show" : undefined}
             className="glass-card paper-panel p-6 sm:p-8 md:p-10 relative overflow-hidden"
           >
             <div className="absolute -right-8 -top-8 h-36 w-36 rounded-full bg-emerald-100/80 dark:bg-emerald-400/12 blur-2xl" />
@@ -352,7 +421,9 @@ export default function App() {
 
             <div className="relative grid gap-6 sm:gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
               <div className="order-2 lg:order-1">
-                <p className="mono text-[11px] uppercase tracking-[0.22em] text-[color:var(--muted)] mb-3">Python Developer · Full Stack · Data Science</p>
+                <p className="mono text-[11px] uppercase tracking-[0.22em] text-[color:var(--muted)] mb-3">
+                  Full Stack Developer · Python Developer · Data Science
+                </p>
 
                 <h1 className="display-serif text-4xl md:text-6xl leading-[0.95] max-w-3xl mb-4">
                   {typedName}
@@ -360,9 +431,9 @@ export default function App() {
                 </h1>
 
                 <p className="text-sm md:text-base max-w-2xl text-[color:var(--muted)] leading-relaxed">
-                  Building full-stack products, ML pipelines, and scalable backends.
+                  Bridging software engineering, data science, and artificial
+                  intelligence.
                 </p>
-
 
                 <div className="mt-6 flex flex-wrap items-center gap-3">
                   <Magnetic strength={0.2}>
@@ -399,14 +470,24 @@ export default function App() {
                     </div>
                     <div className="mt-3 flex items-center justify-between gap-3">
                       <div>
-                        <p className="text-sm font-semibold leading-tight">Vatsal Gajera</p>
-                        <p className="mono text-[11px] text-[color:var(--muted)]">MCA · Dharmsinh Desai University,</p>
-                        <p className="mono text-[11px] text-[color:var(--muted)]">Data Science & Full Stack Dev,</p>
-                        <p className="mono text-[11px] text-[color:var(--muted)]">Rajkot, Gujarat, India</p>
+                        <p className="text-sm font-semibold leading-tight">
+                          Vatsal Gajera
+                        </p>
+                        <p className="mono text-[11px] text-[color:var(--muted)]">
+                          MCA · Dharmsinh Desai University,
+                        </p>
+                        <p className="mono text-[11px] text-[color:var(--muted)]">
+                          Data Science & Full Stack Dev,
+                        </p>
+                        <p className="mono text-[11px] text-[color:var(--muted)]">
+                          Rajkot, Gujarat, India
+                        </p>
                       </div>
                       <div className="flex items-center gap-1.5">
                         <span className="h-2.5 w-2.5 rounded-full bg-emerald-500 animate-pulse" />
-                        <span className="mono text-[10px] uppercase tracking-[0.2em] text-[color:var(--muted)]">Open</span>
+                        <span className="mono text-[10px] uppercase tracking-[0.2em] text-[color:var(--muted)]">
+                          Open
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -421,21 +502,31 @@ export default function App() {
               <Label>About</Label>
               <div className="space-y-3">
                 {personalInfo.bio.map((p, i) => (
-                  <p key={i} className="text-sm md:text-[15px] text-[color:var(--muted)] leading-relaxed">{p}</p>
+                  <p
+                    key={i}
+                    className="text-sm md:text-[15px] text-[color:var(--muted)] leading-relaxed"
+                  >
+                    {p}
+                  </p>
                 ))}
               </div>
               {/* Social links */}
               <div className="grid grid-cols-3 gap-2 mt-4 pt-4 border-t border-[color:var(--line)]">
-                {socialItems.map(s => (
+                {socialItems.map((s) => (
                   <a
                     key={s.label}
                     href={s.href}
-                    target={s.href.startsWith('mailto') ? '_self' : '_blank'}
+                    target={s.href.startsWith("mailto") ? "_self" : "_blank"}
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 rounded-xl border border-[color:var(--line)] bg-[color:var(--card-strong)] px-3 py-2.5 hover:border-[color:var(--accent)] hover:bg-[color:var(--accent-soft)] transition-colors"
                   >
-                    <s.icon size={13} className="text-[color:var(--accent)] flex-shrink-0" />
-                    <span className="mono text-[11px] text-[color:var(--txt)]">{s.label}</span>
+                    <s.icon
+                      size={13}
+                      className="text-[color:var(--accent)] flex-shrink-0"
+                    />
+                    <span className="mono text-[11px] text-[color:var(--txt)]">
+                      {s.label}
+                    </span>
                   </a>
                 ))}
               </div>
@@ -444,7 +535,7 @@ export default function App() {
             <Section id="contact" shouldAnimate={shouldAnimate}>
               <Label>Connect</Label>
               <div className="flex flex-col gap-2.5">
-                {codingItems.map(s => (
+                {codingItems.map((s) => (
                   <Magnetic key={s.label} strength={0.15}>
                     <a
                       href={s.href}
@@ -466,30 +557,47 @@ export default function App() {
             <Label>Experience</Label>
             <div className="space-y-8">
               {experiences.map((exp, i) => (
-                <div key={i} className="border border-[color:var(--line)] rounded-[24px] p-4 md:p-5 bg-[color:var(--card-strong)]">
-                  <a href={exp.companyUrl} target="_blank" rel="noopener noreferrer" className="text-base font-semibold hover:opacity-70 transition-opacity inline-flex items-center">
-                    {exp.company === 'Zidio Development' ? (
+                <div
+                  key={i}
+                  className="border border-[color:var(--line)] rounded-[24px] p-4 md:p-5 bg-[color:var(--card-strong)]"
+                >
+                  <a
+                    href={exp.companyUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-base font-semibold hover:opacity-70 transition-opacity inline-flex items-center"
+                  >
+                    {exp.company === "Zidio Development" ? (
                       <ZidioMark />
-                    ) : exp.company === 'Infotact Solutions' ? (
+                    ) : exp.company === "Infotact Solutions" ? (
                       <InfotactMark />
-                    ) : exp.company === 'Creative Insight IT Academy' ? (
+                    ) : exp.company === "Creative Insight IT Academy" ? (
                       <CreativeMark />
                     ) : (
                       exp.company
                     )}
                   </a>
                   <div className="mt-1 mb-2.5 space-y-0.5">
-                    <p className="mono text-xs text-[color:var(--muted)]">{exp.role}</p>
-                    <p className="mono text-xs text-[color:var(--muted)]">{exp.type} · {exp.location} · {exp.period}</p>
+                    <p className="mono text-xs text-[color:var(--muted)]">
+                      {exp.role}
+                    </p>
+                    <p className="mono text-xs text-[color:var(--muted)]">
+                      {exp.type} · {exp.location} · {exp.period}
+                    </p>
                   </div>
                   <div className="flex flex-wrap gap-1.5 mb-3">
-                    {exp.tech.map(t => (
-                      <span key={t} className="tag">{t}</span>
+                    {exp.tech.map((t) => (
+                      <span key={t} className="tag">
+                        {t}
+                      </span>
                     ))}
                   </div>
                   <ul className="space-y-1.5">
                     {exp.points.map((pt, j) => (
-                      <li key={j} className="flex items-start gap-2.5 text-xs md:text-sm text-[color:var(--muted)] leading-relaxed">
+                      <li
+                        key={j}
+                        className="flex items-start gap-2.5 text-xs md:text-sm text-[color:var(--muted)] leading-relaxed"
+                      >
                         <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-[color:var(--accent)] flex-shrink-0" />
                         {pt}
                       </li>
@@ -505,35 +613,65 @@ export default function App() {
             <Label>Projects</Label>
             <div className="grid md:grid-cols-2 gap-4">
               {projects.map((proj, i) => (
-                <motion.div key={i} whileHover={{ y: -4 }} className="rounded-[24px] border border-[color:var(--line)] bg-[color:var(--card-strong)] p-4 flex flex-col">
+                <motion.div
+                  key={i}
+                  whileHover={{ y: -4 }}
+                  className="rounded-[24px] border border-[color:var(--line)] bg-[color:var(--card-strong)] p-4 flex flex-col"
+                >
                   <div className="mb-1">
                     <p className="text-base font-semibold">{proj.title}</p>
-                    <p className="mono text-xs text-[color:var(--muted)]">{proj.subtitle}</p>
+                    <p className="mono text-xs text-[color:var(--muted)]">
+                      {proj.subtitle}
+                    </p>
                   </div>
-                  <p className="text-sm text-[color:var(--muted)] leading-relaxed mt-2 mb-3">{proj.description}</p>
+                  <p className="text-sm text-[color:var(--muted)] leading-relaxed mt-2 mb-3">
+                    {proj.description}
+                  </p>
                   <div className="flex flex-wrap gap-1.5 mb-4">
-                    {proj.tech.map(t => (
-                      <span key={t} className="tag">{t}</span>
+                    {proj.tech.map((t) => (
+                      <span key={t} className="tag">
+                        {t}
+                      </span>
                     ))}
                   </div>
                   <div className="flex gap-3 mt-auto">
                     {proj.links.frontend && (
-                      <a href={proj.links.frontend} target="_blank" rel="noopener noreferrer" className="mono text-xs text-[color:var(--muted)] hover:text-[color:var(--txt)] underline underline-offset-4">
+                      <a
+                        href={proj.links.frontend}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mono text-xs text-[color:var(--muted)] hover:text-[color:var(--txt)] underline underline-offset-4"
+                      >
                         Frontend
                       </a>
                     )}
                     {proj.links.backend && (
-                      <a href={proj.links.backend} target="_blank" rel="noopener noreferrer" className="mono text-xs text-[color:var(--muted)] hover:text-[color:var(--txt)] underline underline-offset-4">
+                      <a
+                        href={proj.links.backend}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mono text-xs text-[color:var(--muted)] hover:text-[color:var(--txt)] underline underline-offset-4"
+                      >
                         Backend
                       </a>
                     )}
                     {proj.links.source && (
-                      <a href={proj.links.source} target="_blank" rel="noopener noreferrer" className="mono text-xs text-[color:var(--muted)] hover:text-[color:var(--txt)] underline underline-offset-4">
+                      <a
+                        href={proj.links.source}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mono text-xs text-[color:var(--muted)] hover:text-[color:var(--txt)] underline underline-offset-4"
+                      >
                         Source
                       </a>
                     )}
                     {proj.links.live && (
-                      <a href={proj.links.live} target="_blank" rel="noopener noreferrer" className="mono text-xs text-[color:var(--muted)] hover:text-[color:var(--txt)] underline underline-offset-4">
+                      <a
+                        href={proj.links.live}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mono text-xs text-[color:var(--muted)] hover:text-[color:var(--txt)] underline underline-offset-4"
+                      >
                         Live Demo
                       </a>
                     )}
@@ -550,10 +688,18 @@ export default function App() {
               <div className="space-y-5">
                 {education.map((ed, i) => (
                   <div key={i}>
-                    <p className="text-sm font-semibold mb-0.5">{ed.institution}</p>
-                    <p className="mono text-xs text-[color:var(--muted)]">{ed.degree}</p>
-                    <p className="mono text-xs text-[color:var(--muted)]">{ed.period}</p>
-                    <p className="mono text-xs text-[color:var(--muted)]">{ed.score}</p>
+                    <p className="text-sm font-semibold mb-0.5">
+                      {ed.institution}
+                    </p>
+                    <p className="mono text-xs text-[color:var(--muted)]">
+                      {ed.degree}
+                    </p>
+                    <p className="mono text-xs text-[color:var(--muted)]">
+                      {ed.period}
+                    </p>
+                    <p className="mono text-xs text-[color:var(--muted)]">
+                      {ed.score}
+                    </p>
                   </div>
                 ))}
               </div>
@@ -562,8 +708,11 @@ export default function App() {
             <Section id="hobbies" shouldAnimate={shouldAnimate}>
               <Label>Interests</Label>
               <div className="grid grid-cols-2 gap-3">
-                {hobbies.map(hobby => (
-                  <div key={hobby} className="mono text-xs px-3 py-2 rounded-xl border border-[color:var(--line)] bg-[color:var(--card-strong)]/50 text-[color:var(--muted)] flex items-center gap-2">
+                {hobbies.map((hobby) => (
+                  <div
+                    key={hobby}
+                    className="mono text-xs px-3 py-2 rounded-xl border border-[color:var(--line)] bg-[color:var(--card-strong)]/50 text-[color:var(--muted)] flex items-center gap-2"
+                  >
                     <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--accent)]" />
                     {hobby}
                   </div>
@@ -577,72 +726,95 @@ export default function App() {
             <Label>Skills</Label>
             {(() => {
               const catIconMap = {
-                code: Code2, brain: Brain, chart: BarChart2,
-                server: Server, layout: Layout, database: Database,
-                wrench: Wrench, cloud: Cloud,
-              }
+                code: Code2,
+                brain: Brain,
+                chart: BarChart2,
+                server: Server,
+                layout: Layout,
+                database: Database,
+                wrench: Wrench,
+                cloud: Cloud,
+              };
               return (
                 <div className="space-y-6">
-                  {skillCategories.map(({ category, icon, skills: catSkills }) => {
-                    const CatIcon = catIconMap[icon] || Code2
-                    return (
-                      <div key={category}>
-                        <div className="flex items-center gap-2 mb-3">
-                          <span className="w-5 h-5 rounded-md bg-[color:var(--accent-soft)] flex items-center justify-center flex-shrink-0">
-                            <CatIcon size={11} className="text-[color:var(--accent)]" />
-                          </span>
-                          <p className="mono text-[11px] font-semibold text-[color:var(--muted)]">{category}</p>
-                          <span className="mono text-[10px] text-[color:var(--muted)] opacity-50">· {catSkills.length}</span>
+                  {skillCategories.map(
+                    ({ category, icon, skills: catSkills }) => {
+                      const CatIcon = catIconMap[icon] || Code2;
+                      return (
+                        <div key={category}>
+                          <div className="flex items-center gap-2 mb-3">
+                            <span className="w-5 h-5 rounded-md bg-[color:var(--accent-soft)] flex items-center justify-center flex-shrink-0">
+                              <CatIcon
+                                size={11}
+                                className="text-[color:var(--accent)]"
+                              />
+                            </span>
+                            <p className="mono text-[11px] font-semibold text-[color:var(--muted)]">
+                              {category}
+                            </p>
+                            <span className="mono text-[10px] text-[color:var(--muted)] opacity-50">
+                              · {catSkills.length}
+                            </span>
+                          </div>
+                          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-2">
+                            {catSkills.map((s) => (
+                              <motion.div
+                                key={s}
+                                whileHover={{ y: -2 }}
+                                className="flex items-center gap-2.5 rounded-xl border border-[color:var(--line)] bg-[color:var(--card-strong)] px-3 py-2.5 hover:border-[color:var(--accent)] transition-colors"
+                              >
+                                <span className="w-5 h-5 flex items-center justify-center flex-shrink-0">
+                                  {(() => {
+                                    const Icon = skillIconMap[s];
+                                    return Icon ? (
+                                      <Icon
+                                        size={14}
+                                        className="text-[color:var(--accent)]"
+                                      />
+                                    ) : (
+                                      <CatIcon
+                                        size={12}
+                                        className="text-[color:var(--accent)] opacity-60"
+                                      />
+                                    );
+                                  })()}
+                                </span>
+                                <span className="mono text-[11px] text-[color:var(--txt)] leading-tight">
+                                  {s}
+                                </span>
+                              </motion.div>
+                            ))}
+                          </div>
                         </div>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-2">
-                          {catSkills.map(s => (
-                            <motion.div
-                              key={s}
-                              whileHover={{ y: -2 }}
-                              className="flex items-center gap-2.5 rounded-xl border border-[color:var(--line)] bg-[color:var(--card-strong)] px-3 py-2.5 hover:border-[color:var(--accent)] transition-colors"
-                            >
-                              <span className="w-5 h-5 flex items-center justify-center flex-shrink-0">
-                                {(() => {
-                                  const Icon = skillIconMap[s]
-                                  return Icon
-                                    ? <Icon size={14} className="text-[color:var(--accent)]" />
-                                    : <CatIcon size={12} className="text-[color:var(--accent)] opacity-60" />
-                                })()}
-                              </span>
-                              <span className="mono text-[11px] text-[color:var(--txt)] leading-tight">{s}</span>
-                            </motion.div>
-                          ))}
-                        </div>
-                      </div>
-                    )
-                  })}
+                      );
+                    },
+                  )}
                 </div>
-              )
+              );
             })()}
           </Section>
-
 
           {/* 8. Certifications */}
           <Section id="certifications" shouldAnimate={shouldAnimate}>
             <Label>Certifications</Label>
             {(() => {
               const grouped = certifications.reduce((acc, cert) => {
-                if (!acc[cert.authority]) acc[cert.authority] = []
-                acc[cert.authority].push(cert)
-                return acc
-              }, {})
+                if (!acc[cert.authority]) acc[cert.authority] = [];
+                acc[cert.authority].push(cert);
+                return acc;
+              }, {});
               const authorityColors = {
-                'IBM': '#0062FF',
-                'NASA': '#0B3D91',
-                'LinkedIn': '#0A66C2',
-                'HackerRank': '#00EA64',
-                'Scaler Topics': '#3D5AF1',
-                'Code360 (Coding Ninjas)': '#F5761A',
-                'Coursera': '#0056D2',
-                'Udemy': '#A435F0',
-                'University Workshops': '#10B981',
-                'LetsUpgrade': '#F59E0B',
-              }
+                IBM: "#0062FF",
+                NASA: "#0B3D91",
+                LinkedIn: "#0A66C2",
+                HackerRank: "#00EA64",
+                "Scaler Topics": "#3D5AF1",
+                "Code360 (Coding Ninjas)": "#F5761A",
+                Coursera: "#0056D2",
+                Udemy: "#A435F0",
+                "University Workshops": "#10B981",
+                LetsUpgrade: "#F59E0B",
+              };
               return (
                 <div className="space-y-6">
                   {Object.entries(grouped).map(([authority, certs]) => (
@@ -650,17 +822,25 @@ export default function App() {
                       <div className="flex items-center gap-2 mb-3">
                         <span
                           className="inline-flex items-center justify-center w-6 h-6 rounded-md text-white text-[9px] font-bold flex-shrink-0"
-                          style={{ background: authorityColors[authority] || '#6B7280' }}
+                          style={{
+                            background: authorityColors[authority] || "#6B7280",
+                          }}
                         >
                           {authority.charAt(0)}
                         </span>
                         <div>
-                          <p className="mono text-xs font-semibold text-[color:var(--txt)]">{authority}</p>
-                          {authority === 'LetsUpgrade' && (
-                            <p className="mono text-[10px] text-[color:var(--muted)]">LetsUpgrade × NSDC × GDG MAD</p>
+                          <p className="mono text-xs font-semibold text-[color:var(--txt)]">
+                            {authority}
+                          </p>
+                          {authority === "LetsUpgrade" && (
+                            <p className="mono text-[10px] text-[color:var(--muted)]">
+                              LetsUpgrade × NSDC × GDG MAD
+                            </p>
                           )}
                         </div>
-                        <span className="mono text-[10px] text-[color:var(--muted)] ml-1">· {certs.length} cert{certs.length > 1 ? 's' : ''}</span>
+                        <span className="mono text-[10px] text-[color:var(--muted)] ml-1">
+                          · {certs.length} cert{certs.length > 1 ? "s" : ""}
+                        </span>
                       </div>
                       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2">
                         {certs.map((cert, i) => (
@@ -670,10 +850,20 @@ export default function App() {
                             onClick={() => setPreviewCert(cert)}
                             className="cursor-pointer flex items-start gap-2.5 rounded-xl border border-[color:var(--line)] bg-[color:var(--card-strong)] px-3 py-2.5 hover:border-[color:var(--accent)] transition-colors"
                           >
-                            <Award size={13} className="mt-0.5 flex-shrink-0" style={{ color: authorityColors[authority] || '#6B7280' }} />
+                            <Award
+                              size={13}
+                              className="mt-0.5 flex-shrink-0"
+                              style={{
+                                color: authorityColors[authority] || "#6B7280",
+                              }}
+                            />
                             <div className="min-w-0">
-                              <p className="text-xs font-medium leading-snug text-[color:var(--txt)] line-clamp-2">{cert.name}</p>
-                              <p className="mono text-[10px] text-[color:var(--muted)] mt-0.5">{cert.year} · Click to view</p>
+                              <p className="text-xs font-medium leading-snug text-[color:var(--txt)] line-clamp-2">
+                                {cert.name}
+                              </p>
+                              <p className="mono text-[10px] text-[color:var(--muted)] mt-0.5">
+                                {cert.year} · Click to view
+                              </p>
                             </div>
                           </motion.div>
                         ))}
@@ -681,7 +871,7 @@ export default function App() {
                     </div>
                   ))}
                 </div>
-              )
+              );
             })()}
           </Section>
 
@@ -696,7 +886,10 @@ export default function App() {
                 className="flex items-center gap-1.5 mono text-[11px] text-[color:var(--muted)] hover:text-[color:var(--accent)] transition-colors group"
               >
                 View all on Credly
-                <ExternalLink size={11} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                <ExternalLink
+                  size={11}
+                  className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
+                />
               </a>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
@@ -704,52 +897,83 @@ export default function App() {
                 <div
                   key={i}
                   className="group relative h-52"
-                  style={{ perspective: '1000px' }}
+                  style={{ perspective: "1000px" }}
                 >
                   {/* Card inner — flips on hover */}
                   <div
                     className="absolute inset-0 transition-transform duration-500"
-                    style={{ transformStyle: 'preserve-3d', transform: 'rotateY(0deg)' }}
-                    onMouseEnter={e => e.currentTarget.style.transform = 'rotateY(180deg)'}
-                    onMouseLeave={e => e.currentTarget.style.transform = 'rotateY(0deg)'}
+                    style={{
+                      transformStyle: "preserve-3d",
+                      transform: "rotateY(0deg)",
+                    }}
+                    onMouseEnter={(e) =>
+                      (e.currentTarget.style.transform = "rotateY(180deg)")
+                    }
+                    onMouseLeave={(e) =>
+                      (e.currentTarget.style.transform = "rotateY(0deg)")
+                    }
                   >
                     {/* Front — info card */}
                     <div
                       className="absolute inset-0 rounded-2xl border border-[color:var(--line)] bg-[color:var(--card-strong)] p-5 flex flex-col items-center justify-center text-center gap-3 overflow-hidden"
-                      style={{ backfaceVisibility: 'hidden' }}
+                      style={{ backfaceVisibility: "hidden" }}
                     >
                       <div
                         className="absolute inset-0 opacity-5 rounded-2xl"
-                        style={{ background: `radial-gradient(circle at top right, ${badge.color}, transparent 70%)` }}
+                        style={{
+                          background: `radial-gradient(circle at top right, ${badge.color}, transparent 70%)`,
+                        }}
                       />
                       <div
                         className="relative w-12 h-12 rounded-xl flex items-center justify-center shadow-md flex-shrink-0"
-                        style={{ background: `linear-gradient(135deg, ${badge.color}dd, ${badge.color}66)` }}
+                        style={{
+                          background: `linear-gradient(135deg, ${badge.color}dd, ${badge.color}66)`,
+                        }}
                       >
-                        <span className="text-white font-bold text-[10px] tracking-tight">{badge.initials}</span>
+                        <span className="text-white font-bold text-[10px] tracking-tight">
+                          {badge.initials}
+                        </span>
                       </div>
                       <div className="relative">
-                        <p className="text-xs font-semibold text-[color:var(--txt)] leading-snug">{badge.name}</p>
-                        <p className="mono text-[10px] text-[color:var(--muted)] mt-1">{badge.issuer}</p>
+                        <p className="text-xs font-semibold text-[color:var(--txt)] leading-snug">
+                          {badge.name}
+                        </p>
+                        <p className="mono text-[10px] text-[color:var(--muted)] mt-1">
+                          {badge.issuer}
+                        </p>
                         <span
                           className="inline-block mt-2 mono text-[9px] px-2 py-0.5 rounded-full border font-medium"
-                          style={{ borderColor: badge.color, color: badge.color }}
+                          style={{
+                            borderColor: badge.color,
+                            color: badge.color,
+                          }}
                         >
                           {badge.year}
                         </span>
                       </div>
-                      <Star size={10} className="absolute top-3 right-3 opacity-30" style={{ color: badge.color }} />
-                      <span className="absolute bottom-2 mono text-[9px] text-[color:var(--muted)] opacity-60">hover to reveal</span>
+                      <Star
+                        size={10}
+                        className="absolute top-3 right-3 opacity-30"
+                        style={{ color: badge.color }}
+                      />
+                      <span className="absolute bottom-2 mono text-[9px] text-[color:var(--muted)] opacity-60">
+                        hover to reveal
+                      </span>
                     </div>
 
                     {/* Back — badge image */}
                     <div
                       className="absolute inset-0 rounded-2xl border border-[color:var(--line)] bg-[color:var(--card-strong)] flex items-center justify-center p-4 overflow-hidden"
-                      style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
+                      style={{
+                        backfaceVisibility: "hidden",
+                        transform: "rotateY(180deg)",
+                      }}
                     >
                       <div
                         className="absolute inset-0 opacity-8 rounded-2xl"
-                        style={{ background: `radial-gradient(circle at center, ${badge.color}22, transparent 70%)` }}
+                        style={{
+                          background: `radial-gradient(circle at center, ${badge.color}22, transparent 70%)`,
+                        }}
                       />
                       <img
                         src={badge.image}
@@ -763,7 +987,6 @@ export default function App() {
             </div>
           </Section>
 
-
           {/* Certificate Preview Modal */}
           {previewCert && (
             <div
@@ -775,12 +998,16 @@ export default function App() {
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0.9, opacity: 0 }}
                 className="relative bg-[color:var(--card-strong)] rounded-2xl border border-[color:var(--line)] shadow-2xl max-w-3xl w-full overflow-hidden"
-                onClick={e => e.stopPropagation()}
+                onClick={(e) => e.stopPropagation()}
               >
                 <div className="flex items-center justify-between px-4 py-3 border-b border-[color:var(--line)]">
                   <div>
-                    <p className="text-sm font-semibold text-[color:var(--txt)]">{previewCert.name}</p>
-                    <p className="mono text-[10px] text-[color:var(--muted)]">{previewCert.authority} · {previewCert.year}</p>
+                    <p className="text-sm font-semibold text-[color:var(--txt)]">
+                      {previewCert.name}
+                    </p>
+                    <p className="mono text-[10px] text-[color:var(--muted)]">
+                      {previewCert.authority} · {previewCert.year}
+                    </p>
                   </div>
                   <button
                     onClick={() => setPreviewCert(null)}
@@ -808,7 +1035,6 @@ export default function App() {
               © {new Date().getFullYear()} Vatsal Gajera
             </p>
           </footer>
-
         </main>
 
         <motion.div
@@ -821,26 +1047,26 @@ export default function App() {
             className="pixel-cat-root"
             onClick={handleCatTap}
             onMouseEnter={() => {
-              if (catState === 'clicked') return
-              setCatState('hover-1') // image_3
+              if (catState === "clicked") return;
+              setCatState("hover-1"); // image_3
               setTimeout(() => {
-                setCatState(prev => prev === 'hover-1' ? 'hover-2' : prev) // image_2
-              }, 150)
+                setCatState((prev) => (prev === "hover-1" ? "hover-2" : prev)); // image_2
+              }, 150);
             }}
             onMouseLeave={() => {
-              if (catState !== 'clicked') {
-                setCatState('idle')
+              if (catState !== "clicked") {
+                setCatState("idle");
               }
             }}
-            onKeyDown={event => {
-              if (event.key === 'Enter' || event.key === ' ') {
-                event.preventDefault()
-                handleCatTap()
+            onKeyDown={(event) => {
+              if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault();
+                handleCatTap();
               }
             }}
             aria-label="Interactive cat"
           >
-            {catState === 'idle' && (
+            {catState === "idle" && (
               <div className="pixel-cat-zz">
                 <span className="pixel-cat-z1">z</span>
                 <span className="pixel-cat-z2">z</span>
@@ -851,27 +1077,27 @@ export default function App() {
               <img
                 src="/images/image_1.png"
                 alt=""
-                style={{ opacity: catState === 'idle' ? 1 : 0 }}
+                style={{ opacity: catState === "idle" ? 1 : 0 }}
               />
               <img
                 src="/images/image_3.png"
                 alt=""
-                style={{ opacity: catState === 'hover-1' ? 1 : 0 }}
+                style={{ opacity: catState === "hover-1" ? 1 : 0 }}
               />
               <img
                 src="/images/image_2.png"
                 alt=""
-                style={{ opacity: catState === 'hover-2' ? 1 : 0 }}
+                style={{ opacity: catState === "hover-2" ? 1 : 0 }}
               />
               <img
                 src="/images/image_4.png"
                 alt=""
-                style={{ opacity: catState === 'clicked' ? 1 : 0 }}
+                style={{ opacity: catState === "clicked" ? 1 : 0 }}
               />
             </div>
           </button>
         </motion.div>
       </div>
     </div>
-  )
+  );
 }

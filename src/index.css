@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -40,10 +40,14 @@
   }
 
   body {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: "Space Grotesk", sans-serif;
     color: var(--txt);
     background:
-      radial-gradient(circle at top left, rgba(255, 255, 255, 0.8) 0%, transparent 28%),
+      radial-gradient(
+        circle at top left,
+        rgba(255, 255, 255, 0.8) 0%,
+        transparent 28%
+      ),
       linear-gradient(180deg, var(--bg-0) 0%, var(--bg-1) 52%, var(--bg-2) 100%);
     @apply antialiased;
   }
@@ -68,7 +72,7 @@
 
 @layer components {
   .mono {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: "IBM Plex Mono", monospace;
   }
 
   .glass-card {
@@ -116,7 +120,7 @@
   }
 
   .display-serif {
-    font-family: 'Instrument Serif', serif;
+    font-family: "Instrument Serif", serif;
     font-weight: 400;
     letter-spacing: -0.03em;
   }
@@ -130,14 +134,21 @@
   }
 
   .paper-panel {
-    background:
-      linear-gradient(180deg, rgba(255, 255, 255, 0.7) 0%, rgba(255, 252, 246, 0.95) 100%);
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.7) 0%,
+      rgba(255, 252, 246, 0.95) 100%
+    );
     border: 1px solid color-mix(in srgb, var(--line) 90%, #fff 10%);
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45);
   }
 
   .dark .paper-panel {
-    background: linear-gradient(180deg, rgba(40, 37, 34, 0.95) 0%, rgba(29, 27, 25, 0.98) 100%);
+    background: linear-gradient(
+      180deg,
+      rgba(40, 37, 34, 0.95) 0%,
+      rgba(29, 27, 25, 0.98) 100%
+    );
   }
 
   .pixel-cat-root {
@@ -169,7 +180,9 @@
     object-fit: contain;
     image-rendering: pixelated;
     filter: drop-shadow(0 14px 22px rgba(0, 0, 0, 0.16));
-    transition: opacity 0.25s ease-out, transform 0.25s ease-out;
+    transition:
+      opacity 0.25s ease-out,
+      transform 0.25s ease-out;
   }
 
   .pixel-cat-root img.pixel-cat-alert-img,
@@ -193,11 +206,21 @@
   }
 
   @keyframes pixel-cat-claw {
-    0% { transform: translateY(-8px) scale(1.05); }
-    25% { transform: translateY(-8px) scale(1.08) translateX(2px); }
-    50% { transform: translateY(-8px) scale(1.12) translateX(4px); }
-    75% { transform: translateY(-8px) scale(1.06) translateX(2px); }
-    100% { transform: translateY(-8px) scale(1.05); }
+    0% {
+      transform: translateY(-8px) scale(1.05);
+    }
+    25% {
+      transform: translateY(-8px) scale(1.08) translateX(2px);
+    }
+    50% {
+      transform: translateY(-8px) scale(1.12) translateX(4px);
+    }
+    75% {
+      transform: translateY(-8px) scale(1.06) translateX(2px);
+    }
+    100% {
+      transform: translateY(-8px) scale(1.05);
+    }
   }
 
   .pixel-cat-zz {
@@ -221,7 +244,7 @@
     font-weight: bold;
     left: 0;
     bottom: 0;
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: "IBM Plex Mono", monospace;
     text-transform: lowercase;
     color: var(--muted);
     line-height: 1;
@@ -258,7 +281,7 @@
     --line: #d1d5da;
     --accent: #005cc5;
     --accent-soft: rgba(0, 92, 197, 0.1);
-    
+
     --syntax-keyword: #d73a49;
     --syntax-string: #032f62;
     --syntax-func: #6f42c1;
@@ -279,7 +302,7 @@
     --line: #333333;
     --accent: #007acc;
     --accent-soft: rgba(0, 122, 204, 0.15);
-    
+
     --syntax-keyword: #569cd6;
     --syntax-string: #ce9178;
     --syntax-func: #dcdcaa;
@@ -289,12 +312,12 @@
   }
 
   .code-mode body {
-    font-family: 'IBM Plex Mono', monospace !important;
+    font-family: "IBM Plex Mono", monospace !important;
     background: var(--bg-0);
   }
 
   .code-mode .display-serif {
-    font-family: 'IBM Plex Mono', monospace !important;
+    font-family: "IBM Plex Mono", monospace !important;
     color: var(--syntax-func);
   }
 
@@ -317,11 +340,13 @@
   }
 
   .code-mode .section-label::before {
-    content: '// ';
+    content: "// ";
     color: var(--syntax-comment);
   }
 
-  .code-mode h1, .code-mode h2, .code-mode h3 {
+  .code-mode h1,
+  .code-mode h2,
+  .code-mode h3 {
     color: var(--syntax-keyword);
   }
 
@@ -348,20 +373,44 @@
   }
 
   @keyframes pixel-cat-float-z1 {
-    0% { opacity: 0; transform: translateY(0) scale(0.7); }
-    25% { opacity: 0.7; }
-    100% { opacity: 0; transform: translateY(-6px) scale(1); }
+    0% {
+      opacity: 0;
+      transform: translateY(0) scale(0.7);
+    }
+    25% {
+      opacity: 0.7;
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(-6px) scale(1);
+    }
   }
 
   @keyframes pixel-cat-float-z2 {
-    0% { opacity: 0; transform: translateY(0) scale(0.7); }
-    25% { opacity: 0.6; }
-    100% { opacity: 0; transform: translateY(-8px) scale(1); }
+    0% {
+      opacity: 0;
+      transform: translateY(0) scale(0.7);
+    }
+    25% {
+      opacity: 0.6;
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(-8px) scale(1);
+    }
   }
 
   @keyframes pixel-cat-float-z3 {
-    0% { opacity: 0; transform: translateY(0) scale(0.7); }
-    25% { opacity: 0.5; }
-    100% { opacity: 0; transform: translateY(-10px) scale(1); }
+    0% {
+      opacity: 0;
+      transform: translateY(0) scale(0.7);
+    }
+    25% {
+      opacity: 0.5;
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(-10px) scale(1);
+    }
   }
 }

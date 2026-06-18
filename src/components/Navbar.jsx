@@ -1,33 +1,31 @@
-import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { Sun, Moon, Terminal, Search, Menu, X } from 'lucide-react'
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Sun, Moon, Terminal, Search, Menu, X } from "lucide-react";
 
 export default function Navbar({ isDark, toggle }) {
-  const [menuOpen, setMenuOpen] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const sections = [
-    { label: 'About', href: '#about' },
-    { label: 'Connect', href: '#contact' },
-    { label: 'Experience', href: '#experience' },
-    { label: 'Projects', href: '#projects' },
-    { label: 'Education', href: '#education' },
-    { label: 'Skills', href: '#skills' },
-    { label: 'Certifications', href: '#certifications' },
-    { label: 'Badges', href: '#badges' },
-  ]
+    { label: "About", href: "#about" },
+    { label: "Connect", href: "#contact" },
+    { label: "Experience", href: "#experience" },
+    { label: "Projects", href: "#projects" },
+    { label: "Education", href: "#education" },
+    { label: "Skills", href: "#skills" },
+    { label: "Certifications", href: "#certifications" },
+    { label: "Badges", href: "#badges" },
+  ];
 
-  const openTerminal = () => window.dispatchEvent(new CustomEvent('open-terminal'))
-  const openCommandPalette = () => window.dispatchEvent(new CustomEvent('open-command-palette'))
+  const openTerminal = () =>
+    window.dispatchEvent(new CustomEvent("open-terminal"));
 
-  const handleNavClick = () => setMenuOpen(false)
+  const handleNavClick = () => setMenuOpen(false);
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 px-2 sm:px-6 pt-4 sm:pt-7">
       <div className="max-w-6xl mx-auto glass-card px-3 sm:px-5 py-2.5 sm:py-3 backdrop-blur-md bg-[color:var(--card)]/90">
-
         {/* Main Bar */}
         <div className="flex items-center justify-between gap-2">
-
           {/* Left: Logo + Desktop Nav */}
           <div className="flex items-center gap-3 sm:gap-4 min-w-0">
             <a
@@ -39,7 +37,7 @@ export default function Navbar({ isDark, toggle }) {
 
             {/* Desktop nav links */}
             <nav className="hidden lg:flex items-center gap-0.5">
-              {sections.map(section => (
+              {sections.map((section) => (
                 <a
                   key={section.label}
                   href={section.href}
@@ -59,13 +57,6 @@ export default function Navbar({ isDark, toggle }) {
                 <Terminal size={12} />
                 CLI
               </button>
-              <button
-                onClick={openCommandPalette}
-                className="mono text-[10px] px-2 py-1 rounded border border-[color:var(--line)] text-[color:var(--muted)] hover:text-[color:var(--txt)] transition-colors flex items-center gap-1.5"
-              >
-                <Search size={12} />
-                CMD K
-              </button>
             </div>
           </div>
 
@@ -84,7 +75,7 @@ export default function Navbar({ isDark, toggle }) {
             {/* Hamburger — mobile only */}
             <motion.button
               whileTap={{ scale: 0.9 }}
-              onClick={() => setMenuOpen(v => !v)}
+              onClick={() => setMenuOpen((v) => !v)}
               className="lg:hidden w-8 h-8 sm:w-9 sm:h-9 rounded-full border border-[color:var(--line)] flex items-center justify-center text-[color:var(--muted)] hover:text-[color:var(--txt)] hover:bg-[color:var(--accent-soft)] transition"
               aria-label="Toggle menu"
             >
@@ -98,14 +89,14 @@ export default function Navbar({ isDark, toggle }) {
           {menuOpen && (
             <motion.div
               initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
+              animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.2 }}
               className="lg:hidden overflow-hidden"
             >
               <div className="pt-3 pb-1 border-t border-[color:var(--line)] mt-2.5">
                 <div className="grid grid-cols-2 gap-1.5">
-                  {sections.map(section => (
+                  {sections.map((section) => (
                     <a
                       key={section.label}
                       href={section.href}
@@ -119,14 +110,19 @@ export default function Navbar({ isDark, toggle }) {
                 {/* CLI/CMD in mobile menu */}
                 <div className="flex gap-2 mt-2.5 pt-2.5 border-t border-[color:var(--line)]">
                   <button
-                    onClick={() => { openTerminal(); setMenuOpen(false) }}
+                    onClick={() => {
+                      openTerminal();
+                      setMenuOpen(false);
+                    }}
                     className="flex-1 mono text-[10px] px-3 py-2 rounded-xl bg-[color:var(--accent-soft)] text-[color:var(--muted)] hover:text-[color:var(--txt)] transition-colors flex items-center justify-center gap-1.5"
                   >
                     <Terminal size={12} />
                     Terminal
                   </button>
                   <button
-                    onClick={() => { openCommandPalette(); setMenuOpen(false) }}
+                    onClick={() => {
+                      setMenuOpen(false);
+                    }}
                     className="flex-1 mono text-[10px] px-3 py-2 rounded-xl border border-[color:var(--line)] text-[color:var(--muted)] hover:text-[color:var(--txt)] transition-colors flex items-center justify-center gap-1.5"
                   >
                     <Search size={12} />
@@ -137,8 +133,7 @@ export default function Navbar({ isDark, toggle }) {
             </motion.div>
           )}
         </AnimatePresence>
-
       </div>
     </header>
-  )
+  );
 }
