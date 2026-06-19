@@ -19,6 +19,7 @@ export const personalInfo = {
     hackerrank: "https://www.hackerrank.com/profile/VatsalGajera",
     code360: "https://www.naukri.com/code360/profile/VatsalGajera",
     credly: "https://www.credly.com/users/vatsalgajera/badges/credly",
+    geeksforgeeks: "https://www.geeksforgeeks.org/profile/vatsalgajera",
     email: "mailto:vatsalgajera.tech@gmail.com",
   }
 }
@@ -58,7 +59,7 @@ export const experiences = [
   },
   {
     company: "Creative Insight IT Academy",
-    companyUrl: "#",
+    companyUrl: "https://creativeinsightacademy.com/",
     role: "Web Developer Intern",
     type: "Internship",
     location: "Rajkot, Gujarat, India",
@@ -88,9 +89,21 @@ export const education = [
   },
   {
     institution: "L.G. Dholakiya School",
-    degree: "Higher Secondary (XII) & Secondary (X) · Commerce",
-    period: "2020—2022",
-    score: "XII: 99.91 PR (93.43%) · X: 99.03 PR (88.00%) · Scored 100/100 in Statistics (XII)",
+    degree: "Higher Secondary Education (XII)",
+    stream: "Commerce Stream",
+    period: "2021—2022",
+    score: "93.43%",
+    pr: "99.91 Percentile",
+    highlight: "Scored 100/100 in Statistics",
+  },
+  {
+    institution: "L.G. Dholakiya School",
+    degree: "Secondary Education (X)",
+    stream: "General",
+    period: "2019—2020",
+    score: "88.00%",
+    pr: "99.03 Percentile",
+    highlight: null,
   },
 ]
 
@@ -171,22 +184,95 @@ export const skillCategories = [
 // Flat list for backwards compatibility
 export const skills = skillCategories.flatMap(c => c.skills)
 
-export const achievements = [
-  "Solved 1200+ coding problems across LeetCode, CodeChef, Codeforces, HackerRank, and GeeksforGeeks.",
-  "Achieved a CodeChef max rating of 1781 (3★ Coder) with 500+ solved problems.",
-  "Solved 150+ LeetCode problems with a contest rating of 1460.",
-  "Earned HackerRank 5★ badges and verified skill certifications in Python, Java, and SQL.",
-  "Participated in competitive programming contests across CodeChef, LeetCode, Codeforces, and AtCoder.",
-]
+export const achievements = {
+  stats: [
+    { label: "Problems Solved", value: "1400+", sub: "Across all platforms", color: "#6366F1" },
+    { label: "CodeChef Rating", value: "1781", sub: "3★ Coder", color: "#F5761A" },
+    { label: "LeetCode Rating", value: "1460", sub: "Max Contest", color: "#FFA116" },
+    { label: "Codeforces Rating", value: "1186", sub: "Max Contest", color: "#1890FF" },
+  ],
+  platforms: [
+    {
+      name: "CodeChef",
+      initials: "CC",
+      rating: 1781,
+      badge: "3\u2605 Coder",
+      solved: "500+",
+      color: "#F5761A",
+      link: "https://www.codechef.com/users/vatsalgajera",
+    },
+    {
+      name: "LeetCode",
+      initials: "LC",
+      rating: 1460,
+      badge: "Max Contest Rating",
+      solved: "200+",
+      color: "#FFA116",
+      link: "https://leetcode.com/u/VatsalGajera/",
+    },
+    {
+      name: "Codeforces",
+      initials: "CF",
+      rating: 1186,
+      badge: "Max Rating",
+      solved: "100+",
+      color: "#1890FF",
+      link: "https://codeforces.com/profile/VatsalGajera",
+    },
+    {
+      name: "HackerRank",
+      initials: "HR",
+      rating: null,
+      badge: "5\u2605 Verified",
+      solved: "Python · Java · SQL",
+      color: "#00EA64",
+      link: "https://www.hackerrank.com/profile/VatsalGajera",
+    },
+    {
+      name: "GeeksforGeeks",
+      initials: "GG",
+      rating: null,
+      badge: "Active Coder",
+      solved: "Practice",
+      color: "#2F8D46",
+      link: "https://www.geeksforgeeks.org/profile/vatsalgajera",
+    },
+    {
+      name: "Code360",
+      initials: "C3",
+      rating: null,
+      badge: "Active",
+      solved: "Problems",
+      color: "#F5761A",
+      link: "https://www.naukri.com/code360/profile/VatsalGajera",
+    },
+  ],
+  contests: [
+    "CodeChef Long Challenges & Cook-Off",
+    "LeetCode Weekly & Biweekly Contests",
+    "Codeforces Rounds (Div. 2 & 3)",
+    "AtCoder Beginner Contests",
+  ],
+  openSource: {
+    program: "GirlScript Summer of Code",
+    edition: "GSSoC 2026",
+    year: 2026,
+    color: "#FF6B35",
+    description: "Participated in GSSoC 2026, explored open-source projects, engaged in issue discussions, and learned GitHub contribution workflows through the GirlScript Summer of Code program.",
+    badges: ["First Steps", "Profile Complete", "Discord Verified", "Point Scorer", "Role Contributor", "Bounty Hunter", "Bounty Master"],
+  },
+}
 
 export const hobbies = [
   "Problem Solving", "Competitive Programming", "Data Science", "Open Source", "Music", "Travel"
 ]
 
 export const certifications = [
-  // 1. IBM — Data Science priority: ML > DS Methodology > Python DS
+  // 1. IBM — Data Science priority: ML > DS Methodology > DS Tools > DS 101 > Python DS
   { name: "IBM Machine Learning Essentials", authority: "IBM", year: 2026, image: "/images/certs/IBM - ML essentials.jpg" },
   { name: "Data Science Methodology", authority: "IBM", year: 2026, image: "/images/certs/IBM-DS-Methodology.jpg" },
+  { name: "Tools for Data Science", authority: "IBM", year: 2026, image: "/images/certs/IBM-DataScience Tool.jpg" },
+  { name: "Data Science 101", authority: "IBM", year: 2026, image: "/images/certs/IBM-DS-101.jpg" },
   { name: "Python 101 for Data Science", authority: "IBM", year: 2026, image: "/images/certs/IBM-Python.jpg" },
 
   // 2. NASA
@@ -214,7 +300,8 @@ export const certifications = [
   { name: "Python Course for Beginners with Certification: Mastering the Essentials", authority: "Scaler Topics", year: 2026, image: "/images/certs/Python Course.png" },
   { name: "SQL for Beginners: Learn SQL using MySQL and Database Design", authority: "Scaler Topics", year: 2026, image: "/images/certs/SQL Course.png" },
 
-  // 6. Code360 (Coding Ninjas) — Python OOPs > Basics I > Basics II
+  // 6. Code360 (Coding Ninjas) — ML > Python OOPs > Basics I > Basics II
+  { name: "Machine Learning Fundamentals", authority: "Code360 (Coding Ninjas)", year: 2026, image: "/images/certs/Code360-ML.jpeg" },
   { name: "OOPs in Python", authority: "Code360 (Coding Ninjas)", year: 2026, image: "/images/certs/Code360-Python-OOPS.jpg" },
   { name: "Basics of Python – Part I", authority: "Code360 (Coding Ninjas)", year: 2026, image: "/images/certs/Code360-Python-I.jpeg" },
   { name: "Basics of Python – Part II", authority: "Code360 (Coding Ninjas)", year: 2026, image: "/images/certs/Code360-Python-II.jpeg" },
@@ -258,6 +345,22 @@ export const badges = [
     image: "/images/badges/IBM-DS-Methodologies.png",
   },
   {
+    name: "Tools for Data Science",
+    issuer: "IBM Skills Network",
+    year: 2026,
+    color: "#0062FF",
+    initials: "IBM",
+    image: "/images/badges/IBM-DS-Tools.png",
+  },
+  {
+    name: "Data Science 101",
+    issuer: "IBM Skills Network",
+    year: 2026,
+    color: "#0062FF",
+    initials: "IBM",
+    image: "/images/badges/IBM-DS-101.png",
+  },
+  {
     name: "Python for Data Science",
     issuer: "IBM Skills Network",
     year: 2026,
@@ -280,6 +383,64 @@ export const badges = [
     color: "#0B3D91",
     initials: "NASA",
     image: "/images/badges/NASA-1.png",
+  },
+
+  // GSSoC (GirlScript Summer of Code) 2026
+  {
+    name: "First Steps",
+    issuer: "GirlScript Summer of Code",
+    year: 2026,
+    color: "#FF6B35",
+    initials: "GS",
+    image: "/images/badges/gssoc-badge-first_steps.png",
+  },
+  {
+    name: "Profile Complete",
+    issuer: "GirlScript Summer of Code",
+    year: 2026,
+    color: "#FF6B35",
+    initials: "GS",
+    image: "/images/badges/gssoc-badge-profile_complete.png",
+  },
+  {
+    name: "Discord Verified",
+    issuer: "GirlScript Summer of Code",
+    year: 2026,
+    color: "#FF6B35",
+    initials: "GS",
+    image: "/images/badges/gssoc-badge-discord_verified.png",
+  },
+  {
+    name: "Point Scorer",
+    issuer: "GirlScript Summer of Code",
+    year: 2026,
+    color: "#FF6B35",
+    initials: "GS",
+    image: "/images/badges/gssoc-badge-point_scorer.png",
+  },
+  {
+    name: "Role Contributor",
+    issuer: "GirlScript Summer of Code",
+    year: 2026,
+    color: "#FF6B35",
+    initials: "GS",
+    image: "/images/badges/gssoc-badge-role_contributor.png",
+  },
+  {
+    name: "Bounty Hunter",
+    issuer: "GirlScript Summer of Code",
+    year: 2026,
+    color: "#FF6B35",
+    initials: "GS",
+    image: "/images/badges/gssoc-badge-bounty_hunter.png",
+  },
+  {
+    name: "Bounty Master",
+    issuer: "GirlScript Summer of Code",
+    year: 2026,
+    color: "#FF6B35",
+    initials: "GS",
+    image: "/images/badges/gssoc-badge-bounty_master.png",
   },
 ]
 

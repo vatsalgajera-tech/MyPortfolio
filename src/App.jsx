@@ -59,6 +59,7 @@ import {
   hobbies,
   certifications,
   badges,
+  achievements,
 } from "./data/portfolio";
 import Magnetic from "./components/ui/Magnetic";
 import CommandPalette from "./components/ui/CommandPalette";
@@ -318,6 +319,18 @@ export default function App() {
     };
   }, []);
 
+  const sections = [
+    { label: "About", href: "#about" },
+    { label: "Connect", href: "#contact" },
+    { label: "Experience", href: "#experience" },
+    { label: "Projects", href: "#projects" },
+    { label: "Education", href: "#education" },
+    { label: "Skills", href: "#skills" },
+    { label: "Achievements", href: "#achievements" },
+    { label: "Certifications", href: "#certifications" },
+    { label: "Badges", href: "#badges" },
+  ];
+
   const socialItems = [
     {
       label: "LinkedIn",
@@ -346,6 +359,7 @@ export default function App() {
       icon: FaTrophy,
     },
     { label: "Code360", href: personalInfo.socials.code360, icon: FaCode },
+    { label: "GeeksforGeeks", href: personalInfo.socials.geeksforgeeks, icon: FaCode },
   ];
 
   const skillIconMap = {
@@ -685,23 +699,70 @@ export default function App() {
           <div className="grid lg:grid-cols-2 gap-6">
             <Section id="education" shouldAnimate={shouldAnimate}>
               <Label>Education</Label>
-              <div className="space-y-5">
-                {education.map((ed, i) => (
-                  <div key={i}>
-                    <p className="text-sm font-semibold mb-0.5">
-                      {ed.institution}
-                    </p>
-                    <p className="mono text-xs text-[color:var(--muted)]">
-                      {ed.degree}
-                    </p>
-                    <p className="mono text-xs text-[color:var(--muted)]">
-                      {ed.period}
-                    </p>
-                    <p className="mono text-xs text-[color:var(--muted)]">
-                      {ed.score}
-                    </p>
-                  </div>
-                ))}
+              <div className="space-y-4">
+                {education.map((ed, i) => {
+                  const isSchool = ed.stream !== undefined;
+                  return (
+                    <div
+                      key={i}
+                      className="relative rounded-2xl border border-[color:var(--line)] bg-[color:var(--card-strong)] px-4 py-3 overflow-hidden"
+                    >
+                      {/* Accent stripe */}
+                      <div
+                        className="absolute left-0 top-0 bottom-0 w-[3px] rounded-l-2xl"
+                        style={{
+                          background: isSchool
+                            ? "linear-gradient(to bottom, #F59E0B, #FBBF24)"
+                            : "linear-gradient(to bottom, var(--accent), #34d399)",
+                        }}
+                      />
+                      <div className="pl-3">
+                        {/* Degree badge */}
+                        <div className="flex items-start justify-between gap-2 mb-1">
+                          <div className="min-w-0">
+                            <p className="text-sm font-semibold leading-tight">
+                              {ed.institution}
+                            </p>
+                            <p className="mono text-xs text-[color:var(--muted)] mt-0.5">
+                              {ed.degree}
+                            </p>
+                            {isSchool && (
+                              <p className="mono text-[10px] text-[color:var(--muted)] opacity-70">
+                                {ed.stream}
+                              </p>
+                            )}
+                          </div>
+                          <span className="flex-shrink-0 mono text-[10px] px-2 py-0.5 rounded-full border border-[color:var(--line)] text-[color:var(--muted)] whitespace-nowrap">
+                            {ed.period}
+                          </span>
+                        </div>
+                        {/* Score row */}
+                        <div className="flex flex-wrap items-center gap-2 mt-2">
+                          <span className="mono text-[11px] font-semibold text-[color:var(--txt)]">
+                            {ed.score}
+                          </span>
+                          {ed.pr && (
+                            <span className="mono text-[10px] text-[color:var(--muted)]">
+                              · {ed.pr}
+                            </span>
+                          )}
+                          {ed.highlight && (
+                            <span
+                              className="inline-flex items-center gap-1 mono text-[9px] px-2 py-0.5 rounded-full font-medium"
+                              style={{
+                                background: "rgba(245,158,11,0.12)",
+                                color: "#F59E0B",
+                                border: "1px solid rgba(245,158,11,0.3)",
+                              }}
+                            >
+                              ★ {ed.highlight}
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
             </Section>
 
@@ -794,7 +855,185 @@ export default function App() {
             })()}
           </Section>
 
-          {/* 8. Certifications */}
+          {/* 8. Achievements */}
+          <Section id="achievements" shouldAnimate={shouldAnimate}>
+            <Label>Achievements</Label>
+
+            {/* Stat counters */}
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
+              {achievements.stats.map((stat, i) => (
+                <motion.div
+                  key={i}
+                  whileHover={{ y: -3 }}
+                  className="relative rounded-2xl border border-[color:var(--line)] bg-[color:var(--card-strong)] p-4 overflow-hidden text-center"
+                >
+                  <div
+                    className="absolute inset-0 opacity-[0.06] rounded-2xl"
+                    style={{ background: `radial-gradient(circle at top left, ${stat.color}, transparent 70%)` }}
+                  />
+                  <div
+                    className="text-2xl md:text-3xl font-bold leading-none mb-1"
+                    style={{ color: stat.color }}
+                  >
+                    {stat.value}
+                  </div>
+                  <p className="mono text-[11px] font-semibold text-[color:var(--txt)] leading-tight">
+                    {stat.label}
+                  </p>
+                  <p className="mono text-[10px] text-[color:var(--muted)] mt-0.5">
+                    {stat.sub}
+                  </p>
+                  <div
+                    className="absolute bottom-0 left-0 right-0 h-[2px] rounded-b-2xl opacity-60"
+                    style={{ background: `linear-gradient(to right, transparent, ${stat.color}, transparent)` }}
+                  />
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Platform cards */}
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 mb-6">
+              {achievements.platforms.map((pl, i) => (
+                <motion.a
+                  key={i}
+                  href={pl.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ y: -4, scale: 1.03 }}
+                  className="group relative rounded-2xl border border-[color:var(--line)] bg-[color:var(--card-strong)] p-3 flex flex-col items-center text-center gap-2 overflow-hidden"
+                  style={{ transition: "box-shadow 0.3s ease, border-color 0.3s ease" }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.boxShadow = `0 8px 28px ${pl.color}28`;
+                    e.currentTarget.style.borderColor = `${pl.color}55`;
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.boxShadow = "none";
+                    e.currentTarget.style.borderColor = "";
+                  }}
+                >
+                  <div
+                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"
+                    style={{ background: `radial-gradient(circle at center, ${pl.color}0e, transparent 70%)` }}
+                  />
+                  {/* Initials badge */}
+                  <div
+                    className="relative w-9 h-9 rounded-xl flex items-center justify-center text-white font-bold text-[11px] tracking-tight flex-shrink-0"
+                    style={{ background: `linear-gradient(135deg, ${pl.color}ee, ${pl.color}88)` }}
+                  >
+                    {pl.initials}
+                  </div>
+                  <p className="mono text-[11px] font-semibold text-[color:var(--txt)] leading-none">
+                    {pl.name}
+                  </p>
+                  {pl.rating && (
+                    <p className="text-base font-bold leading-none" style={{ color: pl.color }}>
+                      {pl.rating}
+                    </p>
+                  )}
+                  <span
+                    className="mono text-[9px] px-1.5 py-0.5 rounded-full border font-medium leading-none"
+                    style={{ borderColor: `${pl.color}55`, color: pl.color, background: `${pl.color}11` }}
+                  >
+                    {pl.badge}
+                  </span>
+                  <p className="mono text-[10px] text-[color:var(--muted)]">
+                    {pl.solved}
+                    {!pl.rating && ""}
+                    {pl.rating ? " solved" : ""}
+                  </p>
+                  <ExternalLink
+                    size={10}
+                    className="absolute top-2.5 right-2.5 opacity-0 group-hover:opacity-40 transition-opacity"
+                    style={{ color: pl.color }}
+                  />
+                </motion.a>
+              ))}
+            </div>
+
+            {/* GSSoC 2026 Open Source highlight */}
+            <motion.div
+              whileHover={{ scale: 1.005 }}
+              className="relative rounded-2xl border overflow-hidden mb-4"
+              style={{
+                borderColor: `${achievements.openSource.color}44`,
+                background: `linear-gradient(135deg, ${achievements.openSource.color}08 0%, transparent 50%)`,
+              }}
+            >
+              {/* Glow orb */}
+              <div
+                className="absolute -top-10 -right-10 w-40 h-40 rounded-full blur-2xl opacity-20 pointer-events-none"
+                style={{ background: achievements.openSource.color }}
+              />
+              <div className="relative p-5 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+                {/* Icon badge */}
+                <div
+                  className="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center text-white font-bold text-[13px] shadow-lg"
+                  style={{ background: `linear-gradient(135deg, ${achievements.openSource.color}, ${achievements.openSource.color}99)` }}
+                >
+                  GS
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="flex flex-wrap items-center gap-2 mb-1">
+                    <p className="text-sm font-semibold text-[color:var(--txt)]">
+                      {achievements.openSource.program}
+                    </p>
+                    <span
+                      className="mono text-[9px] px-2 py-0.5 rounded-full font-bold tracking-wide"
+                      style={{
+                        background: `${achievements.openSource.color}22`,
+                        color: achievements.openSource.color,
+                        border: `1px solid ${achievements.openSource.color}55`,
+                      }}
+                    >
+                      {achievements.openSource.edition}
+                    </span>
+                    <span className="mono text-[9px] px-2 py-0.5 rounded-full font-medium bg-emerald-500/10 text-emerald-500 border border-emerald-500/30">
+                      Open Source
+                    </span>
+                  </div>
+                  <p className="mono text-xs text-[color:var(--muted)] leading-relaxed mb-3">
+                    {achievements.openSource.description}
+                  </p>
+                  {/* Badge pills */}
+                  <div className="flex flex-wrap gap-1.5">
+                    {achievements.openSource.badges.map((b) => (
+                      <span
+                        key={b}
+                        className="mono text-[9px] px-2 py-0.5 rounded-full border font-medium"
+                        style={{
+                          borderColor: `${achievements.openSource.color}44`,
+                          color: achievements.openSource.color,
+                          background: `${achievements.openSource.color}0d`,
+                        }}
+                      >
+                        ★ {b}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Contest participation */}
+            <div className="rounded-2xl border border-[color:var(--line)] bg-[color:var(--card-strong)] px-4 py-3">
+              <p className="mono text-[11px] font-semibold text-[color:var(--muted)] mb-2.5 uppercase tracking-widest">
+                Contest Participation
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {achievements.contests.map((c) => (
+                  <span
+                    key={c}
+                    className="mono text-[10px] px-3 py-1 rounded-full border border-[color:var(--line)] bg-[color:var(--accent-soft)] text-[color:var(--muted)] flex items-center gap-1.5"
+                  >
+                    <span className="w-1.5 h-1.5 rounded-full bg-[color:var(--accent)] flex-shrink-0" />
+                    {c}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </Section>
+
+          {/* 9. Certifications */}
           <Section id="certifications" shouldAnimate={shouldAnimate}>
             <Label>Certifications</Label>
             {(() => {
@@ -877,10 +1116,10 @@ export default function App() {
 
           {/* 9. Badges */}
           <Section id="badges" shouldAnimate={shouldAnimate}>
-            <div className="flex items-center justify-between mb-1">
+            <div className="flex items-center justify-between mb-4">
               <Label>Badges</Label>
               <a
-                href="https://www.credly.com/users/vatsalgajera/badges/credly"
+                href={personalInfo.socials.credly}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-1.5 mono text-[11px] text-[color:var(--muted)] hover:text-[color:var(--accent)] transition-colors group"
@@ -892,99 +1131,103 @@ export default function App() {
                 />
               </a>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
-              {badges.map((badge, i) => (
-                <div
-                  key={i}
-                  className="group relative h-52"
-                  style={{ perspective: "1000px" }}
-                >
-                  {/* Card inner — flips on hover */}
-                  <div
-                    className="absolute inset-0 transition-transform duration-500"
-                    style={{
-                      transformStyle: "preserve-3d",
-                      transform: "rotateY(0deg)",
-                    }}
-                    onMouseEnter={(e) =>
-                      (e.currentTarget.style.transform = "rotateY(180deg)")
-                    }
-                    onMouseLeave={(e) =>
-                      (e.currentTarget.style.transform = "rotateY(0deg)")
-                    }
-                  >
-                    {/* Front — info card */}
-                    <div
-                      className="absolute inset-0 rounded-2xl border border-[color:var(--line)] bg-[color:var(--card-strong)] p-5 flex flex-col items-center justify-center text-center gap-3 overflow-hidden"
-                      style={{ backfaceVisibility: "hidden" }}
-                    >
-                      <div
-                        className="absolute inset-0 opacity-5 rounded-2xl"
-                        style={{
-                          background: `radial-gradient(circle at top right, ${badge.color}, transparent 70%)`,
-                        }}
-                      />
-                      <div
-                        className="relative w-12 h-12 rounded-xl flex items-center justify-center shadow-md flex-shrink-0"
-                        style={{
-                          background: `linear-gradient(135deg, ${badge.color}dd, ${badge.color}66)`,
-                        }}
-                      >
-                        <span className="text-white font-bold text-[10px] tracking-tight">
-                          {badge.initials}
-                        </span>
-                      </div>
-                      <div className="relative">
-                        <p className="text-xs font-semibold text-[color:var(--txt)] leading-snug">
-                          {badge.name}
-                        </p>
-                        <p className="mono text-[10px] text-[color:var(--muted)] mt-1">
-                          {badge.issuer}
-                        </p>
-                        <span
-                          className="inline-block mt-2 mono text-[9px] px-2 py-0.5 rounded-full border font-medium"
-                          style={{
-                            borderColor: badge.color,
-                            color: badge.color,
-                          }}
-                        >
-                          {badge.year}
-                        </span>
-                      </div>
-                      <Star
-                        size={10}
-                        className="absolute top-3 right-3 opacity-30"
-                        style={{ color: badge.color }}
-                      />
-                      <span className="absolute bottom-2 mono text-[9px] text-[color:var(--muted)] opacity-60">
-                        hover to reveal
-                      </span>
-                    </div>
 
-                    {/* Back — badge image */}
-                    <div
-                      className="absolute inset-0 rounded-2xl border border-[color:var(--line)] bg-[color:var(--card-strong)] flex items-center justify-center p-4 overflow-hidden"
-                      style={{
-                        backfaceVisibility: "hidden",
-                        transform: "rotateY(180deg)",
-                      }}
-                    >
-                      <div
-                        className="absolute inset-0 opacity-8 rounded-2xl"
-                        style={{
-                          background: `radial-gradient(circle at center, ${badge.color}22, transparent 70%)`,
-                        }}
-                      />
-                      <img
-                        src={badge.image}
-                        alt={badge.name}
-                        className="relative w-full h-full object-contain drop-shadow-lg"
-                      />
+            {/* Grouped by issuer */}
+            {(() => {
+              const grouped = badges.reduce((acc, b) => {
+                if (!acc[b.issuer]) acc[b.issuer] = [];
+                acc[b.issuer].push(b);
+                return acc;
+              }, {});
+              return (
+                <div className="space-y-8">
+                  {Object.entries(grouped).map(([issuer, issuerBadges]) => (
+                    <div key={issuer}>
+                      {/* Issuer header */}
+                      <div className="flex items-center gap-2 mb-4">
+                        <span
+                          className="inline-flex items-center justify-center w-6 h-6 rounded-md text-white text-[9px] font-bold flex-shrink-0"
+                          style={{ background: issuerBadges[0].color }}
+                        >
+                          {issuer.charAt(0)}
+                        </span>
+                        <p className="mono text-xs font-semibold text-[color:var(--txt)]">
+                          {issuer}
+                        </p>
+                        <span className="mono text-[10px] text-[color:var(--muted)]">
+                          · {issuerBadges.length} badge{issuerBadges.length > 1 ? "s" : ""}
+                        </span>
+                      </div>
+
+                      {/* Badge cards grid */}
+                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
+                        {issuerBadges.map((badge, i) => (
+                          <motion.div
+                            key={i}
+                            whileHover={{ y: -4, scale: 1.02 }}
+                            className="group relative rounded-2xl border border-[color:var(--line)] bg-[color:var(--card-strong)] overflow-hidden cursor-default"
+                            style={{
+                              boxShadow: `0 0 0 0 ${badge.color}00`,
+                              transition: "box-shadow 0.3s ease",
+                            }}
+                            onMouseEnter={(e) => {
+                              e.currentTarget.style.boxShadow = `0 8px 32px ${badge.color}28, 0 0 0 1px ${badge.color}44`;
+                              e.currentTarget.style.borderColor = `${badge.color}66`;
+                            }}
+                            onMouseLeave={(e) => {
+                              e.currentTarget.style.boxShadow = "none";
+                              e.currentTarget.style.borderColor = "";
+                            }}
+                          >
+                            {/* Badge image area */}
+                            <div
+                              className="relative flex items-center justify-center p-5 pb-3"
+                              style={{
+                                background: `radial-gradient(circle at center, ${badge.color}14, ${badge.color}04 70%)`,
+                              }}
+                            >
+                              <div
+                                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                                style={{
+                                  background: `radial-gradient(circle at center, ${badge.color}1a, transparent 70%)`,
+                                }}
+                              />
+                              <img
+                                src={badge.image}
+                                alt={badge.name}
+                                className="relative w-20 h-20 object-contain drop-shadow-md group-hover:scale-110 transition-transform duration-300"
+                              />
+                            </div>
+
+                            {/* Badge info */}
+                            <div className="px-3 pb-3 pt-1 border-t border-[color:var(--line)]">
+                              <p className="text-[11px] font-semibold text-[color:var(--txt)] leading-snug line-clamp-2">
+                                {badge.name}
+                              </p>
+                              <div className="flex items-center justify-between mt-1.5">
+                                <p className="mono text-[10px] text-[color:var(--muted)]">
+                                  {badge.issuer}
+                                </p>
+                                <span
+                                  className="mono text-[9px] px-1.5 py-0.5 rounded-full border font-medium"
+                                  style={{
+                                    borderColor: `${badge.color}66`,
+                                    color: badge.color,
+                                    background: `${badge.color}11`,
+                                  }}
+                                >
+                                  {badge.year}
+                                </span>
+                              </div>
+                            </div>
+                          </motion.div>
+                        ))}
+                      </div>
                     </div>
-                  </div>
+                  ))}
                 </div>
-              ))}
-            </div>
+              );
+            })()}
           </Section>
 
           {/* Certificate Preview Modal */}

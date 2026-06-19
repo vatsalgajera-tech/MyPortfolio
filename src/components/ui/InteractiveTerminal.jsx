@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Terminal, X, Minimize2, Maximize2 } from "lucide-react";
 
 const commands = {
-  help: "Available commands: about, experience, projects, skills, hobbies, contact, clear, exit",
+  help: "Available commands: about, experience, projects, skills, achievements, hobbies, contact, clear, exit",
   about:
     "Vatsal Gajera - Python Developer | Full Stack Developer | Data Science Enthusiast based in Rajkot, Gujarat.",
   experience:
@@ -12,6 +12,8 @@ const commands = {
     "1. VendorBridge AI (MERN Stack), 2. Nexus University Management System (MERN Stack), 3. E-Commerce Website (MERN Stack), 4. Parking Management System (Console Based JAVA).",
   skills:
     "Python, MySQL, NumPy, Pandas, Scikit-learn, Matplotlib, TensorFlow, Java, JavaScript, React.js, Node.js, Express.js, MongoDB.",
+  achievements:
+    "1400+ problems solved | CodeChef 1781 (3★) | LeetCode 1460 rating, 200+ solved | Codeforces 1186 rating | HackerRank 5★ | GSSoC 2026 Open Source Contributor.",
   hobbies:
     "Problem Solving, Competitive Programming, Data Science, Open Source, Music, Travel.",
   contact: "Email: vatsalgajera.tech@gmail.com | Phone: +91 9723140922",
@@ -22,7 +24,7 @@ export default function InteractiveTerminal() {
   const [isOpen, setIsOpen] = useState(false);
   const [isMinimized, setIsMinimized] = useState(false);
   const [history, setHistory] = useState([
-    'Welcome to Vatsal\'s Terminal. Type "help" to start.',
+    'Welcome to Vatsal\'s Terminal. Type "help" to see available commands.',
   ]);
   const [input, setInput] = useState("");
   const scrollRef = useRef(null);
@@ -82,7 +84,7 @@ export default function InteractiveTerminal() {
               <div className="flex items-center gap-2">
                 <Terminal size={14} className="text-emerald-500" />
                 <span className="mono text-xs font-medium text-stone-300">
-                  om-terminal — zsh
+                  vatsal-terminal — zsh
                 </span>
               </div>
               <div className="flex items-center gap-2">
