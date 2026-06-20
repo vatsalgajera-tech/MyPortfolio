@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useTheme } from "./hooks/useTheme";
 import Navbar from "./components/Navbar";
 import { motion } from "framer-motion";
+import { Analytics } from "@vercel/analytics/react";
 import {
   ShieldCheck,
   Award,
@@ -1341,6 +1342,7 @@ export default function App() {
           </button>
         </motion.div>
       </div>
+      <Analytics />
     </div>
   );
 }
