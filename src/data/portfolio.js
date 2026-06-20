@@ -21,8 +21,8 @@ export const personalInfo = {
     credly: "https://www.credly.com/users/vatsalgajera/badges/credly",
     geeksforgeeks: "https://www.geeksforgeeks.org/profile/vatsalgajera",
     email: "mailto:vatsalgajera.tech@gmail.com",
-  }
-}
+  },
+};
 
 export const experiences = [
   {
@@ -32,7 +32,14 @@ export const experiences = [
     type: "Internship",
     location: "Bengaluru, Karnataka · Remote",
     period: "2 Months",
-    tech: ["Python", "Pandas", "NumPy", "Matplotlib", "Scikit-Learn", "Machine Learning"],
+    tech: [
+      "Python",
+      "Pandas",
+      "NumPy",
+      "Matplotlib",
+      "Scikit-Learn",
+      "Machine Learning",
+    ],
     points: [
       "Performed data cleaning, preprocessing, and exploratory data analysis on real-world datasets using Python.",
       "Applied Pandas and NumPy for data manipulation, feature engineering, and statistical analysis.",
@@ -72,7 +79,7 @@ export const experiences = [
       "Tested and debugged applications to ensure smooth functionality.",
     ],
   },
-]
+];
 
 export const education = [
   {
@@ -105,91 +112,152 @@ export const education = [
     pr: "99.03 Percentile",
     highlight: null,
   },
-]
+];
 
 export const projects = [
   {
     title: "VendorBridge AI",
     subtitle: "AI-Powered Procurement ERP · MERN Stack · Odoo x KSV Hackathon",
-    description: "AI-powered procurement ERP platform with vendor onboarding, RFQ creation, quotation management, AI-driven vendor recommendation and risk scoring, multi-stage approval workflows, purchase order and invoice management, audit logging, and analytics dashboards.",
-    tech: ["React.js", "Node.js", "Express.js", "MongoDB", "JWT", "Redux", "AI Scoring"],
+    description:
+      "AI-powered procurement ERP platform with vendor onboarding, RFQ creation, quotation management, AI-driven vendor recommendation and risk scoring, multi-stage approval workflows, purchase order and invoice management, audit logging, and analytics dashboards.",
+    tech: [
+      "React.js",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "JWT",
+      "Redux",
+      "AI Scoring",
+    ],
     links: { source: "https://github.com/vatsalgajera-tech/VendorBridge-AI" },
   },
   {
     title: "University Management System",
     subtitle: "Full-Stack Academic Platform · MERN Stack",
-    description: "Role-based MERN application for academic operations with dashboards for admins, professors, and students. Features course management, attendance tracking, marks and results, study material uploads, leave management, JWT auth, protected routes, file uploads, and cloud deployment.",
-    tech: ["React.js", "Node.js", "Express.js", "MongoDB", "JWT", "Tailwind CSS", "Vercel", "Render"],
-    links: { source: "https://github.com/vatsalgajera-tech/University-Management-System" },
+    description:
+      "Role-based MERN application for academic operations with dashboards for admins, professors, and students. Features course management, attendance tracking, marks and results, study material uploads, leave management, JWT auth, protected routes, file uploads, and cloud deployment.",
+    tech: [
+      "React.js",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "JWT",
+      "Tailwind CSS",
+      "Vercel",
+      "Render",
+    ],
+    links: {
+      source:
+        "https://github.com/vatsalgajera-tech/University-Management-System",
+    },
   },
   {
     title: "Shree Vastra",
     subtitle: "Women's Ethnic Fashion E-Commerce · MERN Stack",
-    description: "Full-stack e-commerce platform for women's ethnic fashion with OTP & JWT authentication, product browsing and filtering, cart and wishlist, order tracking, Razorpay payment integration, Cloudinary media, and a comprehensive admin dashboard.",
+    description:
+      "Full-stack e-commerce platform for women's ethnic fashion with OTP & JWT authentication, product browsing and filtering, cart and wishlist, order tracking, Razorpay payment integration, Cloudinary media, and a comprehensive admin dashboard.",
     tech: ["React.js", "Redux Toolkit", "Node.js", "Express.js", "MongoDB"],
     links: { source: "https://github.com/vatsalgajera-tech/eCommerce-Website" },
   },
   {
     title: "Parking Management System",
     subtitle: "Console-Based Application · Java",
-    description: "Console-based Java application for vehicle parking operations via menu-driven interface. Supports slot allocation, vehicle search, real-time availability for two-wheelers and four-wheelers, automatic receipt generation, fee calculation, and daily transaction reports.",
-    tech: ["Java", "OOP", "Collections", "Inheritance", "Polymorphism", "Exception Handling"],
-    links: { source: "https://github.com/vatsalgajera-tech/Parking-Management-System" },
+    description:
+      "Console-based Java application for vehicle parking operations via menu-driven interface. Supports slot allocation, vehicle search, real-time availability for two-wheelers and four-wheelers, automatic receipt generation, fee calculation, and daily transaction reports.",
+    tech: [
+      "Java",
+      "OOP",
+      "Collections",
+      "Inheritance",
+      "Polymorphism",
+      "Exception Handling",
+    ],
+    links: {
+      source: "https://github.com/vatsalgajera-tech/Parking-Management-System",
+    },
   },
-]
+];
 
 export const skillCategories = [
   {
-    category: 'Languages',
-    icon: 'code',
-    skills: ['Python', 'SQL', 'Java', 'JavaScript', 'HTML5', 'CSS3'],
+    category: "Languages",
+    icon: "code",
+    skills: ["Python", "SQL", "Java", "JavaScript", "HTML5", "CSS3"],
   },
   {
-    category: 'Data Science & Machine Learning',
-    icon: 'brain',
-    skills: ['NumPy', 'Pandas', 'Matplotlib', 'Seaborn', 'Scikit-Learn', 'TensorFlow', 'OpenCV'],
+    category: "Data Science & Machine Learning",
+    icon: "brain",
+    skills: [
+      "NumPy",
+      "Pandas",
+      "Matplotlib",
+      "Seaborn",
+      "Scikit-Learn",
+      "TensorFlow",
+      "OpenCV",
+    ],
   },
   {
-    category: 'Data Visualization & BI',
-    icon: 'chart',
-    skills: ['Power BI', 'Tableau'],
+    category: "Data Visualization & BI",
+    icon: "chart",
+    skills: ["Power BI", "Tableau"],
   },
   {
-    category: 'Backend Development',
-    icon: 'server',
-    skills: ['FastAPI', 'Node.js', 'Express.js'],
+    category: "Backend Development",
+    icon: "server",
+    skills: ["FastAPI", "Node.js", "Express.js"],
   },
   {
-    category: 'Frontend Development',
-    icon: 'layout',
-    skills: ['React', 'Tailwind CSS', 'Vite'],
+    category: "Frontend Development",
+    icon: "layout",
+    skills: ["React", "Tailwind CSS", "Vite"],
   },
   {
-    category: 'Databases',
-    icon: 'database',
-    skills: ['PostgreSQL', 'MySQL', 'MongoDB', 'MongoDB Atlas'],
+    category: "Databases",
+    icon: "database",
+    skills: ["PostgreSQL", "MySQL", "MongoDB", "MongoDB Atlas"],
   },
   {
-    category: 'Tools & Platforms',
-    icon: 'wrench',
-    skills: ['Git', 'GitHub', 'Postman', 'Jupyter Notebook', 'VS Code'],
+    category: "Tools & Platforms",
+    icon: "wrench",
+    skills: ["Git", "GitHub", "Postman", "Jupyter Notebook", "VS Code"],
   },
   {
-    category: 'Cloud & Deployment',
-    icon: 'cloud',
-    skills: ['Azure', 'Vercel'],
+    category: "Cloud & Deployment",
+    icon: "cloud",
+    skills: ["Azure", "Vercel"],
   },
-]
+];
 
 // Flat list for backwards compatibility
-export const skills = skillCategories.flatMap(c => c.skills)
+export const skills = skillCategories.flatMap((c) => c.skills);
 
 export const achievements = {
   stats: [
-    { label: "Problems Solved", value: "1400+", sub: "Across all platforms", color: "#6366F1" },
-    { label: "CodeChef Rating", value: "1781", sub: "3★ Coder", color: "#F5761A" },
-    { label: "LeetCode Rating", value: "1460", sub: "Max Contest", color: "#FFA116" },
-    { label: "Codeforces Rating", value: "1186", sub: "Max Contest", color: "#1890FF" },
+    {
+      label: "Problems Solved",
+      value: "1400+",
+      sub: "Across all platforms",
+      color: "#6366F1",
+    },
+    {
+      label: "CodeChef Rating",
+      value: "1781",
+      sub: "3★ Coder",
+      color: "#F5761A",
+    },
+    {
+      label: "LeetCode Rating",
+      value: "1460",
+      sub: "Max Contest",
+      color: "#FFA116",
+    },
+    {
+      label: "Codeforces Rating",
+      value: "1186",
+      sub: "Max Contest",
+      color: "#1890FF",
+    },
   ],
   platforms: [
     {
@@ -258,74 +326,294 @@ export const achievements = {
     edition: "GSSoC 2026",
     year: 2026,
     color: "#FF6B35",
-    description: "Participated in GSSoC 2026, explored open-source projects, engaged in issue discussions, and learned GitHub contribution workflows through the GirlScript Summer of Code program.",
-    badges: ["First Steps", "Profile Complete", "Discord Verified", "Point Scorer", "Role Contributor", "Bounty Hunter", "Bounty Master"],
+    description:
+      "Participated in GSSoC 2026, explored open-source projects, engaged in issue discussions, and learned GitHub contribution workflows through the GirlScript Summer of Code program.",
+    badges: [
+      "First Steps",
+      "Profile Complete",
+      "Discord Verified",
+      "Point Scorer",
+      "Role Contributor",
+      "Bounty Hunter",
+      "Bounty Master",
+    ],
   },
-}
+};
 
 export const hobbies = [
-  "Problem Solving", "Competitive Programming", "Data Science", "Open Source", "Music", "Travel"
-]
+  "Problem Solving",
+  "Competitive Programming",
+  "Data Science",
+  "Open Source",
+  "Music",
+  "Travel",
+];
 
 export const certifications = [
   // 1. IBM — Data Science priority: ML > DS Methodology > DS Tools > DS 101 > Python DS
-  { name: "IBM Machine Learning Essentials", authority: "IBM", year: 2026, image: "/images/certs/IBM - ML essentials.jpg" },
-  { name: "Data Science Methodology", authority: "IBM", year: 2026, image: "/images/certs/IBM-DS-Methodology.jpg" },
-  { name: "Tools for Data Science", authority: "IBM", year: 2026, image: "/images/certs/IBM-DataScience Tool.jpg" },
-  { name: "Data Science 101", authority: "IBM", year: 2026, image: "/images/certs/IBM-DS-101.jpg" },
-  { name: "Python 101 for Data Science", authority: "IBM", year: 2026, image: "/images/certs/IBM-Python.jpg" },
+  {
+    name: "IBM Machine Learning Essentials",
+    authority: "IBM",
+    year: 2026,
+    image: "/images/certs/IBM - ML essentials.jpg",
+  },
+  {
+    name: "Data Science Methodology",
+    authority: "IBM",
+    year: 2026,
+    image: "/images/certs/IBM-DS-Methodology.jpg",
+  },
+  {
+    name: "Tools for Data Science",
+    authority: "IBM",
+    year: 2026,
+    image: "/images/certs/IBM-DataScience Tool.jpg",
+  },
+  {
+    name: "Data Science 101",
+    authority: "IBM",
+    year: 2026,
+    image: "/images/certs/IBM-DS-101.jpg",
+  },
+  {
+    name: "Python 101 for Data Science",
+    authority: "IBM",
+    year: 2026,
+    image: "/images/certs/IBM-Python.jpg",
+  },
 
   // 2. NASA
-  { name: "NASA Open Science Essentials", authority: "NASA", year: 2026, image: "/images/certs/NASA - Open Science Essentials.jpg" },
-  { name: "NASA Open Science 101", authority: "NASA", year: 2026, image: "/images/certs/NASA - Open Science.jpg" },
+  {
+    name: "NASA Open Science Essentials",
+    authority: "NASA",
+    year: 2026,
+    image: "/images/certs/NASA - Open Science Essentials.jpg",
+  },
+  {
+    name: "NASA Open Science 101",
+    authority: "NASA",
+    year: 2026,
+    image: "/images/certs/NASA - Open Science.jpg",
+  },
 
   // 3. LinkedIn (Microsoft & GitHub)
-  { name: "Microsoft Azure Essentials Professional Certificate", authority: "LinkedIn", year: 2026, image: "/images/certs/MicroSoft - Azure.jpg" },
-  { name: "Career Essentials in GitHub Professional Certificate", authority: "LinkedIn", year: 2026, image: "/images/certs/GitHub.jpg" },
+  {
+    name: "Microsoft Azure Essentials Professional Certificate",
+    authority: "LinkedIn",
+    year: 2026,
+    image: "/images/certs/MicroSoft - Azure.jpg",
+  },
+  {
+    name: "Career Essentials in GitHub Professional Certificate",
+    authority: "LinkedIn",
+    year: 2026,
+    image: "/images/certs/GitHub.jpg",
+  },
 
   // 4. HackerRank — SQL > Python > Problem Solving > Java > CSS
-  { name: "SQL (Advanced)", authority: "HackerRank", year: 2026, image: "/images/certs/SQL(Advanced).png" },
-  { name: "SQL (Intermediate)", authority: "HackerRank", year: 2026, image: "/images/certs/SQL(Intermediate).png" },
-  { name: "SQL (Basic)", authority: "HackerRank", year: 2026, image: "/images/certs/SQL(Basic).png" },
-  { name: "Python (Basic)", authority: "HackerRank", year: 2026, image: "/images/certs/Python(Basic).png" },
-  { name: "Problem Solving (Intermediate)", authority: "HackerRank", year: 2026, image: "/images/certs/Problem(Intermdiate).png" },
-  { name: "Problem Solving (Basic)", authority: "HackerRank", year: 2026, image: "/images/certs/Problem(Basic).png" },
-  { name: "Java (Basic)", authority: "HackerRank", year: 2026, image: "/images/certs/Java(Basic).png" },
-  { name: "CSS (Basic)", authority: "HackerRank", year: 2026, image: "/images/certs/CSS(Basic).png" },
+  {
+    name: "SQL (Advanced)",
+    authority: "HackerRank",
+    year: 2026,
+    image: "/images/certs/SQL(Advanced).png",
+  },
+  {
+    name: "SQL (Intermediate)",
+    authority: "HackerRank",
+    year: 2026,
+    image: "/images/certs/SQL(Intermediate).png",
+  },
+  {
+    name: "SQL (Basic)",
+    authority: "HackerRank",
+    year: 2026,
+    image: "/images/certs/SQL(Basic).png",
+  },
+  {
+    name: "Python (Basic)",
+    authority: "HackerRank",
+    year: 2026,
+    image: "/images/certs/Python(Basic).png",
+  },
+  {
+    name: "Problem Solving (Intermediate)",
+    authority: "HackerRank",
+    year: 2026,
+    image: "/images/certs/Problem(Intermdiate).png",
+  },
+  {
+    name: "Problem Solving (Basic)",
+    authority: "HackerRank",
+    year: 2026,
+    image: "/images/certs/Problem(Basic).png",
+  },
+  {
+    name: "Java (Basic)",
+    authority: "HackerRank",
+    year: 2026,
+    image: "/images/certs/Java(Basic).png",
+  },
+  {
+    name: "CSS (Basic)",
+    authority: "HackerRank",
+    year: 2026,
+    image: "/images/certs/CSS(Basic).png",
+  },
 
   // 5. Scaler Topics — Data Science > Python > SQL > Full Stack
-  { name: "Data Science Course: Mastering the Fundamentals", authority: "Scaler Topics", year: 2026, image: "/images/certs/DS-Fundamentals.png" },
-  { name: "Python and SQL for Data Science", authority: "Scaler Topics", year: 2026, image: "/images/certs/Python-SQL-for-DataScience.png" },
-  { name: "Python Skill Assessment (95.29%)", authority: "Scaler Topics", year: 2026, image: "/images/certs/Python Skill Test.png" },
-  { name: "Python Course for Beginners with Certification: Mastering the Essentials", authority: "Scaler Topics", year: 2026, image: "/images/certs/Python Course.png" },
-  { name: "SQL for Beginners: Learn SQL using MySQL and Database Design", authority: "Scaler Topics", year: 2026, image: "/images/certs/SQL Course.png" },
+  {
+    name: "Data Science Course: Mastering the Fundamentals",
+    authority: "Scaler Topics",
+    year: 2026,
+    image: "/images/certs/DS-Fundamentals.png",
+  },
+  {
+    name: "Python and SQL for Data Science",
+    authority: "Scaler Topics",
+    year: 2026,
+    image: "/images/certs/Python-SQL-for-DataScience.png",
+  },
+  {
+    name: "Python Skill Assessment (95.29%)",
+    authority: "Scaler Topics",
+    year: 2026,
+    image: "/images/certs/Python Skill Test.png",
+  },
+  {
+    name: "Python Course for Beginners with Certification: Mastering the Essentials",
+    authority: "Scaler Topics",
+    year: 2026,
+    image: "/images/certs/Python Course.png",
+  },
+  {
+    name: "SQL for Beginners: Learn SQL using MySQL and Database Design",
+    authority: "Scaler Topics",
+    year: 2026,
+    image: "/images/certs/SQL Course.png",
+  },
 
   // 6. Code360 (Coding Ninjas) — ML > Python OOPs > Basics I > Basics II
-  { name: "Machine Learning Fundamentals", authority: "Code360 (Coding Ninjas)", year: 2026, image: "/images/certs/Code360-ML.jpeg" },
-  { name: "OOPs in Python", authority: "Code360 (Coding Ninjas)", year: 2026, image: "/images/certs/Code360-Python-OOPS.jpg" },
-  { name: "Basics of Python – Part I", authority: "Code360 (Coding Ninjas)", year: 2026, image: "/images/certs/Code360-Python-I.jpeg" },
-  { name: "Basics of Python – Part II", authority: "Code360 (Coding Ninjas)", year: 2026, image: "/images/certs/Code360-Python-II.jpeg" },
+  {
+    name: "Machine Learning Fundamentals",
+    authority: "Code360 (Coding Ninjas)",
+    year: 2026,
+    image: "/images/certs/Code360-ML.jpeg",
+  },
+  {
+    name: "Fundamentals of Artificial Intelligence",
+    authority: "Code360 (Coding Ninjas)",
+    year: 2026,
+    image: "/images/certs/Code360-AI.jpeg",
+  },
+  {
+    name: "OOPs in Python",
+    authority: "Code360 (Coding Ninjas)",
+    year: 2026,
+    image: "/images/certs/Code360-Python-OOPS.jpg",
+  },
+  {
+    name: "Basics of Python – Part I",
+    authority: "Code360 (Coding Ninjas)",
+    year: 2026,
+    image: "/images/certs/Code360-Python-I.jpeg",
+  },
+  {
+    name: "Basics of Python – Part II",
+    authority: "Code360 (Coding Ninjas)",
+    year: 2026,
+    image: "/images/certs/Code360-Python-II.jpeg",
+  },
 
   // 7. Coursera — Python > SQL/Excel > Web
-  { name: "Create Your First Python Program", authority: "Coursera", year: 2024, image: "/images/certs/Coursera_Python.jpg" },
-  { name: "Introduction to Microsoft Excel", authority: "Coursera", year: 2024, image: "/images/certs/Coursera_Excel.jpg" },
-  { name: "Google Ads for Beginners", authority: "Coursera", year: 2024, image: "/images/certs/Coursera_GoogleAds.jpg" },
-  { name: "Build a Free Website with WordPress", authority: "Coursera", year: 2024, image: "/images/certs/Coursera_WordPress.jpg" },
+  {
+    name: "Create Your First Python Program",
+    authority: "Coursera",
+    year: 2024,
+    image: "/images/certs/Coursera_Python.jpg",
+  },
+  {
+    name: "Introduction to Microsoft Excel",
+    authority: "Coursera",
+    year: 2024,
+    image: "/images/certs/Coursera_Excel.jpg",
+  },
+  {
+    name: "Google Ads for Beginners",
+    authority: "Coursera",
+    year: 2024,
+    image: "/images/certs/Coursera_GoogleAds.jpg",
+  },
+  {
+    name: "Build a Free Website with WordPress",
+    authority: "Coursera",
+    year: 2024,
+    image: "/images/certs/Coursera_WordPress.jpg",
+  },
 
   // 8. Udemy — Data Science/Python > Full Stack > Web
-  { name: "Professional Certificate in SQL and SQL for Data Analysis", authority: "Udemy", year: 2025, image: "/images/certs/Professional Certificate in SQL and SQL for Data Analysis.jpg" },
-  { name: "Python Development and Programming Fundamentals", authority: "Udemy", year: 2025, image: "/images/certs/Python Development and Python Programming Fundamentals.jpg" },
-  { name: "Python Full Stack: From Basics to Advanced", authority: "Udemy", year: 2025, image: "/images/certs/Python Full Stack- From Basics to Advanced with Real-World.jpg" },
-  { name: "The Complete Django REST Framework Bootcamp", authority: "Udemy", year: 2025, image: "/images/certs/The Complete Django Rest Framework Bootcamp.jpg" },
-  { name: "HTML, CSS, JavaScript, React Certification Course", authority: "Udemy", year: 2025, image: "/images/certs/HTML, CSS, JavaScript, React - Online Certification Course.jpg" },
-  { name: "SQL: The Complete Introduction to SQL Programming", authority: "Udemy", year: 2025, image: "/images/certs/the basics of SQL programming and Data manipulation with the use SQL.jpg" },
+  {
+    name: "Professional Certificate in SQL and SQL for Data Analysis",
+    authority: "Udemy",
+    year: 2025,
+    image:
+      "/images/certs/Professional Certificate in SQL and SQL for Data Analysis.jpg",
+  },
+  {
+    name: "Python Development and Programming Fundamentals",
+    authority: "Udemy",
+    year: 2025,
+    image:
+      "/images/certs/Python Development and Python Programming Fundamentals.jpg",
+  },
+  {
+    name: "Python Full Stack: From Basics to Advanced",
+    authority: "Udemy",
+    year: 2025,
+    image:
+      "/images/certs/Python Full Stack- From Basics to Advanced with Real-World.jpg",
+  },
+  {
+    name: "The Complete Django REST Framework Bootcamp",
+    authority: "Udemy",
+    year: 2025,
+    image: "/images/certs/The Complete Django Rest Framework Bootcamp.jpg",
+  },
+  {
+    name: "HTML, CSS, JavaScript, React Certification Course",
+    authority: "Udemy",
+    year: 2025,
+    image:
+      "/images/certs/HTML, CSS, JavaScript, React - Online Certification Course.jpg",
+  },
+  {
+    name: "SQL: The Complete Introduction to SQL Programming",
+    authority: "Udemy",
+    year: 2025,
+    image:
+      "/images/certs/the basics of SQL programming and Data manipulation with the use SQL.jpg",
+  },
 
   // 9. University Workshops
-  { name: "C Programming Workshop", authority: "University Workshops", year: 2025, image: "/images/certs/C-Workshop.jpg" },
-  { name: "Software Testing Workshop", authority: "University Workshops", year: 2025, image: "/images/certs/Software Testing Workshop.jpg" },
+  {
+    name: "C Programming Workshop",
+    authority: "University Workshops",
+    year: 2025,
+    image: "/images/certs/C-Workshop.jpg",
+  },
+  {
+    name: "Software Testing Workshop",
+    authority: "University Workshops",
+    year: 2025,
+    image: "/images/certs/Software Testing Workshop.jpg",
+  },
   // 10. LetsUpgrade
-  { name: "Zero to Python Hero: Code Smart with AI", authority: "LetsUpgrade", year: 2025, image: "/images/certs/Python.jpg" },
-]
+  {
+    name: "Zero to Python Hero: Code Smart with AI",
+    authority: "LetsUpgrade",
+    year: 2025,
+    image: "/images/certs/Python.jpg",
+  },
+];
 
 export const badges = [
   {
@@ -442,11 +730,23 @@ export const badges = [
     initials: "GS",
     image: "/images/badges/gssoc-badge-bounty_master.png",
   },
-]
+];
 
 export const quotes = [
-  { text: "The best way to predict the future is to invent it.", author: "Alan Kay" },
-  { text: "First, solve the problem. Then, write the code.", author: "John Johnson" },
-  { text: "Simplicity is prerequisite for reliability.", author: "Edsger W. Dijkstra" },
-  { text: "Programs must be written for people to read, and only incidentally for machines to execute.", author: "Harold Abelson" },
-]
+  {
+    text: "The best way to predict the future is to invent it.",
+    author: "Alan Kay",
+  },
+  {
+    text: "First, solve the problem. Then, write the code.",
+    author: "John Johnson",
+  },
+  {
+    text: "Simplicity is prerequisite for reliability.",
+    author: "Edsger W. Dijkstra",
+  },
+  {
+    text: "Programs must be written for people to read, and only incidentally for machines to execute.",
+    author: "Harold Abelson",
+  },
+];
