@@ -4,8 +4,7 @@ export const personalInfo = {
   tagline: "Python Developer | Full Stack Developer | Data Science Enthusiast",
   bio: [
     "MCA student at Dharmsinh Desai University, Nadiad (2025–2027), CGPA: 8.07. Previously completed BCA from Saurastra University, Rajkot (2022–2025), CGPA: 8.39.",
-    "Data Science Intern at Zidio Development — worked on real-world datasets using Python, Pandas, and NumPy, building ML models for predictive analytics.",
-    "Python Developer Intern at Infotact Solutions — built Django web applications with MySQL, implementing authentication, form validation, and CRUD operations.",
+    "Data Science Intern at Zidio Development - worked on real-world datasets using Python, Pandas, and NumPy, building ML models for predictive analytics. Python Developer Intern at Infotact Solutions - built Django web applications with MySQL, implementing authentication, form validation, and CRUD operations. Web Developer Intern at Creative Insight IT Academy - collaborated on frontend integration and UI enhancement using Tailwind CSS.",
   ],
   email: "vatsalgajera.tech@gmail.com",
   phone: "+91 9723140922",
@@ -298,7 +297,7 @@ export const achievements = {
     year: 2026,
     color: "#714B67",
     description:
-      "Participated in the Odoo x KSV Hackathon 2026, building innovative software solutions in a 24-hour coding competition. Collaborated on real-world problem solving, rapid prototyping, and full-stack development under strict time constraints.",
+      "Participated in Odoo x KSV Hackathon 2026, developing a software solution in a 24-hour competitive coding event.",
     highlights: [
       "24-Hour Coding Marathon",
       "Problem Solving",
@@ -377,7 +376,7 @@ export const achievements = {
     year: 2026,
     color: "#FF6B35",
     description:
-      "Participated in GSSoC 2026, contributed to open-source initiatives, explored GitHub workflows, engaged in issue discussions, and earned multiple community badges during the program.",
+      "Actively in GSSoC 2026, contributing to open-source projects, collaborating through GitHub workflows, and earning multiple community badges.",
     badges: [
       "First Steps",
       "Profile Complete",

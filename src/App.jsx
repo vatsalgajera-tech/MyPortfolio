@@ -442,11 +442,11 @@ export default function App() {
 
             <div className="relative grid gap-6 sm:gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
               <div className="order-2 lg:order-1">
-                <p className="mono text-[11px] uppercase tracking-[0.22em] text-[color:var(--muted)] mb-3">
+                <p className="mono text-[10px] sm:text-[11px] uppercase tracking-[0.18em] sm:tracking-[0.22em] text-[color:var(--muted)] mb-3 leading-relaxed">
                   Full Stack Developer · Python Developer · Data Science
                 </p>
 
-                <h1 className="display-serif text-4xl md:text-6xl leading-[0.95] max-w-3xl mb-4">
+                <h1 className="display-serif text-3xl sm:text-4xl md:text-6xl leading-[0.95] max-w-3xl mb-4">
                   {typedName}
                   <span className="inline-block h-[0.9em] w-px translate-y-1 bg-[color:var(--accent)] ml-2 animate-pulse" />
                 </h1>
@@ -539,13 +539,13 @@ export default function App() {
                     href={s.href}
                     target={s.href.startsWith("mailto") ? "_self" : "_blank"}
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 rounded-xl border border-[color:var(--line)] bg-[color:var(--card-strong)] px-3 py-2.5 hover:border-[color:var(--accent)] hover:bg-[color:var(--accent-soft)] transition-colors"
+                    className="flex items-center justify-center gap-1.5 rounded-xl border border-[color:var(--line)] bg-[color:var(--card-strong)] px-2 py-2.5 hover:border-[color:var(--accent)] hover:bg-[color:var(--accent-soft)] transition-colors min-w-0"
                   >
                     <s.icon
                       size={13}
                       className="text-[color:var(--accent)] flex-shrink-0"
                     />
-                    <span className="mono text-[11px] text-[color:var(--txt)]">
+                    <span className="mono text-[11px] text-[color:var(--txt)] truncate">
                       {s.label}
                     </span>
                   </a>
@@ -611,9 +611,11 @@ export default function App() {
                           {exp.role}
                         </p>
 
-                        <p className="mono text-xs text-[color:var(--muted)]">
-                          {exp.location} · {exp.period}
-                        </p>
+                        <div className="mono text-xs text-[color:var(--muted)] flex flex-col sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-1.5">
+                          <span>{exp.location}</span>
+                          <span className="sm:inline hidden opacity-50">·</span>
+                          <span className="whitespace-nowrap">{exp.period}</span>
+                        </div>
 
                         <div className="flex flex-wrap gap-1.5 mt-3">
                           {exp.tech.slice(0, 5).map((t) => (
@@ -1443,7 +1445,7 @@ export default function App() {
                     </span>
                   </div>
                   <p className="mono text-xs text-[color:var(--muted)] leading-relaxed mb-3">
-                    Achieved a perfect score of 100 out of 100 in Statistics during Higher Secondary Education (XII) at L.G. Dholakiya School, Commerce Stream — contributing to an overall score of 93.43% with a 99.91 Percentile statewide.
+                    Achieved 100/100 in Statistics and secured 93.43% overall, placing in the 99.91 percentile statewide in Class XII.
                   </p>
                   <div className="flex flex-wrap gap-1.5">
                     {["Perfect Score · 100/100", "93.43% Overall", "99.91 Percentile", "Commerce Stream", "L.G. Dholakiya School"].map((tag) => (
@@ -1506,7 +1508,7 @@ export default function App() {
                     </span>
                   </div>
                   <p className="mono text-xs text-[color:var(--muted)] leading-relaxed mb-3">
-                    Achieved 96 out of 100 in Science during Secondary Education (X) at L.G. Dholakiya School — contributing to an overall score of 88.00% with a 99.03 Percentile statewide.
+                    Achieved 96/100 in Science and secured 88.00% overall with a 99.03 percentile in Class X.
                   </p>
                   <div className="flex flex-wrap gap-1.5">
                     {["96/100 in Science", "88.00% Overall", "99.03 Percentile", "General Stream", "L.G. Dholakiya School"].map((tag) => (
@@ -1716,7 +1718,7 @@ export default function App() {
                 </a>
               </div>
             </div>
-            {/* Grouped by issuer */}
+
             {(() => {
               const grouped = badges.reduce((acc, b) => {
                 if (!acc[b.issuer]) acc[b.issuer] = [];
@@ -1725,101 +1727,155 @@ export default function App() {
               }, {});
 
               return (
-                <div className="space-y-3">
-                  {Object.entries(grouped).map(([issuer, issuerBadges]) => (
-                    <div
-                      key={issuer}
-                      className="rounded-2xl border border-[color:var(--line)] bg-[color:var(--card-strong)] overflow-hidden"
-                    >
-                      {/* Header */}
-                      <div
-                        onClick={() =>
-                          setOpenBadgeIssuer(
-                            openBadgeIssuer === issuer ? null : issuer
-                          )
-                        }
-                        className="flex items-center justify-between p-4 cursor-pointer"
-                      >
-                        <div className="flex items-center gap-2">
+                <>
+                  {/* 4-col card grid — same style as certifications */}
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                    {Object.entries(grouped).map(([issuer, issuerBadges]) => {
+                      const color = issuerBadges[0].color || "#6B7280";
+                      return (
+                        <div
+                          key={issuer}
+                          onClick={() => setOpenBadgeIssuer(issuer)}
+                          className="group relative h-44 rounded-2xl border bg-[color:var(--card-strong)] cursor-pointer transition-all duration-300 hover:-translate-y-1 flex flex-col items-center justify-center text-center p-4 overflow-hidden"
+                          style={{ borderColor: `${color}22` }}
+                          onMouseEnter={(e) => {
+                            e.currentTarget.style.boxShadow = `0 10px 30px ${color}30`;
+                            e.currentTarget.style.borderColor = `${color}66`;
+                          }}
+                          onMouseLeave={(e) => {
+                            e.currentTarget.style.boxShadow = "none";
+                            e.currentTarget.style.borderColor = `${color}22`;
+                          }}
+                        >
+                          {/* Hover radial glow */}
+                          <div
+                            className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                            style={{
+                              background: `radial-gradient(circle at center, ${color}22 0%, transparent 75%)`,
+                            }}
+                          />
+
+                          {/* Avatar */}
                           <span
-                            className="inline-flex items-center justify-center w-6 h-6 rounded-md text-white text-[9px] font-bold"
-                            style={{ background: issuerBadges[0].color }}
+                            className="w-12 h-12 rounded-xl flex items-center justify-center text-white font-bold text-sm mb-3 relative z-10"
+                            style={{ background: color }}
                           >
                             {issuer.charAt(0)}
                           </span>
 
-                          <p className="mono text-xs font-semibold">
+                          {/* Name */}
+                          <p className="text-sm font-semibold text-[color:var(--txt)] relative z-10 leading-tight px-1">
                             {issuer}
                           </p>
 
-                          <span className="mono text-[10px] text-[color:var(--muted)]">
-                            · {issuerBadges.length} badge
-                            {issuerBadges.length > 1 ? "s" : ""}
-                          </span>
+                          {/* Count */}
+                          <p className="mono text-xs text-[color:var(--muted)] mt-1 relative z-10">
+                            {issuerBadges.length} Badge{issuerBadges.length > 1 ? "s" : ""}
+                          </p>
                         </div>
+                      );
+                    })}
+                  </div>
 
+                  {/* Badge Modal — same pattern as certifications */}
+                  <AnimatePresence>
+                    {openBadgeIssuer && (
+                      <>
+                        {/* Backdrop */}
                         <motion.div
-                          animate={{
-                            rotate: openBadgeIssuer === issuer ? 180 : 0,
-                          }}
+                          className="fixed inset-0 z-50 bg-black/70 backdrop-blur-md"
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          exit={{ opacity: 0 }}
+                          onClick={() => setOpenBadgeIssuer(null)}
+                        />
+
+                        {/* Modal */}
+                        <motion.div
+                          className="fixed inset-0 z-[60] flex items-center justify-center p-4"
+                          initial={{ opacity: 0, scale: 0.95 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          exit={{ opacity: 0, scale: 0.95 }}
+                          transition={{ duration: 0.2 }}
                         >
-                          ▼
-                        </motion.div>
-                      </div>
-
-                      <AnimatePresence>
-                        {openBadgeIssuer === issuer && (
-                          <motion.div
-                            initial={{ height: 0, opacity: 0 }}
-                            animate={{ height: "auto", opacity: 1 }}
-                            exit={{ height: 0, opacity: 0 }}
-                            transition={{ duration: 0.25 }}
-                            className="overflow-hidden"
+                          <div
+                            className="w-full max-w-3xl rounded-3xl border border-[color:var(--line)] bg-[color:var(--card)] p-6 sm:p-8 shadow-2xl max-h-[85vh] flex flex-col"
+                            onClick={(e) => e.stopPropagation()}
                           >
-                            <div className="p-4 border-t border-[color:var(--line)]">
-
-                              <div className="p-4 border-t border-[color:var(--line)]">
-
-                                <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-4">
-                                  {issuerBadges.map((badge, i) => (
-                                    <motion.div
-                                      key={i}
-                                      whileHover={{ y: -4, scale: 1.02 }}
-                                      className="group relative rounded-2xl border border-[color:var(--line)] bg-[color:var(--card-strong)] overflow-hidden"
-                                    >
-                                      {/* Badge Image */}
-                                      <div
-                                        className="relative flex items-center justify-center p-5 pb-3"
-                                        style={{
-                                          background: `radial-gradient(circle at center, ${badge.color}14, ${badge.color}04 70%)`,
-                                        }}
-                                      >
-                                        <img
-                                          src={badge.image}
-                                          alt={badge.name}
-                                          className="w-20 h-20 object-contain group-hover:scale-110 transition-transform duration-300"
-                                        />
-                                      </div>
-
-                                      {/* Badge Info */}
-                                      <div className="px-3 pb-3 pt-2 border-t border-[color:var(--line)]">
-                                        <p className="text-[11px] font-semibold leading-snug line-clamp-2 text-center">
-                                          {badge.name}
-                                        </p>
-                                      </div>
-                                    </motion.div>
-                                  ))}
+                            {/* Modal header */}
+                            <div className="flex items-center justify-between mb-5 flex-shrink-0">
+                              <div className="flex items-center gap-3">
+                                <span
+                                  className="w-9 h-9 rounded-xl flex items-center justify-center text-white font-bold text-sm"
+                                  style={{ background: grouped[openBadgeIssuer]?.[0]?.color || "#6B7280" }}
+                                >
+                                  {openBadgeIssuer.charAt(0)}
+                                </span>
+                                <div>
+                                  <h3 className="text-base font-bold text-[color:var(--txt)]">
+                                    {openBadgeIssuer}
+                                  </h3>
+                                  <p className="mono text-[11px] text-[color:var(--muted)]">
+                                    {grouped[openBadgeIssuer]?.length} Badge{grouped[openBadgeIssuer]?.length > 1 ? "s" : ""}
+                                  </p>
                                 </div>
-
                               </div>
-
+                              <button
+                                onClick={() => setOpenBadgeIssuer(null)}
+                                className="w-8 h-8 rounded-full border border-[color:var(--line)] flex items-center justify-center text-[color:var(--muted)] hover:text-[color:var(--txt)] hover:bg-[color:var(--accent-soft)] hover:border-[color:var(--accent)] transition text-sm"
+                              >
+                                ✕
+                              </button>
                             </div>
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                    </div>
-                  ))}
-                </div>
+
+                            {/* Badge grid */}
+                            <div className="overflow-y-auto no-scrollbar p-2 -m-2">
+                              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                                {grouped[openBadgeIssuer]?.map((badge, i) => (
+                                  <div
+                                    key={i}
+                                    className="rounded-2xl border overflow-hidden flex flex-col cursor-default transition-all duration-300"
+                                    style={{ borderColor: `${badge.color}22` }}
+                                    onMouseEnter={(e) => {
+                                      e.currentTarget.style.boxShadow = `0 0 0 2px ${badge.color}55, 0 8px 24px ${badge.color}30`;
+                                      e.currentTarget.style.borderColor = `${badge.color}66`;
+                                      e.currentTarget.style.background = `linear-gradient(160deg, ${badge.color}14 0%, var(--card-strong) 60%)`;
+                                    }}
+                                    onMouseLeave={(e) => {
+                                      e.currentTarget.style.boxShadow = "none";
+                                      e.currentTarget.style.borderColor = `${badge.color}22`;
+                                      e.currentTarget.style.background = "";
+                                    }}
+                                  >
+                                    {/* Badge image */}
+                                    <div
+                                      className="flex items-center justify-center p-8 pb-6"
+                                      style={{
+                                        background: `radial-gradient(circle at center, ${badge.color}18, ${badge.color}04 70%)`,
+                                      }}
+                                    >
+                                      <img
+                                        src={badge.image}
+                                        alt={badge.name}
+                                        className="w-20 h-20 object-contain"
+                                      />
+                                    </div>
+                                    {/* Badge name */}
+                                    <div className="px-4 pb-4 pt-3 border-t flex-1 flex items-center justify-center" style={{ borderColor: `${badge.color}25` }}>
+                                      <p className="text-[11px] font-semibold leading-snug line-clamp-2 text-center text-[color:var(--txt)]">
+                                        {badge.name}
+                                      </p>
+                                    </div>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          </div>
+                        </motion.div>
+                      </>
+                    )}
+                  </AnimatePresence>
+                </>
               );
             })()}
           </Section>
