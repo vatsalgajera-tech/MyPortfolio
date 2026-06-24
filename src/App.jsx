@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useTheme } from "./hooks/useTheme";
 import Navbar from "./components/Navbar";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Analytics } from "@vercel/analytics/react";
 import {
   ShieldCheck,
@@ -145,6 +145,7 @@ export default function App() {
   const [catState, setCatState] = useState("idle");
   const [catPawing, setCatPawing] = useState(false);
   const [previewCert, setPreviewCert] = useState(null);
+  const [openExp, setOpenExp] = useState(null);
   const pointerRef = useRef(null);
   const pointerTargetRef = useRef({ x: 0, y: 0 });
   const pointerCurrentRef = useRef({ x: 0, y: 0 });
@@ -199,7 +200,7 @@ export default function App() {
   const handleThemeToggle = () => {
     if (themeAudioRef.current) {
       themeAudioRef.current.currentTime = 0;
-      themeAudioRef.current.play().catch(() => {});
+      themeAudioRef.current.play().catch(() => { });
     }
     toggle();
   };
@@ -570,54 +571,89 @@ export default function App() {
           {/* 3. Experience */}
           <Section id="experience" shouldAnimate={shouldAnimate}>
             <Label>Experience</Label>
-            <div className="space-y-8">
+
+            <div className="space-y-3">
               {experiences.map((exp, i) => (
                 <div
                   key={i}
-                  className="border border-[color:var(--line)] rounded-[24px] p-4 md:p-5 bg-[color:var(--card-strong)]"
+                  className="border border-[color:var(--line)] rounded-[24px] bg-[color:var(--card-strong)] overflow-hidden"
                 >
-                  <a
-                    href={exp.companyUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-base font-semibold hover:opacity-70 transition-opacity inline-flex items-center"
+                  <div
+                    onClick={() => setOpenExp(openExp === i ? null : i)}
+                    className="p-4 md:p-5 cursor-pointer"
                   >
-                    {exp.company === "Zidio Development" ? (
-                      <ZidioMark />
-                    ) : exp.company === "Infotact Solutions" ? (
-                      <InfotactMark />
-                    ) : exp.company === "Creative Insight IT Academy" ? (
-                      <CreativeMark />
-                    ) : (
-                      exp.company
-                    )}
-                  </a>
-                  <div className="mt-1 mb-2.5 space-y-0.5">
-                    <p className="mono text-xs text-[color:var(--muted)]">
-                      {exp.role}
-                    </p>
-                    <p className="mono text-xs text-[color:var(--muted)]">
-                      {exp.type} · {exp.location} · {exp.period}
-                    </p>
-                  </div>
-                  <div className="flex flex-wrap gap-1.5 mb-3">
-                    {exp.tech.map((t) => (
-                      <span key={t} className="tag">
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-                  <ul className="space-y-1.5">
-                    {exp.points.map((pt, j) => (
-                      <li
-                        key={j}
-                        className="flex items-start gap-2.5 text-xs md:text-sm text-[color:var(--muted)] leading-relaxed"
+                    <div className="flex items-center justify-between gap-4">
+                      <div className="min-w-0">
+                        <a
+                          href={exp.companyUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          className="text-base font-semibold hover:opacity-70 transition-opacity inline-flex items-center"
+                        >
+                          {exp.company === "Zidio Development" ? (
+                            <ZidioMark />
+                          ) : exp.company === "Infotact Solutions" ? (
+                            <InfotactMark />
+                          ) : exp.company === "Creative Insight IT Academy" ? (
+                            <CreativeMark />
+                          ) : (
+                            exp.company
+                          )}
+                        </a>
+
+                        <p className="mono text-xs text-[color:var(--muted)] mt-1">
+                          {exp.role}
+                        </p>
+
+                        <p className="mono text-xs text-[color:var(--muted)]">
+                          {exp.location} · {exp.period}
+                        </p>
+
+                        <div className="flex flex-wrap gap-1.5 mt-3">
+                          {exp.tech.slice(0, 5).map((t) => (
+                            <span key={t} className="tag">
+                              {t}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+
+                      <motion.div
+                        animate={{ rotate: openExp === i ? 180 : 0 }}
+                        transition={{ duration: 0.25 }}
+                        className="text-lg text-[color:var(--muted)] flex-shrink-0"
                       >
-                        <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-[color:var(--accent)] flex-shrink-0" />
-                        {pt}
-                      </li>
-                    ))}
-                  </ul>
+                        ▼
+                      </motion.div>
+                    </div>
+                  </div>
+
+                  <AnimatePresence>
+                    {openExp === i && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.25 }}
+                        className="overflow-hidden"
+                      >
+                        <div className="px-5 pb-5 border-t border-[color:var(--line)]">
+                          <ul className="space-y-2 pt-4">
+                            {exp.points.map((pt, j) => (
+                              <li
+                                key={j}
+                                className="flex items-start gap-2.5 text-xs md:text-sm text-[color:var(--muted)] leading-relaxed"
+                              >
+                                <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-[color:var(--accent)] flex-shrink-0" />
+                                {pt}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
               ))}
             </div>
@@ -863,32 +899,58 @@ export default function App() {
             {/* Stat counters */}
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
               {achievements.stats.map((stat, i) => (
-                <motion.div
+                <motion.a
                   key={i}
+                  href={stat.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   whileHover={{ y: -3 }}
-                  className="relative rounded-2xl border border-[color:var(--line)] bg-[color:var(--card-strong)] p-4 overflow-hidden text-center"
+                  className="group relative rounded-2xl border border-[color:var(--line)] bg-[color:var(--card-strong)] p-4 overflow-hidden text-center cursor-pointer"
+                  style={{ transition: "box-shadow 0.3s ease, border-color 0.3s ease" }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.boxShadow = `0 8px 28px ${stat.color}28`;
+                    e.currentTarget.style.borderColor = `${stat.color}55`;
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.boxShadow = "none";
+                    e.currentTarget.style.borderColor = "";
+                  }}
                 >
                   <div
-                    className="absolute inset-0 opacity-[0.06] rounded-2xl"
-                    style={{ background: `radial-gradient(circle at top left, ${stat.color}, transparent 70%)` }}
+                    className="absolute inset-0 opacity-[0.06] group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"
+                    style={{
+                      background: `radial-gradient(circle at top left, ${stat.color}, transparent 70%)`,
+                    }}
                   />
+
                   <div
                     className="text-2xl md:text-3xl font-bold leading-none mb-1"
                     style={{ color: stat.color }}
                   >
                     {stat.value}
                   </div>
+
                   <p className="mono text-[11px] font-semibold text-[color:var(--txt)] leading-tight">
                     {stat.label}
                   </p>
+
                   <p className="mono text-[10px] text-[color:var(--muted)] mt-0.5">
                     {stat.sub}
                   </p>
+
+                  <ExternalLink
+                    size={11}
+                    className="absolute top-2.5 right-2.5 opacity-0 group-hover:opacity-40 transition-opacity"
+                    style={{ color: stat.color }}
+                  />
+
                   <div
                     className="absolute bottom-0 left-0 right-0 h-[2px] rounded-b-2xl opacity-60"
-                    style={{ background: `linear-gradient(to right, transparent, ${stat.color}, transparent)` }}
+                    style={{
+                      background: `linear-gradient(to right, transparent, ${stat.color}, transparent)`,
+                    }}
                   />
-                </motion.div>
+                </motion.a>
               ))}
             </div>
 
@@ -1014,7 +1076,74 @@ export default function App() {
                 </div>
               </div>
             </motion.div>
+            {/* Odoo x KSV Hackathon 2026 */}
+            <motion.div
+              whileHover={{ scale: 1.005 }}
+              className="relative rounded-2xl border overflow-hidden mb-4"
+              style={{
+                borderColor: `${achievements.hackathon.color}44`,
+                background: `linear-gradient(135deg, ${achievements.hackathon.color}08 0%, transparent 50%)`,
+              }}
+            >
+              <div
+                className="absolute -top-10 -right-10 w-40 h-40 rounded-full blur-2xl opacity-20 pointer-events-none"
+                style={{ background: achievements.hackathon.color }}
+              />
 
+              <div className="relative p-5 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+                <div
+                  className="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center text-white font-bold text-[13px] shadow-lg"
+                  style={{
+                    background: `linear-gradient(135deg, ${achievements.hackathon.color}, ${achievements.hackathon.color}99)`,
+                  }}
+                >
+                  OD
+                </div>
+
+                <div className="flex-1 min-w-0">
+                  <div className="flex flex-wrap items-center gap-2 mb-1">
+                    <p className="text-sm font-semibold text-[color:var(--txt)]">
+                      {achievements.hackathon.event}
+                    </p>
+
+                    <span
+                      className="mono text-[9px] px-2 py-0.5 rounded-full font-bold tracking-wide"
+                      style={{
+                        background: `${achievements.hackathon.color}22`,
+                        color: achievements.hackathon.color,
+                        border: `1px solid ${achievements.hackathon.color}55`,
+                      }}
+                    >
+                      {achievements.hackathon.edition}
+                    </span>
+
+                    <span className="mono text-[9px] px-2 py-0.5 rounded-full font-medium bg-violet-500/10 text-violet-500 border border-violet-500/30">
+                      Hackathon
+                    </span>
+                  </div>
+
+                  <p className="mono text-xs text-[color:var(--muted)] leading-relaxed mb-3">
+                    {achievements.hackathon.description}
+                  </p>
+
+                  <div className="flex flex-wrap gap-1.5">
+                    {achievements.hackathon.highlights.map((item) => (
+                      <span
+                        key={item}
+                        className="mono text-[9px] px-2 py-0.5 rounded-full border font-medium"
+                        style={{
+                          borderColor: `${achievements.hackathon.color}44`,
+                          color: achievements.hackathon.color,
+                          background: `${achievements.hackathon.color}0d`,
+                        }}
+                      >
+                        ★ {item}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </motion.div>
             {/* Contest participation */}
             <div className="rounded-2xl border border-[color:var(--line)] bg-[color:var(--card-strong)] px-4 py-3">
               <p className="mono text-[11px] font-semibold text-[color:var(--muted)] mb-2.5 uppercase tracking-widest">
