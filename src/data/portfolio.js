@@ -378,14 +378,32 @@ export const achievements = {
   },
 };
 
-export const hobbies = [
-  "Problem Solving",
-  "Competitive Programming",
-  "Data Science",
-  "Open Source",
-  "Music",
-  "Travel",
-];
+export const profileHighlights = {
+  interests: [
+    "Data Science",
+    "Machine Learning",
+    "Artificial Intelligence",
+    "Competitive Programming",
+    "Open Source",
+    "Hackathons",
+  ],
+
+  coursework: [
+    "Data Structures & Algorithms",
+    "Database Management Systems",
+    "Object-Oriented Programming",
+    "Software Engineering",
+  ],
+
+  focus: [
+    "Pandas & NumPy",
+    "SQL & PostgreSQL",
+    "Machine Learning",
+    "Data Visualization",
+    "Python Development",
+    "AI Engineering",
+  ],
+};
 
 export const certifications = [
   // 1. IBM — Data Science priority: ML > DS Methodology > DS Tools > DS 101 > Python DS

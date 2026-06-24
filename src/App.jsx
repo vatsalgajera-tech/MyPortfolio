@@ -57,7 +57,7 @@ import {
   projects,
   skills,
   skillCategories,
-  hobbies,
+  profileHighlights,
   certifications,
   badges,
   achievements,
@@ -139,12 +139,14 @@ function CreativeMark({ className = "" }) {
 export default function App() {
   const { isDark, toggle } = useTheme();
   const shouldAnimate = true;
+  const [openBadgeIssuer, setOpenBadgeIssuer] = useState(null);
   const audioContextRef = useRef(null);
   const themeAudioRef = useRef(null);
   const [typedName, setTypedName] = useState("");
   const [catState, setCatState] = useState("idle");
   const [catPawing, setCatPawing] = useState(false);
   const [previewCert, setPreviewCert] = useState(null);
+  const [selectedAuthority, setSelectedAuthority] = useState(null);
   const [openExp, setOpenExp] = useState(null);
   const pointerRef = useRef(null);
   const pointerTargetRef = useRef({ x: 0, y: 0 });
@@ -802,19 +804,62 @@ export default function App() {
                 })}
               </div>
             </Section>
+            <Section id="highlights" shouldAnimate={shouldAnimate}>
+              <Label>Profile Highlights</Label>
 
-            <Section id="hobbies" shouldAnimate={shouldAnimate}>
-              <Label>Interests</Label>
-              <div className="grid grid-cols-2 gap-3">
-                {hobbies.map((hobby) => (
-                  <div
-                    key={hobby}
-                    className="mono text-xs px-3 py-2 rounded-xl border border-[color:var(--line)] bg-[color:var(--card-strong)]/50 text-[color:var(--muted)] flex items-center gap-2"
-                  >
-                    <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--accent)]" />
-                    {hobby}
+              <div className="space-y-4">
+
+                <div>
+                  <p className="mono text-[11px] font-semibold uppercase tracking-wider text-[color:var(--muted)] mb-2">
+                    Technical Interests
+                  </p>
+
+                  <div className="grid grid-cols-2 gap-2">
+                    {profileHighlights.interests.map((item) => (
+                      <div
+                        key={item}
+                        className="mono text-xs px-3 py-2 rounded-xl border border-[color:var(--line)] bg-[color:var(--card-strong)]/50 text-[color:var(--muted)]"
+                      >
+                        {item}
+                      </div>
+                    ))}
                   </div>
-                ))}
+                </div>
+
+                <div>
+                  <p className="mono text-[11px] font-semibold uppercase tracking-wider text-[color:var(--muted)] mb-2">
+                    Relevant Coursework
+                  </p>
+
+                  <div className="grid grid-cols-2 gap-2">
+                    {profileHighlights.coursework.map((item) => (
+                      <div
+                        key={item}
+                        className="mono text-xs px-3 py-2 rounded-xl border border-[color:var(--line)] bg-[color:var(--card-strong)]/50 text-[color:var(--muted)]"
+                      >
+                        {item}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div>
+                  <p className="mono text-[11px] font-semibold uppercase tracking-wider text-[color:var(--muted)] mb-2">
+                    Current Focus
+                  </p>
+
+                  <div className="grid grid-cols-2 gap-2">
+                    {profileHighlights.focus.map((item) => (
+                      <div
+                        key={item}
+                        className="mono text-xs px-3 py-2 rounded-xl border border-[color:var(--line)] bg-[color:var(--card-strong)]/50 text-[color:var(--muted)]"
+                      >
+                        {item}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
               </div>
             </Section>
           </div>
@@ -1165,7 +1210,13 @@ export default function App() {
 
           {/* 9. Certifications */}
           <Section id="certifications" shouldAnimate={shouldAnimate}>
-            <Label>Certifications</Label>
+            <div className="flex justify-between items-center mb-4">
+              <Label>Certifications</Label>
+
+              <span className="mono text-[10px] font-semibold px-2.5 py-1 rounded-full bg-[color:var(--accent-soft)] text-[color:var(--accent)] border border-[color:var(--accent)]/20">
+                {certifications.length} Total
+              </span>
+            </div>
             {(() => {
               const grouped = certifications.reduce((acc, cert) => {
                 if (!acc[cert.authority]) acc[cert.authority] = [];
@@ -1185,61 +1236,120 @@ export default function App() {
                 LetsUpgrade: "#F59E0B",
               };
               return (
-                <div className="space-y-6">
-                  {Object.entries(grouped).map(([authority, certs]) => (
-                    <div key={authority}>
-                      <div className="flex items-center gap-2 mb-3">
+                <>
+                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
+                    {Object.entries(grouped).map(([authority, certs]) => (
+                      <div
+                        key={authority}
+                        onClick={() => setSelectedAuthority(authority)}
+                        className="group relative h-44 rounded-2xl border border-[color:var(--line)] bg-[color:var(--card-strong)] cursor-pointer transition-all duration-300 hover:-translate-y-1 flex flex-col items-center justify-center text-center p-4 overflow-hidden"
+                        style={{
+                          borderColor: `${authorityColors[authority]}22`,
+                        }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.boxShadow = `0 10px 30px ${authorityColors[authority]}30`;
+                          e.currentTarget.style.borderColor = `${authorityColors[authority]}66`;
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.boxShadow = "none";
+                          e.currentTarget.style.borderColor = `${authorityColors[authority]}22`;
+                        }}
+                      ><div
+                          className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                          style={{
+                            background: `radial-gradient(circle at center, ${authorityColors[authority]}22 0%, transparent 75%)`,
+                          }}
+                        />
                         <span
-                          className="inline-flex items-center justify-center w-6 h-6 rounded-md text-white text-[9px] font-bold flex-shrink-0"
+                          className="w-12 h-12 rounded-xl flex items-center justify-center text-white font-bold text-sm mb-3"
                           style={{
                             background: authorityColors[authority] || "#6B7280",
                           }}
                         >
                           {authority.charAt(0)}
                         </span>
-                        <div>
-                          <p className="mono text-xs font-semibold text-[color:var(--txt)]">
-                            {authority}
-                          </p>
-                          {authority === "LetsUpgrade" && (
-                            <p className="mono text-[10px] text-[color:var(--muted)]">
-                              LetsUpgrade × NSDC × GDG MAD
-                            </p>
-                          )}
-                        </div>
-                        <span className="mono text-[10px] text-[color:var(--muted)] ml-1">
-                          · {certs.length} cert{certs.length > 1 ? "s" : ""}
-                        </span>
+
+                        <p className="text-sm font-semibold text-[color:var(--txt)]">
+                          {authority}
+                        </p>
+
+                        <p className="mono text-xs text-[color:var(--muted)] mt-1">
+                          {certs.length} Certificates
+                        </p>
                       </div>
-                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2">
-                        {certs.map((cert, i) => (
-                          <motion.div
-                            key={i}
-                            whileHover={{ y: -2 }}
-                            onClick={() => setPreviewCert(cert)}
-                            className="cursor-pointer flex items-start gap-2.5 rounded-xl border border-[color:var(--line)] bg-[color:var(--card-strong)] px-3 py-2.5 hover:border-[color:var(--accent)] transition-colors"
-                          >
-                            <Award
-                              size={13}
-                              className="mt-0.5 flex-shrink-0"
-                              style={{
-                                color: authorityColors[authority] || "#6B7280",
-                              }}
-                            />
-                            <div className="min-w-0">
-                              <p className="text-xs font-medium leading-snug text-[color:var(--txt)] line-clamp-2">
-                                {cert.name}
-                              </p>
-                              <p className="mono text-[10px] text-[color:var(--muted)] mt-0.5">
-                                {cert.year} · Click to view
-                              </p>
+                    ))}
+                  </div>
+
+                  <AnimatePresence>
+                    {selectedAuthority && (
+                      <>
+                        {/* Blur Background */}
+                        <motion.div
+                          className="fixed inset-0 z-50 bg-black/70 backdrop-blur-md"
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          exit={{ opacity: 0 }}
+                          onClick={() => setSelectedAuthority(null)}
+                        />
+
+                        {/* Modal */}
+                        <motion.div
+                          className="fixed inset-0 z-[60] flex items-center justify-center p-4"
+                          initial={{ opacity: 0, scale: 0.95 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          exit={{ opacity: 0, scale: 0.95 }}
+                        >
+                          <div className="w-full max-w-4xl rounded-3xl border border-[color:var(--line)] bg-[color:var(--card)] p-6 shadow-2xl">
+                            <div className="flex justify-between items-center mb-4">
+                              <h3 className="text-lg font-bold">
+                                {selectedAuthority}
+                              </h3>
+
+                              <button
+                                onClick={() => setSelectedAuthority(null)}
+                                className="text-xl"
+                              >
+                                ✕
+                              </button>
                             </div>
-                          </motion.div>
-                        ))}
-                      </div>
-                    </div>
-                  ))}
-                </div>
+
+                            <div className="grid md:grid-cols-2 gap-3 max-h-[60vh] overflow-y-auto">
+                              {grouped[selectedAuthority]?.map((cert, i) => (
+                                <div
+                                  key={i}
+                                  onClick={() => setPreviewCert(cert)}
+                                  className="cursor-pointer rounded-xl border border-[color:var(--line)] p-3 hover:border-[color:var(--accent)] transition-all"
+                                >
+                                  <div className="flex gap-3 items-start">
+
+                                    <Award
+                                      size={18}
+                                      className="flex-shrink-0 mt-1"
+                                      style={{
+                                        color: authorityColors[selectedAuthority] || "#6B7280",
+                                      }}
+                                    />
+
+                                    <div>
+                                      <p className="text-sm font-medium">
+                                        {cert.name}
+                                      </p>
+
+                                      <p className="mono text-xs text-[color:var(--muted)] mt-1">
+                                        {cert.year}
+                                      </p>
+                                    </div>
+
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        </motion.div>
+                      </>
+                    )}
+                  </AnimatePresence>
+                </>
               );
             })()}
           </Section>
@@ -1248,20 +1358,26 @@ export default function App() {
           <Section id="badges" shouldAnimate={shouldAnimate}>
             <div className="flex items-center justify-between mb-4">
               <Label>Badges</Label>
-              <a
-                href={personalInfo.socials.credly}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-1.5 mono text-[11px] text-[color:var(--muted)] hover:text-[color:var(--accent)] transition-colors group"
-              >
-                View all on Credly
-                <ExternalLink
-                  size={11}
-                  className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
-                />
-              </a>
-            </div>
 
+              <div className="flex items-center gap-3">
+                <span className="mono text-[10px] font-semibold px-2.5 py-1 rounded-full bg-[color:var(--accent-soft)] text-[color:var(--accent)] border border-[color:var(--accent)]/20">
+                  {badges.length} Total
+                </span>
+
+                <a
+                  href={personalInfo.socials.credly}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-1.5 mono text-[11px] text-[color:var(--muted)] hover:text-[color:var(--accent)] transition-colors group"
+                >
+                  View all on Credly
+                  <ExternalLink
+                    size={11}
+                    className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
+                  />
+                </a>
+              </div>
+            </div>
             {/* Grouped by issuer */}
             {(() => {
               const grouped = badges.reduce((acc, b) => {
@@ -1269,90 +1385,117 @@ export default function App() {
                 acc[b.issuer].push(b);
                 return acc;
               }, {});
+
               return (
-                <div className="space-y-8">
+                <div className="space-y-3">
                   {Object.entries(grouped).map(([issuer, issuerBadges]) => (
-                    <div key={issuer}>
-                      {/* Issuer header */}
-                      <div className="flex items-center gap-2 mb-4">
-                        <span
-                          className="inline-flex items-center justify-center w-6 h-6 rounded-md text-white text-[9px] font-bold flex-shrink-0"
-                          style={{ background: issuerBadges[0].color }}
+                    <div
+                      key={issuer}
+                      className="rounded-2xl border border-[color:var(--line)] bg-[color:var(--card-strong)] overflow-hidden"
+                    >
+                      {/* Header */}
+                      <div
+                        onClick={() =>
+                          setOpenBadgeIssuer(
+                            openBadgeIssuer === issuer ? null : issuer
+                          )
+                        }
+                        className="flex items-center justify-between p-4 cursor-pointer"
+                      >
+                        <div className="flex items-center gap-2">
+                          <span
+                            className="inline-flex items-center justify-center w-6 h-6 rounded-md text-white text-[9px] font-bold"
+                            style={{ background: issuerBadges[0].color }}
+                          >
+                            {issuer.charAt(0)}
+                          </span>
+
+                          <p className="mono text-xs font-semibold">
+                            {issuer}
+                          </p>
+
+                          <span className="mono text-[10px] text-[color:var(--muted)]">
+                            · {issuerBadges.length} badge
+                            {issuerBadges.length > 1 ? "s" : ""}
+                          </span>
+                        </div>
+
+                        <motion.div
+                          animate={{
+                            rotate: openBadgeIssuer === issuer ? 180 : 0,
+                          }}
                         >
-                          {issuer.charAt(0)}
-                        </span>
-                        <p className="mono text-xs font-semibold text-[color:var(--txt)]">
-                          {issuer}
-                        </p>
-                        <span className="mono text-[10px] text-[color:var(--muted)]">
-                          · {issuerBadges.length} badge{issuerBadges.length > 1 ? "s" : ""}
-                        </span>
+                          ▼
+                        </motion.div>
                       </div>
 
-                      {/* Badge cards grid */}
-                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
-                        {issuerBadges.map((badge, i) => (
+                      <AnimatePresence>
+                        {openBadgeIssuer === issuer && (
                           <motion.div
-                            key={i}
-                            whileHover={{ y: -4, scale: 1.02 }}
-                            className="group relative rounded-2xl border border-[color:var(--line)] bg-[color:var(--card-strong)] overflow-hidden cursor-default"
-                            style={{
-                              boxShadow: `0 0 0 0 ${badge.color}00`,
-                              transition: "box-shadow 0.3s ease",
-                            }}
-                            onMouseEnter={(e) => {
-                              e.currentTarget.style.boxShadow = `0 8px 32px ${badge.color}28, 0 0 0 1px ${badge.color}44`;
-                              e.currentTarget.style.borderColor = `${badge.color}66`;
-                            }}
-                            onMouseLeave={(e) => {
-                              e.currentTarget.style.boxShadow = "none";
-                              e.currentTarget.style.borderColor = "";
-                            }}
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: "auto", opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.25 }}
+                            className="overflow-hidden"
                           >
-                            {/* Badge image area */}
-                            <div
-                              className="relative flex items-center justify-center p-5 pb-3"
-                              style={{
-                                background: `radial-gradient(circle at center, ${badge.color}14, ${badge.color}04 70%)`,
-                              }}
-                            >
-                              <div
-                                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                                style={{
-                                  background: `radial-gradient(circle at center, ${badge.color}1a, transparent 70%)`,
-                                }}
-                              />
-                              <img
-                                src={badge.image}
-                                alt={badge.name}
-                                className="relative w-20 h-20 object-contain drop-shadow-md group-hover:scale-110 transition-transform duration-300"
-                              />
-                            </div>
+                            <div className="p-4 border-t border-[color:var(--line)]">
 
-                            {/* Badge info */}
-                            <div className="px-3 pb-3 pt-1 border-t border-[color:var(--line)]">
-                              <p className="text-[11px] font-semibold text-[color:var(--txt)] leading-snug line-clamp-2">
-                                {badge.name}
-                              </p>
-                              <div className="flex items-center justify-between mt-1.5">
-                                <p className="mono text-[10px] text-[color:var(--muted)]">
-                                  {badge.issuer}
-                                </p>
-                                <span
-                                  className="mono text-[9px] px-1.5 py-0.5 rounded-full border font-medium"
-                                  style={{
-                                    borderColor: `${badge.color}66`,
-                                    color: badge.color,
-                                    background: `${badge.color}11`,
-                                  }}
-                                >
-                                  {badge.year}
-                                </span>
+                              <div className="p-4 border-t border-[color:var(--line)]">
+
+                                <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-4">
+                                  {issuerBadges.map((badge, i) => (
+                                    <motion.div
+                                      key={i}
+                                      whileHover={{ y: -4, scale: 1.02 }}
+                                      className="group relative rounded-2xl border border-[color:var(--line)] bg-[color:var(--card-strong)] overflow-hidden"
+                                    >
+                                      {/* Badge Image */}
+                                      <div
+                                        className="relative flex items-center justify-center p-5 pb-3"
+                                        style={{
+                                          background: `radial-gradient(circle at center, ${badge.color}14, ${badge.color}04 70%)`,
+                                        }}
+                                      >
+                                        <img
+                                          src={badge.image}
+                                          alt={badge.name}
+                                          className="w-20 h-20 object-contain group-hover:scale-110 transition-transform duration-300"
+                                        />
+                                      </div>
+
+                                      {/* Badge Info */}
+                                      <div className="px-3 pb-3 pt-2 border-t border-[color:var(--line)]">
+                                        <p className="text-[11px] font-semibold leading-snug line-clamp-2">
+                                          {badge.name}
+                                        </p>
+
+                                        <div className="flex items-center justify-between mt-2">
+                                          <p className="mono text-[10px] text-[color:var(--muted)]">
+                                            {badge.issuer}
+                                          </p>
+
+                                          <span
+                                            className="mono text-[9px] px-1.5 py-0.5 rounded-full border"
+                                            style={{
+                                              borderColor: `${badge.color}66`,
+                                              color: badge.color,
+                                              background: `${badge.color}11`,
+                                            }}
+                                          >
+                                            {badge.year}
+                                          </span>
+                                        </div>
+                                      </div>
+                                    </motion.div>
+                                  ))}
+                                </div>
+
                               </div>
+
                             </div>
                           </motion.div>
-                        ))}
-                      </div>
+                        )}
+                      </AnimatePresence>
                     </div>
                   ))}
                 </div>
@@ -1361,44 +1504,46 @@ export default function App() {
           </Section>
 
           {/* Certificate Preview Modal */}
-          {previewCert && (
-            <div
-              className="fixed inset-0 z-[80] bg-black/70 backdrop-blur-sm flex items-center justify-center p-4"
-              onClick={() => setPreviewCert(null)}
-            >
-              <motion.div
-                initial={{ scale: 0.9, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                exit={{ scale: 0.9, opacity: 0 }}
-                className="relative bg-[color:var(--card-strong)] rounded-2xl border border-[color:var(--line)] shadow-2xl max-w-3xl w-full overflow-hidden"
-                onClick={(e) => e.stopPropagation()}
+          {
+            previewCert && (
+              <div
+                className="fixed inset-0 z-[80] bg-black/70 backdrop-blur-sm flex items-center justify-center p-4"
+                onClick={() => setPreviewCert(null)}
               >
-                <div className="flex items-center justify-between px-4 py-3 border-b border-[color:var(--line)]">
-                  <div>
-                    <p className="text-sm font-semibold text-[color:var(--txt)]">
-                      {previewCert.name}
-                    </p>
-                    <p className="mono text-[10px] text-[color:var(--muted)]">
-                      {previewCert.authority} · {previewCert.year}
-                    </p>
+                <motion.div
+                  initial={{ scale: 0.9, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  exit={{ scale: 0.9, opacity: 0 }}
+                  className="relative bg-[color:var(--card-strong)] rounded-2xl border border-[color:var(--line)] shadow-2xl max-w-3xl w-full overflow-hidden"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <div className="flex items-center justify-between px-4 py-3 border-b border-[color:var(--line)]">
+                    <div>
+                      <p className="text-sm font-semibold text-[color:var(--txt)]">
+                        {previewCert.name}
+                      </p>
+                      <p className="mono text-[10px] text-[color:var(--muted)]">
+                        {previewCert.authority} · {previewCert.year}
+                      </p>
+                    </div>
+                    <button
+                      onClick={() => setPreviewCert(null)}
+                      className="w-8 h-8 rounded-full border border-[color:var(--line)] flex items-center justify-center text-[color:var(--muted)] hover:text-[color:var(--txt)] hover:bg-[color:var(--accent-soft)] transition"
+                    >
+                      ✕
+                    </button>
                   </div>
-                  <button
-                    onClick={() => setPreviewCert(null)}
-                    className="w-8 h-8 rounded-full border border-[color:var(--line)] flex items-center justify-center text-[color:var(--muted)] hover:text-[color:var(--txt)] hover:bg-[color:var(--accent-soft)] transition"
-                  >
-                    ✕
-                  </button>
-                </div>
-                <div className="p-4">
-                  <img
-                    src={previewCert.image}
-                    alt={previewCert.name}
-                    className="w-full rounded-xl object-contain max-h-[65vh]"
-                  />
-                </div>
-              </motion.div>
-            </div>
-          )}
+                  <div className="p-4">
+                    <img
+                      src={previewCert.image}
+                      alt={previewCert.name}
+                      className="w-full rounded-xl object-contain max-h-[65vh]"
+                    />
+                  </div>
+                </motion.div>
+              </div>
+            )
+          }
 
           <TechMarquee />
 
@@ -1408,7 +1553,7 @@ export default function App() {
               © {new Date().getFullYear()} Vatsal Gajera
             </p>
           </footer>
-        </main>
+        </main >
 
         <motion.div
           initial={{ opacity: 0, y: 24 }}
@@ -1470,8 +1615,8 @@ export default function App() {
             </div>
           </button>
         </motion.div>
-      </div>
+      </div >
       <Analytics />
-    </div>
+    </div >
   );
 }
