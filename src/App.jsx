@@ -1421,7 +1421,7 @@ export default function App() {
                   className="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-lg"
                   style={{ background: "linear-gradient(135deg, #EAB308, #CA8A04)" }}
                 >
-                  📱
+                  𝛂
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex flex-wrap items-center gap-2 mb-1">
@@ -1484,7 +1484,7 @@ export default function App() {
                   className="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-lg"
                   style={{ background: "linear-gradient(135deg, #06B6D4, #0891B2)" }}
                 >
-                  🫧
+                  ⌬
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex flex-wrap items-center gap-2 mb-1">
