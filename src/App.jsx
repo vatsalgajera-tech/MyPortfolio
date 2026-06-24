@@ -139,8 +139,10 @@ function CreativeMark({ className = "" }) {
 export default function App() {
   const { isDark, toggle } = useTheme();
   const shouldAnimate = true;
+  const [previewDoc, setPreviewDoc] = useState(null);
   const [openBadgeIssuer, setOpenBadgeIssuer] = useState(null);
   const audioContextRef = useRef(null);
+  const [currentPage, setCurrentPage] = useState(0);
   const themeAudioRef = useRef(null);
   const [typedName, setTypedName] = useState("");
   const [catState, setCatState] = useState("idle");
@@ -619,6 +621,60 @@ export default function App() {
                             </span>
                           ))}
                         </div>
+                        <div className="flex flex-wrap gap-2 mt-4">
+                          {exp.offerLetter && (
+                            <button
+                              onClick={() => {
+                                setCurrentPage(0);
+
+                                setPreviewDoc({
+                                  title: "Offer Letter",
+                                  files: Array.isArray(exp.offerLetter)
+                                    ? exp.offerLetter
+                                    : [exp.offerLetter],
+                                  type: "image",
+                                });
+                              }}
+                              className="tag"
+                            >
+                              📄 Offer Letter
+                            </button>
+                          )}
+
+                          {exp.trainingCertificate && (
+                            <button
+                              onClick={() => {
+                                setCurrentPage(0);
+
+                                setPreviewDoc({
+                                  title: "Training Certificate",
+                                  files: [exp.trainingCertificate],
+                                  type: "image",
+                                });
+                              }}
+                              className="tag"
+                            >
+                              🎓 Training
+                            </button>
+                          )}
+
+                          {exp.internshipCertificate && (
+                            <button
+                              onClick={() => {
+                                setCurrentPage(0);
+
+                                setPreviewDoc({
+                                  title: "Internship Certificate",
+                                  files: [exp.internshipCertificate],
+                                  type: "image",
+                                });
+                              }}
+                              className="tag"
+                            >
+                              🏅 Internship
+                            </button>
+                          )}
+                        </div>
                       </div>
 
                       <motion.div
@@ -652,13 +708,100 @@ export default function App() {
                               </li>
                             ))}
                           </ul>
+
                         </div>
                       </motion.div>
                     )}
+
                   </AnimatePresence>
+
                 </div>
               ))}
             </div>
+            <AnimatePresence>
+              {previewDoc && (
+                <>
+                  {/* Blur */}
+                  <motion.div
+                    className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    onClick={() => setPreviewDoc(null)}
+                  />
+
+                  {/* Modal */}
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.95 }}
+                    className="fixed inset-0 z-[60] flex items-center justify-center p-4"
+                  >
+                    <div className="relative w-full max-w-6xl rounded-3xl border border-[color:var(--line)] bg-[color:var(--card)] p-4">
+                      <button
+                        onClick={() => setPreviewDoc(null)}
+                        className="absolute top-4 right-4 text-xl"
+                      >
+                        ✕
+                      </button>
+
+                      {previewDoc.type === "pdf" ? (
+                        <iframe
+                          src={previewDoc.file}
+                          title={previewDoc.title}
+                          className="w-[90vw] h-[85vh] rounded-xl bg-white"
+                        />
+                      ) : (
+                        <div className="flex flex-col items-center justify-center h-[80vh]">
+
+                          <div className="mono text-xs text-[color:var(--muted)] mb-3">
+                            Page {currentPage + 1} of {(previewDoc.files || [previewDoc.file]).length}
+                          </div>
+
+                          <img
+                            src={(previewDoc.files || [previewDoc.file])[currentPage]}
+                            alt={previewDoc.title}
+                            className="max-h-[72vh] max-w-full object-contain rounded-xl shadow-lg"
+                          />
+
+                          {(previewDoc.files || []).length > 1 && (
+                            <div className="flex items-center gap-3 mt-4">
+                              <button
+                                className="tag"
+                                disabled={currentPage === 0}
+                                onClick={() =>
+                                  setCurrentPage((p) => Math.max(0, p - 1))
+                                }
+                              >
+                                ← Previous
+                              </button>
+
+                              <button
+                                className="tag"
+                                disabled={
+                                  currentPage ===
+                                  (previewDoc.files.length - 1)
+                                }
+                                onClick={() =>
+                                  setCurrentPage((p) =>
+                                    Math.min(
+                                      previewDoc.files.length - 1,
+                                      p + 1
+                                    )
+                                  )
+                                }
+                              >
+                                Next →
+                              </button>
+                            </div>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                  </motion.div>
+                </>
+              )}
+            </AnimatePresence>
           </Section>
 
           {/* 4. Projects */}
