@@ -116,10 +116,44 @@ export const education = [
 
 export const projects = [
   {
+    title: "Parking Management System",
+    subtitle: "Console-Based Vehicle Parking Solution · Java",
+    description:
+      "Java-based parking management system featuring slot allocation, vehicle search, availability tracking, fee calculation, and transaction reporting using OOP principles and Collections Framework.",
+    tech: [
+      "Java",
+      "OOP",
+      "Collections Framework",
+      "Exception Handling",
+    ],
+    links: {
+      source:
+        "https://github.com/vatsalgajera-tech/Parking-Management-System",
+    },
+  },
+  {
+    title: "COVID-19 Analytics Dashboard",
+    subtitle: "Data Analysis & Visualization Project · Python",
+    description:
+      "Performed end-to-end COVID-19 data analysis including data cleaning, EDA, statistical insights, trend analysis, and visualization using Python and Pandas.",
+    tech: [
+      "Python",
+      "Pandas",
+      "NumPy",
+      "Matplotlib",
+      "Seaborn",
+      "Jupyter Notebook",
+    ],
+    links: {
+      source:
+        "https://github.com/vatsalgajera-tech/COVID-19-Data-Analytics",
+    },
+  },
+  {
     title: "VendorBridge AI",
     subtitle: "AI-Powered Procurement ERP · MERN Stack · Odoo x KSV Hackathon",
     description:
-      "AI-powered procurement ERP platform with vendor onboarding, RFQ creation, quotation management, AI-driven vendor recommendation and risk scoring, multi-stage approval workflows, purchase order and invoice management, audit logging, and analytics dashboards.",
+      "AI-powered procurement ERP with vendor management, RFQ workflows, quotation evaluation, intelligent vendor recommendations, purchase orders, invoices, and analytics dashboards.",
     tech: [
       "React.js",
       "Node.js",
@@ -135,14 +169,13 @@ export const projects = [
     title: "University Management System",
     subtitle: "Full-Stack Academic Platform · MERN Stack",
     description:
-      "Role-based MERN application for academic operations with dashboards for admins, professors, and students. Features course management, attendance tracking, marks and results, study material uploads, leave management, JWT auth, protected routes, file uploads, and cloud deployment.",
+      "MERN-based university management system with role-based access, attendance management, academic records, study material sharing, leave management, and secure authentication.",
     tech: [
       "React.js",
       "Node.js",
       "Express.js",
       "MongoDB",
       "JWT",
-      "Tailwind CSS",
       "Vercel",
       "Render",
     ],
@@ -155,26 +188,9 @@ export const projects = [
     title: "Shree Vastra",
     subtitle: "Women's Ethnic Fashion E-Commerce · MERN Stack",
     description:
-      "Full-stack e-commerce platform for women's ethnic fashion with OTP & JWT authentication, product browsing and filtering, cart and wishlist, order tracking, Razorpay payment integration, Cloudinary media, and a comprehensive admin dashboard.",
+      "E-commerce platform with OTP authentication, product browsing, shopping cart, Razorpay integration, order management, and a comprehensive admin dashboard.",
     tech: ["React.js", "Redux Toolkit", "Node.js", "Express.js", "MongoDB"],
     links: { source: "https://github.com/vatsalgajera-tech/eCommerce-Website" },
-  },
-  {
-    title: "Parking Management System",
-    subtitle: "Console-Based Application · Java",
-    description:
-      "Console-based Java application for vehicle parking operations via menu-driven interface. Supports slot allocation, vehicle search, real-time availability for two-wheelers and four-wheelers, automatic receipt generation, fee calculation, and daily transaction reports.",
-    tech: [
-      "Java",
-      "OOP",
-      "Collections",
-      "Inheritance",
-      "Polymorphism",
-      "Exception Handling",
-    ],
-    links: {
-      source: "https://github.com/vatsalgajera-tech/Parking-Management-System",
-    },
   },
 ];
 
