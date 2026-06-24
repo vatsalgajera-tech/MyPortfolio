@@ -1465,26 +1465,9 @@ export default function App() {
 
                                       {/* Badge Info */}
                                       <div className="px-3 pb-3 pt-2 border-t border-[color:var(--line)]">
-                                        <p className="text-[11px] font-semibold leading-snug line-clamp-2">
+                                        <p className="text-[11px] font-semibold leading-snug line-clamp-2 text-center">
                                           {badge.name}
                                         </p>
-
-                                        <div className="flex items-center justify-between mt-2">
-                                          <p className="mono text-[10px] text-[color:var(--muted)]">
-                                            {badge.issuer}
-                                          </p>
-
-                                          <span
-                                            className="mono text-[9px] px-1.5 py-0.5 rounded-full border"
-                                            style={{
-                                              borderColor: `${badge.color}66`,
-                                              color: badge.color,
-                                              background: `${badge.color}11`,
-                                            }}
-                                          >
-                                            {badge.year}
-                                          </span>
-                                        </div>
                                       </div>
                                     </motion.div>
                                   ))}
