@@ -126,22 +126,6 @@ export const education = [
 
 export const projects = [
   {
-    title: "Parking Management System",
-    subtitle: "Console-Based Vehicle Parking Solution · Java",
-    description:
-      "Java-based parking management system featuring slot allocation, vehicle search, availability tracking, fee calculation, and transaction reporting using OOP principles and Collections Framework.",
-    tech: [
-      "Java",
-      "OOP",
-      "Collections Framework",
-      "Exception Handling",
-    ],
-    links: {
-      source:
-        "https://github.com/vatsalgajera-tech/Parking-Management-System",
-    },
-  },
-  {
     title: "COVID-19 Analytics Dashboard",
     subtitle: "Data Analysis & Visualization Project · Python",
     description:
@@ -160,6 +144,21 @@ export const projects = [
     },
   },
   {
+    title: "Parking Management System",
+    subtitle: "Console-Based Vehicle Parking Solution · Java",
+    description:
+      "Java-based parking management system featuring slot allocation, vehicle search, availability tracking, fee calculation, and transaction reporting using OOP principles and Collections Framework.",
+    tech: [
+      "Java",
+      "OOP",
+      "Collections Framework",
+      "Exception Handling",
+    ],
+    links: {
+      source:
+        "https://github.com/vatsalgajera-tech/Parking-Management-System",
+    },
+  }, {
     title: "VendorBridge AI",
     subtitle: "AI-Powered Procurement ERP · MERN Stack · Odoo x KSV Hackathon",
     description:
@@ -173,7 +172,9 @@ export const projects = [
       "Redux",
       "AI Scoring",
     ],
-    links: { source: "https://github.com/vatsalgajera-tech/VendorBridge-AI" },
+    links: {
+      source: "https://github.com/vatsalgajera-tech/VendorBridge-AI"
+    },
   },
   {
     title: "Nexus University",
@@ -190,6 +191,7 @@ export const projects = [
       "Render",
     ],
     links: {
+      live: "https://nexusuniversity.vercel.app/",
       source:
         "https://github.com/vatsalgajera-tech/University-Management-System",
     },
