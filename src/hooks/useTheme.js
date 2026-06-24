@@ -3,9 +3,12 @@ import { useState, useEffect } from 'react'
 export function useTheme() {
   const [isDark, setIsDark] = useState(() => {
     if (typeof window !== 'undefined') {
-      return localStorage.getItem('theme') === 'dark'
+      const saved = localStorage.getItem('theme')
+      // If user has a saved preference, use it; otherwise default to dark
+      if (saved === 'light') return false
+      return true // dark by default on first visit
     }
-    return false
+    return true
   })
 
   useEffect(() => {

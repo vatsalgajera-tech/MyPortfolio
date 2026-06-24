@@ -120,7 +120,7 @@ export const education = [
     period: "2019—2020",
     score: "88.00%",
     pr: "99.03 Percentile",
-    highlight: null,
+    highlight: "Scored 96/100 in Science",
   },
 ];
 
@@ -560,34 +560,34 @@ export const certifications = [
     image: "/images/certs/SQL Course.png",
   },
 
-  // 6. Code360 (Coding Ninjas) — ML > Python OOPs > Basics I > Basics II
+  // 6. Code360 — ML > Python OOPs > Basics I > Basics II
   {
     name: "Machine Learning Fundamentals",
-    authority: "Code360 (Coding Ninjas)",
+    authority: "Code360",
     year: 2026,
     image: "/images/certs/Code360-ML.jpeg",
   },
   {
     name: "Fundamentals of Artificial Intelligence",
-    authority: "Code360 (Coding Ninjas)",
+    authority: "Code360",
     year: 2026,
     image: "/images/certs/Code360-AI.jpeg",
   },
   {
     name: "OOPs in Python",
-    authority: "Code360 (Coding Ninjas)",
+    authority: "Code360",
     year: 2026,
     image: "/images/certs/Code360-Python-OOPS.jpg",
   },
   {
     name: "Basics of Python – Part I",
-    authority: "Code360 (Coding Ninjas)",
+    authority: "Code360",
     year: 2026,
     image: "/images/certs/Code360-Python-I.jpeg",
   },
   {
     name: "Basics of Python – Part II",
-    authority: "Code360 (Coding Ninjas)",
+    authority: "Code360",
     year: 2026,
     image: "/images/certs/Code360-Python-II.jpeg",
   },
@@ -797,6 +797,40 @@ export const badges = [
     color: "#FF6B35",
     initials: "GS",
     image: "/images/badges/gssoc-badge-bounty_master.png",
+  },
+
+  // LeetCode Badges
+  {
+    name: "LeetCode 50 Days Badge",
+    issuer: "LeetCode",
+    year: 2026,
+    color: "#FFA116",
+    initials: "LC",
+    image: "/images/badges/Leetcode-50_1080_1080.png",
+  },
+  {
+    name: "Introduction to Pandas",
+    issuer: "LeetCode",
+    year: 2026,
+    color: "#FFA116",
+    initials: "LC",
+    image: "/images/badges/Leetcode-Introduction_to_Pandas_Badge.png",
+  },
+  {
+    name: "Study Plan: Quest for Data",
+    issuer: "LeetCode",
+    year: 2026,
+    color: "#FFA116",
+    initials: "LC",
+    image: "/images/badges/Leetcode-Quest_Data_Large.png",
+  },
+  {
+    name: "Top SQL 50",
+    issuer: "LeetCode",
+    year: 2026,
+    color: "#FFA116",
+    initials: "LC",
+    image: "/images/badges/Leetcode-Top_SQL_50.png",
   },
 ];
 

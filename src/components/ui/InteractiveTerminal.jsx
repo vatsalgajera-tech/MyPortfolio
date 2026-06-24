@@ -3,20 +3,25 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Terminal, X, Minimize2, Maximize2 } from "lucide-react";
 
 const commands = {
-  help: "Available commands: about, experience, projects, skills, achievements, hobbies, contact, clear, exit",
+  help: "Available commands: about, experience, projects, skills, certifications, badges, achievements, contact, hobbies, clear, exit",
   about:
-    "Vatsal Gajera - Python Developer | Full Stack Developer | Data Science Enthusiast based in Rajkot, Gujarat.",
+    "Vatsal Gajera — MCA @ Dharmsinh Desai University (CGPA 8.07) | Python Developer | Full Stack Developer | Data Science Enthusiast | Rajkot, Gujarat.",
   experience:
-    "Data Science Intern @ Zidio Development | Python Dev Intern @ Infotact Solutions | Web Dev Intern @ Creative Insight IT Academy.",
+    "1. Data Science Intern @ Zidio Development (Remote, 2 months) — Python, Pandas, NumPy, ML.\n2. Python Dev Intern @ Infotact Solutions (Remote, 2 months) — Django, MySQL, REST APIs.\n3. Web Dev Intern @ Creative Insight IT Academy (On-site, 1 month) — HTML, CSS, JS, Tailwind, MySQL.",
   projects:
-    "1. VendorBridge AI (MERN Stack), 2. Nexus University Management System (MERN Stack), 3. E-Commerce Website (MERN Stack), 4. Parking Management System (Console Based JAVA).",
+    "1. COVID-19 Analytics Dashboard (Python, Pandas, Seaborn)\n2. Parking Management System (Console-Based Java)\n3. VendorBridge AI — AI-Powered Procurement ERP (MERN, Odoo x KSV Hackathon)\n4. Nexus University — Academic Platform (MERN, live: nexusuniversity.vercel.app)\n5. Shree Vastra — E-Commerce (MERN, Razorpay)",
   skills:
-    "Python, MySQL, NumPy, Pandas, Scikit-learn, Matplotlib, TensorFlow, Java, JavaScript, React.js, Node.js, Express.js, MongoDB.",
+    "Languages: Python, SQL, Java, JavaScript, HTML5, CSS3\nData Science: NumPy, Pandas, Matplotlib, Seaborn, Scikit-Learn, TensorFlow, OpenCV\nBI: Power BI, Tableau\nBackend: FastAPI, Node.js, Express.js\nFrontend: React, Tailwind CSS, Vite\nDatabases: PostgreSQL, MySQL, MongoDB\nTools: Git, GitHub, Postman, Jupyter Notebook, VS Code\nCloud: Azure, Vercel",
   achievements:
-    "1400+ problems solved | CodeChef 1781 (3★) | LeetCode 1460 rating, 200+ solved | Codeforces 1186 rating | HackerRank 5★ | GSSoC 2026 Open Source Contributor.",
+    "1450+ problems solved across all platforms.\nCodeChef: 1783 rating (3★) — 698+ solved.\nLeetCode: 1460 rating — 210+ solved.\nCodeforces: 1186 rating — 115+ solved.\nHackerRank: 5★ — Python, Java, SQL.\nGeeksforGeeks: 151+ problems.\nCode360: 428+ submissions.\nGSSoC 2026 Open Source Contributor.\nOdoo x KSV Hackathon 2026 participant.",
+  certifications:
+    "IBM (5): ML Essentials, DS Methodology, DS Tools, DS 101, Python 101.\nNASA (2): Open Science Essentials, Open Science 101.\nLinkedIn (2): Microsoft Azure Essentials, GitHub Career Essentials.\nHackerRank (8): SQL Advanced/Intermediate/Basic, Python Basic, Problem Solving Int/Basic, Java Basic, CSS Basic.\nScaler Topics (5): DS Fundamentals, Python & SQL for DS, Python Skill Test, Python Course, SQL Course.\nCode360 (5): ML Fundamentals, AI Fundamentals, OOPs in Python, Python Basics I & II.\nCoursera (4): Python, Excel, Google Ads, WordPress.\nUdemy (6): SQL, Python Dev, Python Full Stack, Django REST, HTML/CSS/JS/React, SQL Programming.\nUniversity Workshops (2): C Programming, Software Testing.\nLetsUpgrade (1): Zero to Python Hero.",
+  badges:
+    "IBM Skills Network (5): ML Essentials, DS Methodologies, DS Tools, DS 101, Python for DS.\nNASA (2): Open Science Essentials, Open Science 101.\nGSSoC 2026 (7): First Steps, Profile Complete, Discord Verified, Point Scorer, Role Contributor, Bounty Hunter, Bounty Master.\nLeetCode (4): 50 Days Badge, Introduction to Pandas, Quest for Data, Top SQL 50.",
   hobbies:
-    "Problem Solving, Competitive Programming, Data Science, Open Source, Music, Travel.",
-  contact: "Email: vatsalgajera.tech@gmail.com | Phone: +91 9723140922",
+    "Problem Solving, Competitive Programming, Data Science, Open Source, Hackathons, Music, Travel.",
+  contact:
+    "Email: vatsalgajera.tech@gmail.com | Phone: +91 9723140922 | LinkedIn: linkedin.com/in/vatsalgajera | GitHub: github.com/vatsalgajera-tech",
   clear: "CLEAR",
 };
 
@@ -55,7 +60,8 @@ export default function InteractiveTerminal() {
       if (cmd === "clear") {
         setHistory([]);
       } else if (commands[cmd]) {
-        setHistory((prev) => [...prev, `> ${input}`, commands[cmd]]);
+        const lines = commands[cmd].split("\n");
+        setHistory((prev) => [...prev, `> ${input}`, ...lines]);
       } else if (cmd !== "") {
         setHistory((prev) => [
           ...prev,

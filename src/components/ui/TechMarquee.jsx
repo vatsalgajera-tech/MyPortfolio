@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import {
   SiPython,
   SiJavascript,
+  SiOpenjdk,
   SiReact,
   SiNodedotjs,
   SiExpress,
@@ -15,10 +16,7 @@ import {
   SiTensorflow,
   SiGit,
   SiPostman,
-  SiJupyter,
-  SiVercel,
 } from "react-icons/si";
-import { SiOpenjdk } from "react-icons/si";
 
 const skills = [
   { name: "Python", icon: SiPython },

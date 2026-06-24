@@ -31,12 +31,34 @@
     --accent-soft: rgba(120, 196, 180, 0.12);
   }
 
+  /* Hide all scrollbars globally — all devices */
+  * {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  *::-webkit-scrollbar {
+    display: none;
+  }
+
   html {
     scroll-behavior: smooth;
   }
 
+  /* Responsive scroll offset for fixed navbar */
   section[id] {
-    scroll-margin-top: 10rem;
+    scroll-margin-top: 6rem;
+  }
+
+  @media (min-width: 640px) {
+    section[id] {
+      scroll-margin-top: 8rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    section[id] {
+      scroll-margin-top: 7rem;
+    }
   }
 
   body {
@@ -54,19 +76,6 @@
 
   #root {
     min-height: 100vh;
-  }
-
-  ::-webkit-scrollbar {
-    width: 8px;
-  }
-
-  ::-webkit-scrollbar-track {
-    background: transparent;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background: rgba(100, 116, 139, 0.5);
-    border-radius: 999px;
   }
 }
 
@@ -90,7 +99,7 @@
     border: 1px solid var(--line);
     background: color-mix(in srgb, var(--card-strong) 84%, transparent 16%);
     box-shadow: 0 12px 32px rgba(23, 23, 23, 0.04);
-    @apply rounded-[26px] p-6 md:p-7;
+    @apply rounded-[26px] p-5 md:p-7;
   }
 
   .section-label {
@@ -103,6 +112,48 @@
     border: 1px solid color-mix(in srgb, var(--line) 88%, #fff 12%);
     background: color-mix(in srgb, var(--card-strong) 88%, transparent 12%);
     @apply mono text-[11px] px-2.5 py-1 rounded-full;
+  }
+
+  /* Certificate / document buttons — visually distinct from tech tags */
+  .cert-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px;
+    padding: 5px 12px;
+    border-radius: 999px;
+    border: 1px solid color-mix(in srgb, var(--accent) 55%, transparent 45%);
+    background: color-mix(in srgb, var(--accent-soft) 80%, transparent 20%);
+    color: var(--accent);
+    cursor: pointer;
+    transition: background 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease, transform 0.15s ease;
+  }
+
+  .cert-btn:hover {
+    background: color-mix(in srgb, var(--accent-soft) 100%, transparent 0%);
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 14%, transparent 86%);
+    transform: translateY(-1px);
+  }
+
+  .cert-btn:active {
+    transform: translateY(0);
+  }
+
+  .cert-btn-dot {
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+    animation: cert-dot-pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes cert-dot-pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.45; transform: scale(0.75); }
   }
 
   .mesh-overlay {
@@ -151,6 +202,7 @@
     );
   }
 
+  /* ── Pixel cat ─────────────────────────────────────── */
   .pixel-cat-root {
     cursor: pointer;
     user-select: none;
@@ -267,109 +319,6 @@
     bottom: 0.18rem;
     font-size: 0.88rem;
     animation: pixel-cat-float-z3 2.2s ease-in-out 0.8s infinite;
-  }
-
-  /* Code Mode Styles - Light (VS Code Light inspired) */
-  :root.code-mode {
-    --bg-0: #ffffff;
-    --bg-1: #f3f3f3;
-    --bg-2: #eeeeee;
-    --txt: #333333;
-    --muted: #6a737d;
-    --card: #ffffff;
-    --card-strong: #f6f8fa;
-    --line: #d1d5da;
-    --accent: #005cc5;
-    --accent-soft: rgba(0, 92, 197, 0.1);
-
-    --syntax-keyword: #d73a49;
-    --syntax-string: #032f62;
-    --syntax-func: #6f42c1;
-    --syntax-comment: #6a737d;
-    --syntax-type: #e36209;
-    --syntax-var: #e36209;
-  }
-
-  /* Code Mode Styles - Dark (VS Code Dark inspired) */
-  .dark.code-mode {
-    --bg-0: #0d0d0d;
-    --bg-1: #121212;
-    --bg-2: #151515;
-    --txt: #d4d4d4;
-    --muted: #858585;
-    --card: #1e1e1e;
-    --card-strong: #252526;
-    --line: #333333;
-    --accent: #007acc;
-    --accent-soft: rgba(0, 122, 204, 0.15);
-
-    --syntax-keyword: #569cd6;
-    --syntax-string: #ce9178;
-    --syntax-func: #dcdcaa;
-    --syntax-comment: #6a9955;
-    --syntax-type: #4ec9b0;
-    --syntax-var: #9cdcfe;
-  }
-
-  .code-mode body {
-    font-family: "IBM Plex Mono", monospace !important;
-    background: var(--bg-0);
-  }
-
-  .code-mode .display-serif {
-    font-family: "IBM Plex Mono", monospace !important;
-    color: var(--syntax-func);
-  }
-
-  .code-mode .section-shell {
-    border-radius: 4px;
-    border-left: 3px solid var(--accent);
-    background: var(--card);
-  }
-
-  .code-mode .glass-card {
-    border-radius: 0;
-    border: 1px solid var(--line);
-  }
-
-  .code-mode .tag {
-    border-radius: 2px;
-    background: var(--bg-1);
-    color: var(--syntax-type);
-    border: 1px solid var(--line);
-  }
-
-  .code-mode .section-label::before {
-    content: "// ";
-    color: var(--syntax-comment);
-  }
-
-  .code-mode h1,
-  .code-mode h2,
-  .code-mode h3 {
-    color: var(--syntax-keyword);
-  }
-
-  .code-mode p {
-    color: var(--txt);
-  }
-
-  .code-mode .tech-marquee-container {
-    background: var(--bg-1);
-    border-color: var(--line);
-  }
-
-  .code-mode .marquee-track .w-10 {
-    border-radius: 4px;
-    background: var(--bg-2);
-  }
-
-  .code-mode .fade-left {
-    background: gradient(to right, var(--bg-0), transparent);
-  }
-
-  .code-mode .fade-right {
-    background: gradient(to left, var(--bg-0), transparent);
   }
 
   @keyframes pixel-cat-float-z1 {

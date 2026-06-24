@@ -150,6 +150,7 @@ export default function App() {
   const [previewCert, setPreviewCert] = useState(null);
   const [selectedAuthority, setSelectedAuthority] = useState(null);
   const [openExp, setOpenExp] = useState(null);
+  const [showSkillModal, setShowSkillModal] = useState(false);
   const pointerRef = useRef(null);
   const pointerTargetRef = useRef({ x: 0, y: 0 });
   const pointerCurrentRef = useRef({ x: 0, y: 0 });
@@ -624,53 +625,62 @@ export default function App() {
                         <div className="flex flex-wrap gap-2 mt-4">
                           {exp.offerLetter && (
                             <button
-                              onClick={() => {
+                              onClick={(e) => {
+                                e.stopPropagation();
                                 setCurrentPage(0);
-
                                 setPreviewDoc({
                                   title: "Offer Letter",
+                                  company: exp.company,
+                                  role: exp.role,
                                   files: Array.isArray(exp.offerLetter)
                                     ? exp.offerLetter
                                     : [exp.offerLetter],
                                   type: "image",
                                 });
                               }}
-                              className="tag"
+                              className="cert-btn"
                             >
+                              <span className="cert-btn-dot" />
                               📄 Offer Letter
                             </button>
                           )}
 
                           {exp.trainingCertificate && (
                             <button
-                              onClick={() => {
+                              onClick={(e) => {
+                                e.stopPropagation();
                                 setCurrentPage(0);
-
                                 setPreviewDoc({
                                   title: "Training Certificate",
+                                  company: exp.company,
+                                  role: exp.role,
                                   files: [exp.trainingCertificate],
                                   type: "image",
                                 });
                               }}
-                              className="tag"
+                              className="cert-btn"
                             >
+                              <span className="cert-btn-dot" />
                               🎓 Training
                             </button>
                           )}
 
                           {exp.internshipCertificate && (
                             <button
-                              onClick={() => {
+                              onClick={(e) => {
+                                e.stopPropagation();
                                 setCurrentPage(0);
-
                                 setPreviewDoc({
                                   title: "Internship Certificate",
+                                  company: exp.company,
+                                  role: exp.role,
                                   files: [exp.internshipCertificate],
                                   type: "image",
                                 });
                               }}
-                              className="tag"
+                              className="cert-btn"
                             >
+                              <span className="cert-btn-dot" />
                               🏅 Internship
                             </button>
                           )}
@@ -721,9 +731,9 @@ export default function App() {
             <AnimatePresence>
               {previewDoc && (
                 <>
-                  {/* Blur */}
+                  {/* Backdrop */}
                   <motion.div
-                    className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md"
+                    className="fixed inset-0 z-50 bg-black/75 backdrop-blur-md"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
@@ -732,71 +742,85 @@ export default function App() {
 
                   {/* Modal */}
                   <motion.div
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.95 }}
-                    className="fixed inset-0 z-[60] flex items-center justify-center p-4"
+                    initial={{ opacity: 0, scale: 0.96, y: 16 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.96, y: 16 }}
+                    transition={{ duration: 0.22, ease: "easeOut" }}
+                    className="fixed inset-0 z-[60] flex items-center justify-center p-4 sm:p-6"
                   >
-                    <div className="relative w-full max-w-6xl rounded-3xl border border-[color:var(--line)] bg-[color:var(--card)] p-4">
-                      <button
-                        onClick={() => setPreviewDoc(null)}
-                        className="absolute top-4 right-4 text-xl"
-                      >
-                        ✕
-                      </button>
-
-                      {previewDoc.type === "pdf" ? (
-                        <iframe
-                          src={previewDoc.file}
-                          title={previewDoc.title}
-                          className="w-[90vw] h-[85vh] rounded-xl bg-white"
-                        />
-                      ) : (
-                        <div className="flex flex-col items-center justify-center h-[80vh]">
-
-                          <div className="mono text-xs text-[color:var(--muted)] mb-3">
-                            Page {currentPage + 1} of {(previewDoc.files || [previewDoc.file]).length}
-                          </div>
-
-                          <img
-                            src={(previewDoc.files || [previewDoc.file])[currentPage]}
-                            alt={previewDoc.title}
-                            className="max-h-[72vh] max-w-full object-contain rounded-xl shadow-lg"
-                          />
-
-                          {(previewDoc.files || []).length > 1 && (
-                            <div className="flex items-center gap-3 mt-4">
-                              <button
-                                className="tag"
-                                disabled={currentPage === 0}
-                                onClick={() =>
-                                  setCurrentPage((p) => Math.max(0, p - 1))
-                                }
-                              >
-                                ← Previous
-                              </button>
-
-                              <button
-                                className="tag"
-                                disabled={
-                                  currentPage ===
-                                  (previewDoc.files.length - 1)
-                                }
-                                onClick={() =>
-                                  setCurrentPage((p) =>
-                                    Math.min(
-                                      previewDoc.files.length - 1,
-                                      p + 1
-                                    )
-                                  )
-                                }
-                              >
-                                Next →
-                              </button>
-                            </div>
+                    <div
+                      className="relative w-full max-w-2xl rounded-3xl border border-[color:var(--line)] bg-[color:var(--card-strong)] shadow-2xl overflow-hidden"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      {/* ── Header ── */}
+                      <div className="flex items-start justify-between gap-3 px-5 py-4 border-b border-[color:var(--line)]">
+                        <div className="min-w-0">
+                          <p className="text-sm font-bold text-[color:var(--txt)] leading-snug">
+                            {previewDoc.title}
+                          </p>
+                          {previewDoc.company && (
+                            <p className="mono text-[11px] text-[color:var(--muted)] mt-0.5">
+                              {previewDoc.company}
+                              {previewDoc.role && (
+                                <span className="opacity-60"> &middot; {previewDoc.role}</span>
+                              )}
+                            </p>
                           )}
                         </div>
-                      )}
+                        <button
+                          onClick={() => setPreviewDoc(null)}
+                          className="flex-shrink-0 w-8 h-8 rounded-full border border-[color:var(--line)] flex items-center justify-center text-[color:var(--muted)] hover:text-[color:var(--txt)] hover:bg-[color:var(--accent-soft)] hover:border-[color:var(--accent)] transition text-sm"
+                        >
+                          ✕
+                        </button>
+                      </div>
+
+                      {/* ── Image area ── */}
+                      <div className="p-4 sm:p-5">
+                        {previewDoc.type === "pdf" ? (
+                          <iframe
+                            src={previewDoc.file}
+                            title={previewDoc.title}
+                            className="w-full h-[75vh] rounded-xl bg-white"
+                          />
+                        ) : (
+                          <div className="flex flex-col items-center gap-3">
+                            {/* White certificate frame */}
+                            <div className="w-full rounded-2xl overflow-hidden border border-[color:var(--line)] bg-white shadow-inner">
+                              <img
+                                src={(previewDoc.files || [previewDoc.file])[currentPage]}
+                                alt={previewDoc.title}
+                                className="w-full object-contain max-h-[65vh]"
+                              />
+                            </div>
+
+                            {/* Pagination */}
+                            {(previewDoc.files || []).length > 1 && (
+                              <div className="flex items-center gap-3">
+                                <button
+                                  className="cert-btn"
+                                  disabled={currentPage === 0}
+                                  onClick={() => setCurrentPage((p) => Math.max(0, p - 1))}
+                                  style={{ opacity: currentPage === 0 ? 0.4 : 1 }}
+                                >
+                                  ← Previous
+                                </button>
+                                <span className="mono text-[11px] text-[color:var(--muted)]">
+                                  {currentPage + 1} / {previewDoc.files.length}
+                                </span>
+                                <button
+                                  className="cert-btn"
+                                  disabled={currentPage === previewDoc.files.length - 1}
+                                  onClick={() => setCurrentPage((p) => Math.min(previewDoc.files.length - 1, p + 1))}
+                                  style={{ opacity: currentPage === previewDoc.files.length - 1 ? 0.4 : 1 }}
+                                >
+                                  Next →
+                                </button>
+                              </div>
+                            )}
+                          </div>
+                        )}
+                      </div>
                     </div>
                   </motion.div>
                 </>
@@ -1009,75 +1033,119 @@ export default function App() {
 
           {/* 7. Skills */}
           <Section id="skills" shouldAnimate={shouldAnimate}>
-            <Label>Skills</Label>
-            {(() => {
-              const catIconMap = {
-                code: Code2,
-                brain: Brain,
-                chart: BarChart2,
-                server: Server,
-                layout: Layout,
-                database: Database,
-                wrench: Wrench,
-                cloud: Cloud,
-              };
-              return (
-                <div className="space-y-6">
-                  {skillCategories.map(
-                    ({ category, icon, skills: catSkills }) => {
-                      const CatIcon = catIconMap[icon] || Code2;
-                      return (
-                        <div key={category}>
-                          <div className="flex items-center gap-2 mb-3">
-                            <span className="w-5 h-5 rounded-md bg-[color:var(--accent-soft)] flex items-center justify-center flex-shrink-0">
-                              <CatIcon
-                                size={11}
-                                className="text-[color:var(--accent)]"
-                              />
-                            </span>
-                            <p className="mono text-[11px] font-semibold text-[color:var(--muted)]">
-                              {category}
-                            </p>
-                            <span className="mono text-[10px] text-[color:var(--muted)] opacity-50">
-                              · {catSkills.length}
-                            </span>
-                          </div>
-                          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-2">
-                            {catSkills.map((s) => (
-                              <motion.div
-                                key={s}
-                                whileHover={{ y: -2 }}
-                                className="flex items-center gap-2.5 rounded-xl border border-[color:var(--line)] bg-[color:var(--card-strong)] px-3 py-2.5 hover:border-[color:var(--accent)] transition-colors"
-                              >
-                                <span className="w-5 h-5 flex items-center justify-center flex-shrink-0">
-                                  {(() => {
-                                    const Icon = skillIconMap[s];
-                                    return Icon ? (
-                                      <Icon
-                                        size={14}
-                                        className="text-[color:var(--accent)]"
-                                      />
-                                    ) : (
-                                      <CatIcon
-                                        size={12}
-                                        className="text-[color:var(--accent)] opacity-60"
-                                      />
-                                    );
-                                  })()}
-                                </span>
-                                <span className="mono text-[11px] text-[color:var(--txt)] leading-tight">
-                                  {s}
-                                </span>
-                              </motion.div>
-                            ))}
-                          </div>
+            {/* Header row */}
+            <div className="flex items-center justify-between mb-4">
+              <p className="mono text-[10px] uppercase tracking-[0.22em] text-[color:var(--muted)]">Skills</p>
+              <button
+                onClick={() => setShowSkillModal(true)}
+                className="cert-btn"
+              >
+                <span className="cert-btn-dot" />
+                View All Skills
+              </button>
+            </div>
+
+            {/* Default flat grid — all skills as pills */}
+            <div className="flex flex-wrap gap-2">
+              {skillCategories.flatMap(({ skills: catSkills }) => catSkills).map((s) => {
+                const Icon = skillIconMap[s];
+                return (
+                  <motion.span
+                    key={s}
+                    whileHover={{ y: -2, scale: 1.04 }}
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-[color:var(--line)] bg-[color:var(--card-strong)] mono text-[11px] text-[color:var(--txt)] hover:border-[color:var(--accent)] hover:text-[color:var(--accent)] transition-colors cursor-default"
+                  >
+                    {Icon && <Icon size={12} className="flex-shrink-0" />}
+                    {s}
+                  </motion.span>
+                );
+              })}
+            </div>
+
+            {/* Skill grouped modal */}
+            <AnimatePresence>
+              {showSkillModal && (
+                <>
+                  <motion.div
+                    className="fixed inset-0 z-50 bg-black/75 backdrop-blur-md"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    onClick={() => setShowSkillModal(false)}
+                  />
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.96, y: 16 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.96, y: 16 }}
+                    transition={{ duration: 0.22, ease: "easeOut" }}
+                    className="fixed inset-0 z-[60] flex items-center justify-center p-4 sm:p-6"
+                  >
+                    <div
+                      className="relative w-full max-w-3xl max-h-[85vh] rounded-3xl border border-[color:var(--line)] bg-[color:var(--card-strong)] shadow-2xl flex flex-col overflow-hidden"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      {/* Modal header */}
+                      <div className="flex items-center justify-between px-5 py-4 border-b border-[color:var(--line)] flex-shrink-0">
+                        <div>
+                          <p className="text-sm font-bold text-[color:var(--txt)]">All Skills</p>
+                          <p className="mono text-[11px] text-[color:var(--muted)] mt-0.5">
+                            {skillCategories.length} categories &middot; {skillCategories.reduce((a, c) => a + c.skills.length, 0)} skills
+                          </p>
                         </div>
-                      );
-                    },
-                  )}
-                </div>
-              );
-            })()}
+                        <button
+                          onClick={() => setShowSkillModal(false)}
+                          className="w-8 h-8 rounded-full border border-[color:var(--line)] flex items-center justify-center text-[color:var(--muted)] hover:text-[color:var(--txt)] hover:bg-[color:var(--accent-soft)] hover:border-[color:var(--accent)] transition text-sm flex-shrink-0"
+                        >
+                          &#x2715;
+                        </button>
+                      </div>
+
+                      {/* Scrollable categories */}
+                      <div className="overflow-y-auto p-5 space-y-6 skill-modal-scroll">
+                        {(() => {
+                          const catIconMap = { code: Code2, brain: Brain, chart: BarChart2, server: Server, layout: Layout, database: Database, wrench: Wrench, cloud: Cloud };
+                          return skillCategories.map(({ category, icon, skills: catSkills }) => {
+                            const CatIcon = catIconMap[icon] || Code2;
+                            return (
+                              <div key={category}>
+                                {/* Category header */}
+                                <div className="flex items-center gap-2 mb-2.5">
+                                  <span className="w-5 h-5 rounded-md bg-[color:var(--accent-soft)] flex items-center justify-center flex-shrink-0">
+                                    <CatIcon size={11} className="text-[color:var(--accent)]" />
+                                  </span>
+                                  <p className="mono text-[11px] font-semibold text-[color:var(--muted)]">{category}</p>
+                                  <span className="mono text-[10px] text-[color:var(--muted)] opacity-50">&middot; {catSkills.length}</span>
+                                </div>
+                                {/* Skills grid */}
+                                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
+                                  {catSkills.map((s) => {
+                                    const Icon = skillIconMap[s];
+                                    return (
+                                      <motion.div
+                                        key={s}
+                                        whileHover={{ y: -2 }}
+                                        className="flex items-center gap-2.5 rounded-xl border border-[color:var(--line)] bg-[color:var(--card-strong)] px-3 py-2.5 hover:border-[color:var(--accent)] hover:text-[color:var(--accent)] transition-colors group"
+                                      >
+                                        <span className="w-4 h-4 flex items-center justify-center flex-shrink-0">
+                                          {Icon
+                                            ? <Icon size={13} className="text-[color:var(--accent)]" />
+                                            : <CatIcon size={11} className="text-[color:var(--accent)] opacity-60" />}
+                                        </span>
+                                        <span className="mono text-[11px] text-[color:var(--txt)] group-hover:text-[color:var(--accent)] transition-colors leading-tight">{s}</span>
+                                      </motion.div>
+                                    );
+                                  })}
+                                </div>
+                              </div>
+                            );
+                          });
+                        })()}
+                      </div>
+                    </div>
+                  </motion.div>
+                </>
+              )}
+            </AnimatePresence>
           </Section>
 
           {/* 8. Achievements */}
@@ -1332,6 +1400,133 @@ export default function App() {
                 </div>
               </div>
             </motion.div>
+
+            {/* Academic Excellence — 100/100 Statistics */}
+            <motion.div
+              whileHover={{ scale: 1.005 }}
+              className="relative rounded-2xl border overflow-hidden mb-4"
+              style={{
+                borderColor: "#EAB30844",
+                background: "linear-gradient(135deg, #EAB30808 0%, transparent 50%)",
+              }}
+            >
+              {/* Glow orb */}
+              <div
+                className="absolute -top-10 -right-10 w-40 h-40 rounded-full blur-2xl opacity-20 pointer-events-none"
+                style={{ background: "#EAB308" }}
+              />
+              <div className="relative p-5 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+                {/* Icon badge */}
+                <div
+                  className="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-lg"
+                  style={{ background: "linear-gradient(135deg, #EAB308, #CA8A04)" }}
+                >
+                  💯
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="flex flex-wrap items-center gap-2 mb-1">
+                    <p className="text-sm font-semibold text-[color:var(--txt)]">
+                      100/100 in Statistics
+                    </p>
+                    <span
+                      className="mono text-[9px] px-2 py-0.5 rounded-full font-bold tracking-wide"
+                      style={{
+                        background: "#EAB30822",
+                        color: "#EAB308",
+                        border: "1px solid #EAB30855",
+                      }}
+                    >
+                      HSC 2022
+                    </span>
+                    <span className="mono text-[9px] px-2 py-0.5 rounded-full font-medium bg-yellow-500/10 text-yellow-500 border border-yellow-500/30">
+                      Academic Excellence
+                    </span>
+                  </div>
+                  <p className="mono text-xs text-[color:var(--muted)] leading-relaxed mb-3">
+                    Achieved a perfect score of 100 out of 100 in Statistics during Higher Secondary Education (XII) at L.G. Dholakiya School, Commerce Stream — contributing to an overall score of 93.43% with a 99.91 Percentile statewide.
+                  </p>
+                  <div className="flex flex-wrap gap-1.5">
+                    {["Perfect Score · 100/100", "93.43% Overall", "99.91 Percentile", "Commerce Stream", "L.G. Dholakiya School"].map((tag) => (
+                      <span
+                        key={tag}
+                        className="mono text-[9px] px-2 py-0.5 rounded-full border font-medium"
+                        style={{
+                          borderColor: "#EAB30844",
+                          color: "#EAB308",
+                          background: "#EAB3080d",
+                        }}
+                      >
+                        ★ {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Academic Excellence — 96/100 Science in 10th */}
+            <motion.div
+              whileHover={{ scale: 1.005 }}
+              className="relative rounded-2xl border overflow-hidden mb-4"
+              style={{
+                borderColor: "#06B6D444",
+                background: "linear-gradient(135deg, #06B6D408 0%, transparent 50%)",
+              }}
+            >
+              {/* Glow orb */}
+              <div
+                className="absolute -top-10 -right-10 w-40 h-40 rounded-full blur-2xl opacity-20 pointer-events-none"
+                style={{ background: "#06B6D4" }}
+              />
+              <div className="relative p-5 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+                {/* Icon badge */}
+                <div
+                  className="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-lg"
+                  style={{ background: "linear-gradient(135deg, #06B6D4, #0891B2)" }}
+                >
+                  🫧
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="flex flex-wrap items-center gap-2 mb-1">
+                    <p className="text-sm font-semibold text-[color:var(--txt)]">
+                      96/100 in Science
+                    </p>
+                    <span
+                      className="mono text-[9px] px-2 py-0.5 rounded-full font-bold tracking-wide"
+                      style={{
+                        background: "#06B6D422",
+                        color: "#06B6D4",
+                        border: "1px solid #06B6D455",
+                      }}
+                    >
+                      SSC 2020
+                    </span>
+                    <span className="mono text-[9px] px-2 py-0.5 rounded-full font-medium bg-cyan-500/10 text-cyan-500 border border-cyan-500/30">
+                      Academic Excellence
+                    </span>
+                  </div>
+                  <p className="mono text-xs text-[color:var(--muted)] leading-relaxed mb-3">
+                    Achieved 96 out of 100 in Science during Secondary Education (X) at L.G. Dholakiya School — contributing to an overall score of 88.00% with a 99.03 Percentile statewide.
+                  </p>
+                  <div className="flex flex-wrap gap-1.5">
+                    {["96/100 in Science", "88.00% Overall", "99.03 Percentile", "General Stream", "L.G. Dholakiya School"].map((tag) => (
+                      <span
+                        key={tag}
+                        className="mono text-[9px] px-2 py-0.5 rounded-full border font-medium"
+                        style={{
+                          borderColor: "#06B6D444",
+                          color: "#06B6D4",
+                          background: "#06B6D40d",
+                        }}
+                      >
+                        ★ {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
             {/* Contest participation */}
             <div className="rounded-2xl border border-[color:var(--line)] bg-[color:var(--card-strong)] px-4 py-3">
               <p className="mono text-[11px] font-semibold text-[color:var(--muted)] mb-2.5 uppercase tracking-widest">
@@ -1372,7 +1567,7 @@ export default function App() {
                 LinkedIn: "#0A66C2",
                 HackerRank: "#00EA64",
                 "Scaler Topics": "#3D5AF1",
-                "Code360 (Coding Ninjas)": "#F5761A",
+                "Code360": "#F5761A",
                 Coursera: "#0056D2",
                 Udemy: "#A435F0",
                 "University Workshops": "#10B981",
