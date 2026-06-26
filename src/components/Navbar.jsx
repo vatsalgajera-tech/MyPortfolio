@@ -13,7 +13,7 @@ export default function Navbar({ isDark, toggle }) {
     { label: "Education", href: "#education" },
     { label: "Skills", href: "#skills" },
     { label: "Achievements", href: "#achievements" },
-    { label: "Certifications", href: "#certifications" },
+    { label: "Certificates", href: "#certifications" },
     { label: "Badges", href: "#badges" },
   ];
 
