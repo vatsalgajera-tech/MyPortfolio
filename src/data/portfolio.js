@@ -462,7 +462,21 @@ export const certifications = [
     year: 2026,
     image: "/images/certs/NASA - Open Science.jpg",
   },
+  // 9. CISCO
+  {
+    name: "Introduction to Data Science",
+    authority: "CISCO",
+    year: 2026,
+    image: "/images/certs/CISCO_DS.jpg",
+  },
 
+  // 9. Infosys
+  {
+    name: "PostgreSQL Certification",
+    authority: "Infosys",
+    year: 2026,
+    image: "/images/certs/Infosys_PostgreSQL.jpg",
+  },
   // 3. LinkedIn (Microsoft & GitHub)
   {
     name: "Microsoft Azure Essentials Professional Certificate",
@@ -476,22 +490,6 @@ export const certifications = [
     year: 2026,
     image: "/images/certs/GitHub.jpg",
   },
-  // 9. Infosys
-  {
-    name: "PostgreSQL Certification",
-    authority: "Infosys",
-    year: 2026,
-    image: "/images/certs/Infosys_PostgreSQL.jpg",
-  },
-
-  // 9. CISCO
-  {
-    name: "Introduction to Data Science",
-    authority: "CISCO",
-    year: 2026,
-    image: "/images/certs/CISCO_DS.jpg",
-  },
-
 
   // 4. HackerRank — SQL > Python > Problem Solving > Java > CSS
   {
@@ -680,13 +678,13 @@ export const certifications = [
   // 10. University Workshops
   {
     name: "C Programming Workshop",
-    authority: "University Workshops",
+    authority: "Workshops",
     year: 2026,
     image: "/images/certs/C-Workshop.jpg",
   },
   {
     name: "Software Testing & Test Automation Workshop",
-    authority: "University Workshops",
+    authority: "Workshops",
     year: 2026,
     image: "/images/certs/Software Testing Workshop.jpg",
   },
@@ -741,6 +739,17 @@ export const badges = [
     initials: "IBM",
     image: "/images/badges/IBM-Python-DS.png",
   },
+
+
+  // CISCO Badges
+  {
+    name: "Introduction to Data Science",
+    issuer: "CISCO",
+    year: 2026,
+    color: "#47A00C",
+    initials: "LC",
+    image: "/images/badges/CISCO_DS.png",
+  },
   {
     name: "NASA Open Science Essentials Badge",
     issuer: "NASA",
@@ -757,17 +766,6 @@ export const badges = [
     initials: "NASA",
     image: "/images/badges/NASA-1.png",
   },
-
-  // CISCO Badges
-  {
-    name: "Introduction to Data Science",
-    issuer: "CISCO",
-    year: 2026,
-    color: "#47a00cff",
-    initials: "LC",
-    image: "/images/badges/CISCO_DS.png",
-  },
-
   // GSSoC (GirlScript Summer of Code) 2026
   {
     name: "First Steps",
