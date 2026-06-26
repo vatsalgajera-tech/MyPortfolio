@@ -484,7 +484,7 @@ export default function App() {
                   <div className="relative rounded-[2rem] border border-[color:var(--line)] bg-[color:var(--card-strong)] p-3 shadow-xl">
                     <div className="overflow-hidden rounded-[1.5rem] border border-[color:var(--line)] bg-stone-100 dark:bg-stone-900 aspect-[4/5]">
                       <img
-                        src="/images/profile3.jpeg"
+                        src="/images/profile3.png"
                         alt="Profile picture of Vatsal Gajera"
                         className="h-full w-full object-cover object-center"
                       />
