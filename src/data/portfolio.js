@@ -476,6 +476,14 @@ export const certifications = [
     year: 2026,
     image: "/images/certs/GitHub.jpg",
   },
+  // 9. Infosys
+  {
+    name: "PostgreSQL Certification",
+    authority: "Infosys",
+    year: 2025,
+    image: "/images/certs/Infosys_PostgreSQL.jpg",
+  },
+
 
   // 4. HackerRank — SQL > Python > Problem Solving > Java > CSS
   {
@@ -660,23 +668,23 @@ export const certifications = [
       "/images/certs/the basics of SQL programming and Data manipulation with the use SQL.jpg",
   },
 
-  // 9. University Workshops
+
+  // 10. Workshops & Others
   {
     name: "C Programming Workshop",
-    authority: "University Workshops",
-    year: 2025,
+    authority: "Workshops & Others",
+    year: 2026,
     image: "/images/certs/C-Workshop.jpg",
   },
   {
-    name: "Software Testing Workshop",
-    authority: "University Workshops",
-    year: 2025,
+    name: "Software Testing & Test Automation Workshop",
+    authority: "Workshops & Others",
+    year: 2026,
     image: "/images/certs/Software Testing Workshop.jpg",
   },
-  // 10. LetsUpgrade
   {
     name: "Zero to Python Hero: Code Smart with AI",
-    authority: "LetsUpgrade",
+    authority: "Workshops & Others",
     year: 2025,
     image: "/images/certs/Python.jpg",
   },

@@ -1565,14 +1565,15 @@ export default function App() {
               }, {});
               const authorityColors = {
                 IBM: "#0062FF",
-                NASA: "#0B3D91",
+                NASA: "#0B3C91",
                 LinkedIn: "#0A66C2",
                 HackerRank: "#00EA64",
-                "Scaler Topics": "#3D5AF1",
+                "Scaler Topics": "#EC0775",
                 "Code360": "#F5761A",
                 Coursera: "#0056D2",
                 Udemy: "#A435F0",
-                "University Workshops": "#10B981",
+                Infosys: "#007CC3",
+                "Workshops & Others": "#10B981",
                 LetsUpgrade: "#F59E0B",
               };
               return (
