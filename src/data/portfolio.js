@@ -480,8 +480,16 @@ export const certifications = [
   {
     name: "PostgreSQL Certification",
     authority: "Infosys",
-    year: 2025,
+    year: 2026,
     image: "/images/certs/Infosys_PostgreSQL.jpg",
+  },
+
+  // 9. CISCO
+  {
+    name: "Introduction to Data Science",
+    authority: "CISCO",
+    year: 2026,
+    image: "/images/certs/CISCO_DS.jpg",
   },
 
 
@@ -669,22 +677,24 @@ export const certifications = [
   },
 
 
-  // 10. Workshops & Others
+  // 10. University Workshops
   {
     name: "C Programming Workshop",
-    authority: "Workshops & Others",
+    authority: "University Workshops",
     year: 2026,
     image: "/images/certs/C-Workshop.jpg",
   },
   {
     name: "Software Testing & Test Automation Workshop",
-    authority: "Workshops & Others",
+    authority: "University Workshops",
     year: 2026,
     image: "/images/certs/Software Testing Workshop.jpg",
   },
+
+  // 11. Let's Upgrade
   {
     name: "Zero to Python Hero: Code Smart with AI",
-    authority: "Workshops & Others",
+    authority: "LetsUpgrade",
     year: 2025,
     image: "/images/certs/Python.jpg",
   },
@@ -746,6 +756,16 @@ export const badges = [
     color: "#0B3D91",
     initials: "NASA",
     image: "/images/badges/NASA-1.png",
+  },
+
+  // CISCO Badges
+  {
+    name: "Introduction to Data Science",
+    issuer: "CISCO",
+    year: 2026,
+    color: "#FFA116",
+    initials: "LC",
+    image: "/images/badges/CISCO_DS.png",
   },
 
   // GSSoC (GirlScript Summer of Code) 2026
@@ -839,6 +859,7 @@ export const badges = [
     initials: "LC",
     image: "/images/badges/Leetcode-Top_SQL_50.png",
   },
+
 ];
 
 export const quotes = [

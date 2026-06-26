@@ -1573,12 +1573,13 @@ export default function App() {
                 Coursera: "#0056D2",
                 Udemy: "#A435F0",
                 Infosys: "#007CC3",
-                "Workshops & Others": "#10B981",
+                CISCO: "#1BA0D7",
+                "University Workshops": "#10B981",
                 LetsUpgrade: "#F59E0B",
               };
               return (
                 <>
-                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
+                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
                     {Object.entries(grouped).map(([authority, certs]) => (
                       <div
                         key={authority}
@@ -1730,7 +1731,7 @@ export default function App() {
               return (
                 <>
                   {/* 4-col card grid — same style as certifications */}
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                  <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
                     {Object.entries(grouped).map(([issuer, issuerBadges]) => {
                       const color = issuerBadges[0].color || "#6B7280";
                       return (
