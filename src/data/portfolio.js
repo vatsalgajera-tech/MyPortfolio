@@ -751,7 +751,7 @@ export const badges = [
   // GSSoC (GirlScript Summer of Code) 2026
   {
     name: "First Steps",
-    issuer: "GirlScript Summer of Code",
+    issuer: "GSSoc 2026",
     year: 2026,
     color: "#FF6B35",
     initials: "GS",
@@ -759,7 +759,7 @@ export const badges = [
   },
   {
     name: "Profile Complete",
-    issuer: "GirlScript Summer of Code",
+    issuer: "GSSoc 2026",
     year: 2026,
     color: "#FF6B35",
     initials: "GS",
@@ -767,7 +767,7 @@ export const badges = [
   },
   {
     name: "Discord Verified",
-    issuer: "GirlScript Summer of Code",
+    issuer: "GSSoc 2026",
     year: 2026,
     color: "#FF6B35",
     initials: "GS",
@@ -775,7 +775,7 @@ export const badges = [
   },
   {
     name: "Point Scorer",
-    issuer: "GirlScript Summer of Code",
+    issuer: "GSSoc 2026",
     year: 2026,
     color: "#FF6B35",
     initials: "GS",
@@ -783,7 +783,7 @@ export const badges = [
   },
   {
     name: "Role Contributor",
-    issuer: "GirlScript Summer of Code",
+    issuer: "GSSoc 2026",
     year: 2026,
     color: "#FF6B35",
     initials: "GS",
@@ -791,7 +791,7 @@ export const badges = [
   },
   {
     name: "Bounty Hunter",
-    issuer: "GirlScript Summer of Code",
+    issuer: "GSSoc 2026",
     year: 2026,
     color: "#FF6B35",
     initials: "GS",
@@ -799,7 +799,7 @@ export const badges = [
   },
   {
     name: "Bounty Master",
-    issuer: "GirlScript Summer of Code",
+    issuer: "GSSoc 2026",
     year: 2026,
     color: "#FF6B35",
     initials: "GS",
