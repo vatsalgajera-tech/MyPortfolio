@@ -763,7 +763,7 @@ export const badges = [
     name: "Introduction to Data Science",
     issuer: "CISCO",
     year: 2026,
-    color: "#FFA116",
+    color: "#47a00cff",
     initials: "LC",
     image: "/images/badges/CISCO_DS.png",
   },
