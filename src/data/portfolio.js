@@ -469,6 +469,12 @@ export const certifications = [
     year: 2026,
     image: "/images/certs/CISCO_DS.jpg",
   },
+  {
+    name: "Data Analytics Essentials",
+    authority: "CISCO",
+    year: 2026,
+    image: "/images/certs/CISCO_DA.jpg",
+  },
 
   // 9. Infosys
   {
@@ -749,6 +755,13 @@ export const badges = [
     color: "#47A00C",
     initials: "LC",
     image: "/images/badges/CISCO_DS.png",
+  }, {
+    name: "Data Analytics Essentials",
+    issuer: "CISCO",
+    year: 2026,
+    color: "#47A00C",
+    initials: "LC",
+    image: "/images/badges/CISCO_DA.png",
   },
   {
     name: "NASA Open Science Essentials Badge",
