@@ -31,9 +31,9 @@ export const experiences = [
     type: "Internship",
     location: "Bengaluru, Karnataka · Remote",
     period: "2 Months",
-    offerLetter: "/images/certs/Zidio-DataSciOfferLetter.jpg",
-    trainingCertificate: "/images/certs/Zidio-DS-Traning.jpg",
-    internshipCertificate: "/images/certs/Zidio-DS-Intern.jpg",
+    offerLetter: "/images/certs/Internships/Zidio-DataSciOfferLetter.jpg",
+    trainingCertificate: "/images/certs/Internships/Zidio-DS-Traning.jpg",
+    internshipCertificate: "/images/certs/Internships/Zidio-DS-Intern.jpg",
     tech: [
       "Python",
       "Pandas",
@@ -56,11 +56,11 @@ export const experiences = [
     role: "Python Developer Intern",
     type: "Internship",
     offerLetter: [
-      "/images/certs/Infotact-OfferLetter1.jpg",
-      "/images/certs/Infotact-OfferLetter2.jpg",
+      "/images/certs/Internships/Infotact-OfferLetter1.jpg",
+      "/images/certs/Internships/Infotact-OfferLetter2.jpg",
     ],
-    trainingCertificate: "/images/certs/Infotact-Python-Traning.jpg",
-    internshipCertificate: "/images/certs/Infotact-Python.jpg",
+    trainingCertificate: "/images/certs/Internships/Infotact-Python-Traning.jpg",
+    internshipCertificate: "/images/certs/Internships/Infotact-Python.jpg",
     location: "Bengaluru, Karnataka · Remote",
     period: "2 Months",
     tech: ["Python", "Django", "MySQL", "REST APIs", "Authentication"],
@@ -76,7 +76,7 @@ export const experiences = [
     company: "Creative Insight IT Academy",
     companyUrl: "https://creativeinsightacademy.com/",
     role: "Web Developer Intern",
-    internshipCertificate: "/images/certs/Creative-Internship.png",
+    internshipCertificate: "/images/certs/Internships/Creative-Internship.png",
     type: "Internship",
     location: "Rajkot, Gujarat, India · On Site",
     period: "1 Month",
@@ -376,7 +376,7 @@ export const achievements = {
     year: 2026,
     color: "#FF6B35",
     description:
-      "Actively in GSSoC 2026, contributing to open-source projects, collaborating through GitHub workflows, and earning multiple community badges.",
+      "Contributing to open-source projects in GSSoC 2026 through GitHub collaboration and community engagement.",
     badges: [
       "First Steps",
       "Profile Complete",
@@ -483,6 +483,21 @@ export const certifications = [
     year: 2026,
     image: "/images/certs/Infosys_PostgreSQL.jpg",
   },
+
+  // Microsoft
+  {
+    name: "Power BI Certification",
+    authority: "Microsoft",
+    year: 2026,
+    image: "/images/certs/MS-Power-BI.png",
+  },
+  {
+    name: "Azure Fundamentals",
+    authority: "Microsoft",
+    year: 2025,
+    image: "/images/certs/MS-Azure-Fundamentals.png",
+  },
+
   // 3. LinkedIn (Microsoft & GitHub)
   {
     name: "Microsoft Azure Essentials Professional Certificate",
@@ -682,26 +697,31 @@ export const certifications = [
 
 
   // 10. University Workshops
+
   {
-    name: "C Programming Workshop",
-    authority: "Workshops",
+    name: "Skill Course - Microsoft Power BI",
+    authority: "Workshops & Others",
+    year: 2026,
+    image: "/images/certs/PowerBI.png",
+  },
+  {
+    name: "LetsUpgrade - Zero to Python Hero",
+    authority: "Workshops & Others",
+    year: 2025,
+    image: "/images/certs/Python.jpg",
+  },
+  {
+    name: "DDIT - C Programming Workshop",
+    authority: "Workshops & Others",
     year: 2026,
     image: "/images/certs/C-Workshop.jpg",
   },
   {
-    name: "Software Testing & Test Automation Workshop",
-    authority: "Workshops",
+    name: "DDIT - Software Testing & Test Automation Workshop",
+    authority: "Workshops & Others",
     year: 2026,
     image: "/images/certs/Software Testing Workshop.jpg",
-  },
-
-  // 11. Let's Upgrade
-  {
-    name: "Zero to Python Hero: Code Smart with AI",
-    authority: "LetsUpgrade",
-    year: 2025,
-    image: "/images/certs/Python.jpg",
-  },
+  }
 ];
 
 export const badges = [

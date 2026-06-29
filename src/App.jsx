@@ -1155,7 +1155,7 @@ export default function App() {
             <Label>Achievements</Label>
 
             {/* Stat counters */}
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-4">
               {achievements.stats.map((stat, i) => (
                 <motion.a
                   key={i}
@@ -1213,7 +1213,7 @@ export default function App() {
             </div>
 
             {/* Platform cards */}
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 mb-6">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 mb-4">
               {achievements.platforms.map((pl, i) => (
                 <motion.a
                   key={i}
@@ -1272,262 +1272,265 @@ export default function App() {
             </div>
 
             {/* GSSoC 2026 Open Source highlight */}
-            <motion.div
-              whileHover={{ scale: 1.005 }}
-              className="relative rounded-2xl border overflow-hidden mb-4"
-              style={{
-                borderColor: `${achievements.openSource.color}44`,
-                background: `linear-gradient(135deg, ${achievements.openSource.color}08 0%, transparent 50%)`,
-              }}
-            >
-              {/* Glow orb */}
-              <div
-                className="absolute -top-10 -right-10 w-40 h-40 rounded-full blur-2xl opacity-20 pointer-events-none"
-                style={{ background: achievements.openSource.color }}
-              />
-              <div className="relative p-5 flex flex-col sm:flex-row items-start sm:items-center gap-4">
-                {/* Icon badge */}
+            <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
+
+              <motion.div
+                whileHover={{ scale: 1.005 }}
+                className="relative rounded-2xl border overflow-hidden h-full"
+                style={{
+                  borderColor: `${achievements.openSource.color}44`,
+                  background: `linear-gradient(135deg, ${achievements.openSource.color}08 0%, transparent 50%)`,
+                }}
+              >
+                {/* Glow orb */}
                 <div
-                  className="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center text-white font-bold text-[13px] shadow-lg"
-                  style={{ background: `linear-gradient(135deg, ${achievements.openSource.color}, ${achievements.openSource.color}99)` }}
-                >
-                  GS
-                </div>
-                <div className="flex-1 min-w-0">
-                  <div className="flex flex-wrap items-center gap-2 mb-1">
-                    <p className="text-sm font-semibold text-[color:var(--txt)]">
-                      {achievements.openSource.program}
-                    </p>
-                    <span
-                      className="mono text-[9px] px-2 py-0.5 rounded-full font-bold tracking-wide"
-                      style={{
-                        background: `${achievements.openSource.color}22`,
-                        color: achievements.openSource.color,
-                        border: `1px solid ${achievements.openSource.color}55`,
-                      }}
-                    >
-                      {achievements.openSource.edition}
-                    </span>
-                    <span className="mono text-[9px] px-2 py-0.5 rounded-full font-medium bg-emerald-500/10 text-emerald-500 border border-emerald-500/30">
-                      Open Source
-                    </span>
+                  className="absolute -top-10 -right-10 w-40 h-40 rounded-full blur-2xl opacity-20 pointer-events-none"
+                  style={{ background: achievements.openSource.color }}
+                />
+                <div className="relative p-5 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+                  {/* Icon badge */}
+                  <div
+                    className="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center text-white font-bold text-[13px] shadow-lg"
+                    style={{ background: `linear-gradient(135deg, ${achievements.openSource.color}, ${achievements.openSource.color}99)` }}
+                  >
+                    GS
                   </div>
-                  <p className="mono text-xs text-[color:var(--muted)] leading-relaxed mb-3">
-                    {achievements.openSource.description}
-                  </p>
-                  {/* Badge pills */}
-                  <div className="flex flex-wrap gap-1.5">
-                    {achievements.openSource.badges.map((b) => (
+                  <div className="flex-1 min-w-0">
+                    <div className="flex flex-wrap items-center gap-2 mb-1">
+                      <p className="text-sm font-semibold text-[color:var(--txt)]">
+                        {achievements.openSource.program}
+                      </p>
                       <span
-                        key={b}
-                        className="mono text-[9px] px-2 py-0.5 rounded-full border font-medium"
+                        className="mono text-[9px] px-2 py-0.5 rounded-full font-bold tracking-wide"
                         style={{
-                          borderColor: `${achievements.openSource.color}44`,
+                          background: `${achievements.openSource.color}22`,
                           color: achievements.openSource.color,
-                          background: `${achievements.openSource.color}0d`,
+                          border: `1px solid ${achievements.openSource.color}55`,
                         }}
                       >
-                        ★ {b}
+                        {achievements.openSource.edition}
                       </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-            {/* Odoo x KSV Hackathon 2026 */}
-            <motion.div
-              whileHover={{ scale: 1.005 }}
-              className="relative rounded-2xl border overflow-hidden mb-4"
-              style={{
-                borderColor: `${achievements.hackathon.color}44`,
-                background: `linear-gradient(135deg, ${achievements.hackathon.color}08 0%, transparent 50%)`,
-              }}
-            >
-              <div
-                className="absolute -top-10 -right-10 w-40 h-40 rounded-full blur-2xl opacity-20 pointer-events-none"
-                style={{ background: achievements.hackathon.color }}
-              />
-
-              <div className="relative p-5 flex flex-col sm:flex-row items-start sm:items-center gap-4">
-                <div
-                  className="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center text-white font-bold text-[13px] shadow-lg"
-                  style={{
-                    background: `linear-gradient(135deg, ${achievements.hackathon.color}, ${achievements.hackathon.color}99)`,
-                  }}
-                >
-                  OD
-                </div>
-
-                <div className="flex-1 min-w-0">
-                  <div className="flex flex-wrap items-center gap-2 mb-1">
-                    <p className="text-sm font-semibold text-[color:var(--txt)]">
-                      {achievements.hackathon.event}
+                      <span className="mono text-[9px] px-2 py-0.5 rounded-full font-medium bg-emerald-500/10 text-emerald-500 border border-emerald-500/30">
+                        Open Source
+                      </span>
+                    </div>
+                    <p className="mono text-xs text-[color:var(--muted)] leading-relaxed mb-3">
+                      {achievements.openSource.description}
                     </p>
+                    {/* Badge pills */}
+                    <div className="flex flex-wrap gap-1.5">
+                      {achievements.openSource.badges.map((b) => (
+                        <span
+                          key={b}
+                          className="mono text-[9px] px-2 py-0.5 rounded-full border font-medium"
+                          style={{
+                            borderColor: `${achievements.openSource.color}44`,
+                            color: achievements.openSource.color,
+                            background: `${achievements.openSource.color}0d`,
+                          }}
+                        >
+                          ★ {b}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+              {/* Odoo x KSV Hackathon 2026 */}
+              <motion.div
+                whileHover={{ scale: 1.005 }}
+                className="relative rounded-2xl border overflow-hidden h-full"
+                style={{
+                  borderColor: `${achievements.hackathon.color}44`,
+                  background: `linear-gradient(135deg, ${achievements.hackathon.color}08 0%, transparent 50%)`,
+                }}
+              >
+                <div
+                  className="absolute -top-10 -right-10 w-40 h-40 rounded-full blur-2xl opacity-20 pointer-events-none"
+                  style={{ background: achievements.hackathon.color }}
+                />
 
-                    <span
-                      className="mono text-[9px] px-2 py-0.5 rounded-full font-bold tracking-wide"
-                      style={{
-                        background: `${achievements.hackathon.color}22`,
-                        color: achievements.hackathon.color,
-                        border: `1px solid ${achievements.hackathon.color}55`,
-                      }}
-                    >
-                      {achievements.hackathon.edition}
-                    </span>
-
-                    <span className="mono text-[9px] px-2 py-0.5 rounded-full font-medium bg-violet-500/10 text-violet-500 border border-violet-500/30">
-                      Hackathon
-                    </span>
+                <div className="relative p-5 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+                  <div
+                    className="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center text-white font-bold text-[13px] shadow-lg"
+                    style={{
+                      background: `linear-gradient(135deg, ${achievements.hackathon.color}, ${achievements.hackathon.color}99)`,
+                    }}
+                  >
+                    OD
                   </div>
 
-                  <p className="mono text-xs text-[color:var(--muted)] leading-relaxed mb-3">
-                    {achievements.hackathon.description}
-                  </p>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex flex-wrap items-center gap-2 mb-1">
+                      <p className="text-sm font-semibold text-[color:var(--txt)]">
+                        {achievements.hackathon.event}
+                      </p>
 
-                  <div className="flex flex-wrap gap-1.5">
-                    {achievements.hackathon.highlights.map((item) => (
                       <span
-                        key={item}
-                        className="mono text-[9px] px-2 py-0.5 rounded-full border font-medium"
+                        className="mono text-[9px] px-2 py-0.5 rounded-full font-bold tracking-wide"
                         style={{
-                          borderColor: `${achievements.hackathon.color}44`,
+                          background: `${achievements.hackathon.color}22`,
                           color: achievements.hackathon.color,
-                          background: `${achievements.hackathon.color}0d`,
+                          border: `1px solid ${achievements.hackathon.color}55`,
                         }}
                       >
-                        ★ {item}
+                        {achievements.hackathon.edition}
                       </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </motion.div>
 
-            {/* Academic Excellence — 100/100 Statistics */}
-            <motion.div
-              whileHover={{ scale: 1.005 }}
-              className="relative rounded-2xl border overflow-hidden mb-4"
-              style={{
-                borderColor: "#EAB30844",
-                background: "linear-gradient(135deg, #EAB30808 0%, transparent 50%)",
-              }}
-            >
-              {/* Glow orb */}
-              <div
-                className="absolute -top-10 -right-10 w-40 h-40 rounded-full blur-2xl opacity-20 pointer-events-none"
-                style={{ background: "#EAB308" }}
-              />
-              <div className="relative p-5 flex flex-col sm:flex-row items-start sm:items-center gap-4">
-                {/* Icon badge */}
-                <div
-                  className="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-lg"
-                  style={{ background: "linear-gradient(135deg, #EAB308, #CA8A04)" }}
-                >
-                  𝛂
-                </div>
-                <div className="flex-1 min-w-0">
-                  <div className="flex flex-wrap items-center gap-2 mb-1">
-                    <p className="text-sm font-semibold text-[color:var(--txt)]">
-                      100/100 in Statistics
+                      <span className="mono text-[9px] px-2 py-0.5 rounded-full font-medium bg-violet-500/10 text-violet-500 border border-violet-500/30">
+                        Hackathon
+                      </span>
+                    </div>
+
+                    <p className="mono text-xs text-[color:var(--muted)] leading-relaxed mb-3">
+                      {achievements.hackathon.description}
                     </p>
-                    <span
-                      className="mono text-[9px] px-2 py-0.5 rounded-full font-bold tracking-wide"
-                      style={{
-                        background: "#EAB30822",
-                        color: "#EAB308",
-                        border: "1px solid #EAB30855",
-                      }}
-                    >
-                      HSC 2022
-                    </span>
-                    <span className="mono text-[9px] px-2 py-0.5 rounded-full font-medium bg-yellow-500/10 text-yellow-500 border border-yellow-500/30">
-                      Academic Excellence
-                    </span>
+
+                    <div className="flex flex-wrap gap-1.5">
+                      {achievements.hackathon.highlights.map((item) => (
+                        <span
+                          key={item}
+                          className="mono text-[9px] px-2 py-0.5 rounded-full border font-medium"
+                          style={{
+                            borderColor: `${achievements.hackathon.color}44`,
+                            color: achievements.hackathon.color,
+                            background: `${achievements.hackathon.color}0d`,
+                          }}
+                        >
+                          ★ {item}
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                  <p className="mono text-xs text-[color:var(--muted)] leading-relaxed mb-3">
-                    Achieved 100/100 in Statistics and secured 93.43% overall, placing in the 99.91 percentile statewide in Class XII.
-                  </p>
-                  <div className="flex flex-wrap gap-1.5">
-                    {["Perfect Score · 100/100", "93.43% Overall", "99.91 Percentile", "Commerce Stream", "L.G. Dholakiya School"].map((tag) => (
+                </div>
+              </motion.div>
+
+              {/* Academic Excellence — 100/100 Statistics */}
+              <motion.div
+                whileHover={{ scale: 1.005 }}
+                className="relative rounded-2xl border overflow-hidden mb-4"
+                style={{
+                  borderColor: "#EAB30844",
+                  background: "linear-gradient(135deg, #EAB30808 0%, transparent 50%)",
+                }}
+              >
+                {/* Glow orb */}
+                <div
+                  className="absolute -top-10 -right-10 w-40 h-40 rounded-full blur-2xl opacity-20 pointer-events-none"
+                  style={{ background: "#EAB308" }}
+                />
+                <div className="relative p-5 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+                  {/* Icon badge */}
+                  <div
+                    className="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-lg"
+                    style={{ background: "linear-gradient(135deg, #EAB308, #CA8A04)" }}
+                  >
+                    𝛂
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex flex-wrap items-center gap-2 mb-1">
+                      <p className="text-sm font-semibold text-[color:var(--txt)]">
+                        100/100 in Statistics
+                      </p>
                       <span
-                        key={tag}
-                        className="mono text-[9px] px-2 py-0.5 rounded-full border font-medium"
+                        className="mono text-[9px] px-2 py-0.5 rounded-full font-bold tracking-wide"
                         style={{
-                          borderColor: "#EAB30844",
+                          background: "#EAB30822",
                           color: "#EAB308",
-                          background: "#EAB3080d",
+                          border: "1px solid #EAB30855",
                         }}
                       >
-                        ★ {tag}
+                        HSC 2022
                       </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Academic Excellence — 96/100 Science in 10th */}
-            <motion.div
-              whileHover={{ scale: 1.005 }}
-              className="relative rounded-2xl border overflow-hidden mb-4"
-              style={{
-                borderColor: "#06B6D444",
-                background: "linear-gradient(135deg, #06B6D408 0%, transparent 50%)",
-              }}
-            >
-              {/* Glow orb */}
-              <div
-                className="absolute -top-10 -right-10 w-40 h-40 rounded-full blur-2xl opacity-20 pointer-events-none"
-                style={{ background: "#06B6D4" }}
-              />
-              <div className="relative p-5 flex flex-col sm:flex-row items-start sm:items-center gap-4">
-                {/* Icon badge */}
-                <div
-                  className="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-lg"
-                  style={{ background: "linear-gradient(135deg, #06B6D4, #0891B2)" }}
-                >
-                  ⌬
-                </div>
-                <div className="flex-1 min-w-0">
-                  <div className="flex flex-wrap items-center gap-2 mb-1">
-                    <p className="text-sm font-semibold text-[color:var(--txt)]">
-                      96/100 in Science
+                      <span className="mono text-[9px] px-2 py-0.5 rounded-full font-medium bg-yellow-500/10 text-yellow-500 border border-yellow-500/30">
+                        Academic Excellence
+                      </span>
+                    </div>
+                    <p className="mono text-xs text-[color:var(--muted)] leading-relaxed mb-3">
+                      Achieved 100/100 in Statistics and secured 93.43% overall, placing in the 99.91 percentile statewide in Class XII.
                     </p>
-                    <span
-                      className="mono text-[9px] px-2 py-0.5 rounded-full font-bold tracking-wide"
-                      style={{
-                        background: "#06B6D422",
-                        color: "#06B6D4",
-                        border: "1px solid #06B6D455",
-                      }}
-                    >
-                      SSC 2020
-                    </span>
-                    <span className="mono text-[9px] px-2 py-0.5 rounded-full font-medium bg-cyan-500/10 text-cyan-500 border border-cyan-500/30">
-                      Academic Excellence
-                    </span>
-                  </div>
-                  <p className="mono text-xs text-[color:var(--muted)] leading-relaxed mb-3">
-                    Achieved 96/100 in Science and secured 88.00% overall with a 99.03 percentile in Class X.
-                  </p>
-                  <div className="flex flex-wrap gap-1.5">
-                    {["96/100 in Science", "88.00% Overall", "99.03 Percentile", "General Stream", "L.G. Dholakiya School"].map((tag) => (
-                      <span
-                        key={tag}
-                        className="mono text-[9px] px-2 py-0.5 rounded-full border font-medium"
-                        style={{
-                          borderColor: "#06B6D444",
-                          color: "#06B6D4",
-                          background: "#06B6D40d",
-                        }}
-                      >
-                        ★ {tag}
-                      </span>
-                    ))}
+                    <div className="flex flex-wrap gap-1.5">
+                      {["Perfect Score · 100/100", "93.43% Overall", "99.91 Percentile", "Commerce Stream", "L.G. Dholakiya School"].map((tag) => (
+                        <span
+                          key={tag}
+                          className="mono text-[9px] px-2 py-0.5 rounded-full border font-medium"
+                          style={{
+                            borderColor: "#EAB30844",
+                            color: "#EAB308",
+                            background: "#EAB3080d",
+                          }}
+                        >
+                          ★ {tag}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </div>
-              </div>
-            </motion.div>
+              </motion.div>
+
+              {/* Academic Excellence — 96/100 Science in 10th */}
+              <motion.div
+                whileHover={{ scale: 1.005 }}
+                className="relative rounded-2xl border overflow-hidden mb-4"
+                style={{
+                  borderColor: "#06B6D444",
+                  background: "linear-gradient(135deg, #06B6D408 0%, transparent 50%)",
+                }}
+              >
+                {/* Glow orb */}
+                <div
+                  className="absolute -top-10 -right-10 w-40 h-40 rounded-full blur-2xl opacity-20 pointer-events-none"
+                  style={{ background: "#06B6D4" }}
+                />
+                <div className="relative p-5 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+                  {/* Icon badge */}
+                  <div
+                    className="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-lg"
+                    style={{ background: "linear-gradient(135deg, #06B6D4, #0891B2)" }}
+                  >
+                    ⌬
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex flex-wrap items-center gap-2 mb-1">
+                      <p className="text-sm font-semibold text-[color:var(--txt)]">
+                        96/100 in Science
+                      </p>
+                      <span
+                        className="mono text-[9px] px-2 py-0.5 rounded-full font-bold tracking-wide"
+                        style={{
+                          background: "#06B6D422",
+                          color: "#06B6D4",
+                          border: "1px solid #06B6D455",
+                        }}
+                      >
+                        SSC 2020
+                      </span>
+                      <span className="mono text-[9px] px-2 py-0.5 rounded-full font-medium bg-cyan-500/10 text-cyan-500 border border-cyan-500/30">
+                        Academic Excellence
+                      </span>
+                    </div>
+                    <p className="mono text-xs text-[color:var(--muted)] leading-relaxed mb-3">
+                      Achieved 96/100 in Science and secured 88.00% overall with a 99.03 percentile in Class X.
+                    </p>
+                    <div className="flex flex-wrap gap-1.5">
+                      {["96/100 in Science", "88.00% Overall", "99.03 Percentile", "General Stream", "L.G. Dholakiya School"].map((tag) => (
+                        <span
+                          key={tag}
+                          className="mono text-[9px] px-2 py-0.5 rounded-full border font-medium"
+                          style={{
+                            borderColor: "#06B6D444",
+                            color: "#06B6D4",
+                            background: "#06B6D40d",
+                          }}
+                        >
+                          ★ {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
 
             {/* Contest participation */}
             <div className="rounded-2xl border border-[color:var(--line)] bg-[color:var(--card-strong)] px-4 py-3">
@@ -1573,9 +1576,9 @@ export default function App() {
                 Coursera: "#0056D2",
                 Udemy: "#A435F0",
                 Infosys: "#007CC3",
+                Microsoft: "#F25022",
                 CISCO: "#47A00C",
-                "Workshops": "#10B981",
-                LetsUpgrade: "#F59E0B",
+                "Workshops & Others": "#10B981",
               };
               return (
                 <>
