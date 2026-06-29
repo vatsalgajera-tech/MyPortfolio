@@ -1532,23 +1532,6 @@ export default function App() {
               </motion.div>
             </div>
 
-            {/* Contest participation */}
-            <div className="rounded-2xl border border-[color:var(--line)] bg-[color:var(--card-strong)] px-4 py-3">
-              <p className="mono text-[11px] font-semibold text-[color:var(--muted)] mb-2.5 uppercase tracking-widest">
-                Contest Participation
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {achievements.contests.map((c) => (
-                  <span
-                    key={c}
-                    className="mono text-[10px] px-3 py-1 rounded-full border border-[color:var(--line)] bg-[color:var(--accent-soft)] text-[color:var(--muted)] flex items-center gap-1.5"
-                  >
-                    <span className="w-1.5 h-1.5 rounded-full bg-[color:var(--accent)] flex-shrink-0" />
-                    {c}
-                  </span>
-                ))}
-              </div>
-            </div>
           </Section>
 
           {/* 9. Certifications */}

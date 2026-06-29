@@ -363,13 +363,6 @@ export const achievements = {
     },
   ],
 
-  contests: [
-    "CodeChef Starters, Long Challenge & Cook-Off",
-    "LeetCode Weekly & Biweekly Contests",
-    "Codeforces Rounds (Div. 2 & 3)",
-    "AtCoder Beginner Contests",
-  ],
-
   openSource: {
     program: "GirlScript Summer of Code",
     edition: "GSSoC 2026",
