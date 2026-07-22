@@ -200,15 +200,7 @@ export const skillCategories = [
   {
     category: "Data Science & Machine Learning",
     icon: "brain",
-    skills: [
-      "NumPy",
-      "Pandas",
-      "Matplotlib",
-      "Seaborn",
-      "Scikit-Learn",
-      "TensorFlow",
-      "OpenCV",
-    ],
+    skills: ["NumPy", "Pandas", "Matplotlib", "Seaborn", "OpenCV"],
   },
   {
     category: "Data Visualization & BI",
@@ -238,7 +230,7 @@ export const skillCategories = [
   {
     category: "Cloud & Deployment",
     icon: "cloud",
-    skills: ["Azure", "Vercel"],
+    skills: ["AWS", "Azure", "Vercel"],
   },
 ];
 
@@ -371,11 +363,11 @@ export const achievements = {
 export const profileHighlights = {
   interests: [
     "Data Science",
+    "Data Analytics",
+    "Data Engineering",
     "Machine Learning",
     "Artificial Intelligence",
-    "Competitive Programming",
     "Open Source",
-    "Hackathons",
   ],
 
   coursework: [
@@ -386,11 +378,11 @@ export const profileHighlights = {
   ],
 
   focus: [
-    "Pandas & NumPy",
-    "SQL & PostgreSQL",
-    "Machine Learning",
-    "Data Visualization",
-    "Python Development",
+    "Research & Development",
+    "OpenCV & Computer Vision",
+    "Deep Learning",
+    "Natural Language Processing",
+    "Digital Image Processing",
     "AI Engineering",
   ],
 };
