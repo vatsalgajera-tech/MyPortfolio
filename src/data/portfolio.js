@@ -59,7 +59,8 @@ export const experiences = [
       "/images/certs/Internships/Infotact-OfferLetter1.jpg",
       "/images/certs/Internships/Infotact-OfferLetter2.jpg",
     ],
-    trainingCertificate: "/images/certs/Internships/Infotact-Python-Traning.jpg",
+    trainingCertificate:
+      "/images/certs/Internships/Infotact-Python-Traning.jpg",
     internshipCertificate: "/images/certs/Internships/Infotact-Python.jpg",
     location: "Bengaluru, Karnataka · Remote",
     period: "2 Months",
@@ -125,6 +126,16 @@ export const education = [
 
 export const projects = [
   {
+    title: "Sales Analysis Dashboard",
+    subtitle: "Data Analysis & Visualization Project · SQL + Power BI + Python",
+    description:
+      "Sales Analysis Dashboard built with SQL (AdventureWorks DW 2019) and Power BI — star schema data model, DAX measures, and Python-based .pbix generator across 58K+ internet sales records.",
+    tech: ["Python", "Pandas", "NumPy", "Power BI", "Dashboard", "SQL"],
+    links: {
+      source: "https://github.com/vatsalgajera-tech/Sales-Analysis-Dashboard",
+    },
+  },
+  {
     title: "COVID-19 Analytics Dashboard",
     subtitle: "Data Analysis & Visualization Project · Python",
     description:
@@ -138,8 +149,7 @@ export const projects = [
       "Jupyter Notebook",
     ],
     links: {
-      source:
-        "https://github.com/vatsalgajera-tech/COVID-19-Data-Analytics",
+      source: "https://github.com/vatsalgajera-tech/COVID-19-Data-Analytics",
     },
   },
   {
@@ -147,17 +157,12 @@ export const projects = [
     subtitle: "Console-Based Vehicle Parking Solution · Java",
     description:
       "Java-based parking management system featuring slot allocation, vehicle search, availability tracking, fee calculation, and transaction reporting using OOP principles and Collections Framework.",
-    tech: [
-      "Java",
-      "OOP",
-      "Collections Framework",
-      "Exception Handling",
-    ],
+    tech: ["Java", "OOP", "Collections Framework", "Exception Handling"],
     links: {
-      source:
-        "https://github.com/vatsalgajera-tech/Parking-Management-System",
+      source: "https://github.com/vatsalgajera-tech/Parking-Management-System",
     },
-  }, {
+  },
+  {
     title: "VendorBridge AI",
     subtitle: "AI-Powered Procurement ERP · MERN Stack · Odoo x KSV Hackathon",
     description:
@@ -172,7 +177,7 @@ export const projects = [
       "AI Scoring",
     ],
     links: {
-      source: "https://github.com/vatsalgajera-tech/VendorBridge-AI"
+      source: "https://github.com/vatsalgajera-tech/VendorBridge-AI",
     },
   },
   {
@@ -688,7 +693,6 @@ export const certifications = [
       "/images/certs/the basics of SQL programming and Data manipulation with the use SQL.jpg",
   },
 
-
   // 10. University Workshops
 
   {
@@ -714,7 +718,7 @@ export const certifications = [
     authority: "Workshops & Others",
     year: 2026,
     image: "/images/certs/Software Testing Workshop.jpg",
-  }
+  },
 ];
 
 export const badges = [
@@ -759,7 +763,6 @@ export const badges = [
     image: "/images/badges/IBM-Python-DS.png",
   },
 
-
   // CISCO Badges
   {
     name: "Introduction to Data Science",
@@ -768,7 +771,8 @@ export const badges = [
     color: "#47A00C",
     initials: "LC",
     image: "/images/badges/CISCO_DS.png",
-  }, {
+  },
+  {
     name: "Data Analytics Essentials",
     issuer: "CISCO",
     year: 2026,
@@ -851,6 +855,15 @@ export const badges = [
   },
 
   // LeetCode Badges
+
+  {
+    name: "LeetCode 100 Days Badge",
+    issuer: "LeetCode",
+    year: 2026,
+    color: "#FFA116",
+    initials: "LC",
+    image: "/images/badges/Leetcode-100.png",
+  },
   {
     name: "LeetCode 50 Days Badge",
     issuer: "LeetCode",
@@ -883,7 +896,6 @@ export const badges = [
     initials: "LC",
     image: "/images/badges/Leetcode-Top_SQL_50.png",
   },
-
 ];
 
 export const quotes = [
