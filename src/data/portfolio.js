@@ -1,7 +1,7 @@
 export const personalInfo = {
   name: "Vatsal Gajera",
   age: 22,
-  tagline: "Python Developer | Full Stack Developer | Data Science Enthusiast",
+  tagline: "Data Analyst | Data Scientist | Python Developer | AI Enthusiast",
   bio: [
     "MCA student at Dharmsinh Desai University, Nadiad (2025–2027), CGPA: 8.07. Previously completed BCA from Saurastra University, Rajkot (2022–2025), CGPA: 8.39.",
     "Data Science Intern at Zidio Development - worked on real-world datasets using Python, Pandas, and NumPy, building ML models for predictive analytics. Python Developer Intern at Infotact Solutions - built Django web applications with MySQL, implementing authentication, form validation, and CRUD operations. Web Developer Intern at Creative Insight IT Academy - collaborated on frontend integration and UI enhancement using Tailwind CSS.",
@@ -152,7 +152,7 @@ export const projects = [
       source: "https://github.com/vatsalgajera-tech/COVID-19-Data-Analytics",
     },
   },
-    {
+  {
     title: "VendorBridge AI",
     subtitle: "AI-Powered Procurement ERP · MERN Stack · Odoo x KSV Hackathon",
     description:
@@ -190,7 +190,6 @@ export const projects = [
         "https://github.com/vatsalgajera-tech/University-Management-System",
     },
   },
-  
 ];
 
 export const skillCategories = [
