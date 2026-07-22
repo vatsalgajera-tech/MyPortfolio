@@ -152,17 +152,7 @@ export const projects = [
       source: "https://github.com/vatsalgajera-tech/COVID-19-Data-Analytics",
     },
   },
-  {
-    title: "Parking Management System",
-    subtitle: "Console-Based Vehicle Parking Solution · Java",
-    description:
-      "Java-based parking management system featuring slot allocation, vehicle search, availability tracking, fee calculation, and transaction reporting using OOP principles and Collections Framework.",
-    tech: ["Java", "OOP", "Collections Framework", "Exception Handling"],
-    links: {
-      source: "https://github.com/vatsalgajera-tech/Parking-Management-System",
-    },
-  },
-  {
+    {
     title: "VendorBridge AI",
     subtitle: "AI-Powered Procurement ERP · MERN Stack · Odoo x KSV Hackathon",
     description:
@@ -200,14 +190,7 @@ export const projects = [
         "https://github.com/vatsalgajera-tech/University-Management-System",
     },
   },
-  {
-    title: "Shree Vastra",
-    subtitle: "Women's Ethnic Fashion E-Commerce · MERN Stack",
-    description:
-      "E-commerce platform with OTP authentication, product browsing, shopping cart, Razorpay integration, order management, and a comprehensive admin dashboard.",
-    tech: ["React.js", "Redux Toolkit", "Node.js", "Express.js", "MongoDB"],
-    links: { source: "https://github.com/vatsalgajera-tech/eCommerce-Website" },
-  },
+  
 ];
 
 export const skillCategories = [
