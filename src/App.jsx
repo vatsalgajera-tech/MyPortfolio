@@ -443,10 +443,13 @@ export default function App() {
           >
             <div className="absolute -right-8 -top-8 h-36 w-36 rounded-full bg-emerald-100/80 dark:bg-emerald-400/12 blur-2xl" />
             <div className="absolute -left-10 -bottom-12 h-40 w-40 rounded-full bg-stone-200/70 dark:bg-stone-700/30 blur-2xl" />
-            Data Analyst · Data Scientist · Python Developer · AI Enthusiast
+
             <div className="relative grid gap-6 sm:gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
               <div className="order-2 lg:order-1">
-                <p className="mono text-[10px] sm:text-[11px] uppercase tracking-[0.18em] sm:tracking-[0.22em] text-[color:var(--muted)] mb-3 leading-relaxed"></p>
+                <p className="mono text-[10px] sm:text-[11px] uppercase tracking-[0.18em] sm:tracking-[0.22em] text-[color:var(--muted)] mb-3 leading-relaxed">
+                  Data Analyst · Data Scientist · Python Developer · AI
+                  Enthusiast
+                </p>
 
                 <h1 className="display-serif text-3xl sm:text-4xl md:text-6xl leading-[0.95] max-w-3xl mb-4">
                   {typedName}
