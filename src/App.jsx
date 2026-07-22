@@ -205,7 +205,7 @@ export default function App() {
   const handleThemeToggle = () => {
     if (themeAudioRef.current) {
       themeAudioRef.current.currentTime = 0;
-      themeAudioRef.current.play().catch(() => { });
+      themeAudioRef.current.play().catch(() => {});
     }
     toggle();
   };
@@ -366,7 +366,11 @@ export default function App() {
       icon: FaTrophy,
     },
     { label: "Code360", href: personalInfo.socials.code360, icon: FaCode },
-    { label: "GeeksforGeeks", href: personalInfo.socials.geeksforgeeks, icon: FaCode },
+    {
+      label: "GeeksforGeeks",
+      href: personalInfo.socials.geeksforgeeks,
+      icon: FaCode,
+    },
   ];
 
   const skillIconMap = {
@@ -439,12 +443,10 @@ export default function App() {
           >
             <div className="absolute -right-8 -top-8 h-36 w-36 rounded-full bg-emerald-100/80 dark:bg-emerald-400/12 blur-2xl" />
             <div className="absolute -left-10 -bottom-12 h-40 w-40 rounded-full bg-stone-200/70 dark:bg-stone-700/30 blur-2xl" />
-
+            Data Analyst · Data Scientist · Python Developer · AI Enthusiast
             <div className="relative grid gap-6 sm:gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
               <div className="order-2 lg:order-1">
-                <p className="mono text-[10px] sm:text-[11px] uppercase tracking-[0.18em] sm:tracking-[0.22em] text-[color:var(--muted)] mb-3 leading-relaxed">
-                  Full Stack Developer · Python Developer · Data Science
-                </p>
+                <p className="mono text-[10px] sm:text-[11px] uppercase tracking-[0.18em] sm:tracking-[0.22em] text-[color:var(--muted)] mb-3 leading-relaxed"></p>
 
                 <h1 className="display-serif text-3xl sm:text-4xl md:text-6xl leading-[0.95] max-w-3xl mb-4">
                   {typedName}
@@ -614,7 +616,9 @@ export default function App() {
                         <div className="mono text-xs text-[color:var(--muted)] flex flex-col sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-1.5">
                           <span>{exp.location}</span>
                           <span className="sm:inline hidden opacity-50">·</span>
-                          <span className="whitespace-nowrap">{exp.period}</span>
+                          <span className="whitespace-nowrap">
+                            {exp.period}
+                          </span>
                         </div>
 
                         <div className="flex flex-wrap gap-1.5 mt-3">
@@ -720,13 +724,10 @@ export default function App() {
                               </li>
                             ))}
                           </ul>
-
                         </div>
                       </motion.div>
                     )}
-
                   </AnimatePresence>
-
                 </div>
               ))}
             </div>
@@ -764,7 +765,10 @@ export default function App() {
                             <p className="mono text-[11px] text-[color:var(--muted)] mt-0.5">
                               {previewDoc.company}
                               {previewDoc.role && (
-                                <span className="opacity-60"> &middot; {previewDoc.role}</span>
+                                <span className="opacity-60">
+                                  {" "}
+                                  &middot; {previewDoc.role}
+                                </span>
                               )}
                             </p>
                           )}
@@ -790,7 +794,11 @@ export default function App() {
                             {/* White certificate frame */}
                             <div className="w-full rounded-2xl overflow-hidden border border-[color:var(--line)] bg-white shadow-inner">
                               <img
-                                src={(previewDoc.files || [previewDoc.file])[currentPage]}
+                                src={
+                                  (previewDoc.files || [previewDoc.file])[
+                                    currentPage
+                                  ]
+                                }
                                 alt={previewDoc.title}
                                 className="w-full object-contain max-h-[65vh]"
                               />
@@ -802,8 +810,12 @@ export default function App() {
                                 <button
                                   className="cert-btn"
                                   disabled={currentPage === 0}
-                                  onClick={() => setCurrentPage((p) => Math.max(0, p - 1))}
-                                  style={{ opacity: currentPage === 0 ? 0.4 : 1 }}
+                                  onClick={() =>
+                                    setCurrentPage((p) => Math.max(0, p - 1))
+                                  }
+                                  style={{
+                                    opacity: currentPage === 0 ? 0.4 : 1,
+                                  }}
                                 >
                                   ← Previous
                                 </button>
@@ -812,9 +824,24 @@ export default function App() {
                                 </span>
                                 <button
                                   className="cert-btn"
-                                  disabled={currentPage === previewDoc.files.length - 1}
-                                  onClick={() => setCurrentPage((p) => Math.min(previewDoc.files.length - 1, p + 1))}
-                                  style={{ opacity: currentPage === previewDoc.files.length - 1 ? 0.4 : 1 }}
+                                  disabled={
+                                    currentPage === previewDoc.files.length - 1
+                                  }
+                                  onClick={() =>
+                                    setCurrentPage((p) =>
+                                      Math.min(
+                                        previewDoc.files.length - 1,
+                                        p + 1,
+                                      ),
+                                    )
+                                  }
+                                  style={{
+                                    opacity:
+                                      currentPage ===
+                                      previewDoc.files.length - 1
+                                        ? 0.4
+                                        : 1,
+                                  }}
                                 >
                                   Next →
                                 </button>
@@ -977,7 +1004,6 @@ export default function App() {
               <Label>Profile Highlights</Label>
 
               <div className="space-y-4">
-
                 <div>
                   <p className="mono text-[11px] font-semibold uppercase tracking-wider text-[color:var(--muted)] mb-2">
                     Technical Interests
@@ -1028,7 +1054,6 @@ export default function App() {
                     ))}
                   </div>
                 </div>
-
               </div>
             </Section>
           </div>
@@ -1037,7 +1062,9 @@ export default function App() {
           <Section id="skills" shouldAnimate={shouldAnimate}>
             {/* Header row */}
             <div className="flex items-center justify-between mb-4">
-              <p className="mono text-[10px] uppercase tracking-[0.22em] text-[color:var(--muted)]">Skills</p>
+              <p className="mono text-[10px] uppercase tracking-[0.22em] text-[color:var(--muted)]">
+                Skills
+              </p>
               <button
                 onClick={() => setShowSkillModal(true)}
                 className="cert-btn"
@@ -1049,19 +1076,21 @@ export default function App() {
 
             {/* Default flat grid — all skills as pills */}
             <div className="flex flex-wrap gap-2">
-              {skillCategories.flatMap(({ skills: catSkills }) => catSkills).map((s) => {
-                const Icon = skillIconMap[s];
-                return (
-                  <motion.span
-                    key={s}
-                    whileHover={{ y: -2, scale: 1.04 }}
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-[color:var(--line)] bg-[color:var(--card-strong)] mono text-[11px] text-[color:var(--txt)] hover:border-[color:var(--accent)] hover:text-[color:var(--accent)] transition-colors cursor-default"
-                  >
-                    {Icon && <Icon size={12} className="flex-shrink-0" />}
-                    {s}
-                  </motion.span>
-                );
-              })}
+              {skillCategories
+                .flatMap(({ skills: catSkills }) => catSkills)
+                .map((s) => {
+                  const Icon = skillIconMap[s];
+                  return (
+                    <motion.span
+                      key={s}
+                      whileHover={{ y: -2, scale: 1.04 }}
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-[color:var(--line)] bg-[color:var(--card-strong)] mono text-[11px] text-[color:var(--txt)] hover:border-[color:var(--accent)] hover:text-[color:var(--accent)] transition-colors cursor-default"
+                    >
+                      {Icon && <Icon size={12} className="flex-shrink-0" />}
+                      {s}
+                    </motion.span>
+                  );
+                })}
             </div>
 
             {/* Skill grouped modal */}
@@ -1089,9 +1118,16 @@ export default function App() {
                       {/* Modal header */}
                       <div className="flex items-center justify-between px-5 py-4 border-b border-[color:var(--line)] flex-shrink-0">
                         <div>
-                          <p className="text-sm font-bold text-[color:var(--txt)]">All Skills</p>
+                          <p className="text-sm font-bold text-[color:var(--txt)]">
+                            All Skills
+                          </p>
                           <p className="mono text-[11px] text-[color:var(--muted)] mt-0.5">
-                            {skillCategories.length} categories &middot; {skillCategories.reduce((a, c) => a + c.skills.length, 0)} skills
+                            {skillCategories.length} categories &middot;{" "}
+                            {skillCategories.reduce(
+                              (a, c) => a + c.skills.length,
+                              0,
+                            )}{" "}
+                            skills
                           </p>
                         </div>
                         <button
@@ -1105,42 +1141,70 @@ export default function App() {
                       {/* Scrollable categories */}
                       <div className="overflow-y-auto p-5 space-y-6 skill-modal-scroll">
                         {(() => {
-                          const catIconMap = { code: Code2, brain: Brain, chart: BarChart2, server: Server, layout: Layout, database: Database, wrench: Wrench, cloud: Cloud };
-                          return skillCategories.map(({ category, icon, skills: catSkills }) => {
-                            const CatIcon = catIconMap[icon] || Code2;
-                            return (
-                              <div key={category}>
-                                {/* Category header */}
-                                <div className="flex items-center gap-2 mb-2.5">
-                                  <span className="w-5 h-5 rounded-md bg-[color:var(--accent-soft)] flex items-center justify-center flex-shrink-0">
-                                    <CatIcon size={11} className="text-[color:var(--accent)]" />
-                                  </span>
-                                  <p className="mono text-[11px] font-semibold text-[color:var(--muted)]">{category}</p>
-                                  <span className="mono text-[10px] text-[color:var(--muted)] opacity-50">&middot; {catSkills.length}</span>
+                          const catIconMap = {
+                            code: Code2,
+                            brain: Brain,
+                            chart: BarChart2,
+                            server: Server,
+                            layout: Layout,
+                            database: Database,
+                            wrench: Wrench,
+                            cloud: Cloud,
+                          };
+                          return skillCategories.map(
+                            ({ category, icon, skills: catSkills }) => {
+                              const CatIcon = catIconMap[icon] || Code2;
+                              return (
+                                <div key={category}>
+                                  {/* Category header */}
+                                  <div className="flex items-center gap-2 mb-2.5">
+                                    <span className="w-5 h-5 rounded-md bg-[color:var(--accent-soft)] flex items-center justify-center flex-shrink-0">
+                                      <CatIcon
+                                        size={11}
+                                        className="text-[color:var(--accent)]"
+                                      />
+                                    </span>
+                                    <p className="mono text-[11px] font-semibold text-[color:var(--muted)]">
+                                      {category}
+                                    </p>
+                                    <span className="mono text-[10px] text-[color:var(--muted)] opacity-50">
+                                      &middot; {catSkills.length}
+                                    </span>
+                                  </div>
+                                  {/* Skills grid */}
+                                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
+                                    {catSkills.map((s) => {
+                                      const Icon = skillIconMap[s];
+                                      return (
+                                        <motion.div
+                                          key={s}
+                                          whileHover={{ y: -2 }}
+                                          className="flex items-center gap-2.5 rounded-xl border border-[color:var(--line)] bg-[color:var(--card-strong)] px-3 py-2.5 hover:border-[color:var(--accent)] hover:text-[color:var(--accent)] transition-colors group"
+                                        >
+                                          <span className="w-4 h-4 flex items-center justify-center flex-shrink-0">
+                                            {Icon ? (
+                                              <Icon
+                                                size={13}
+                                                className="text-[color:var(--accent)]"
+                                              />
+                                            ) : (
+                                              <CatIcon
+                                                size={11}
+                                                className="text-[color:var(--accent)] opacity-60"
+                                              />
+                                            )}
+                                          </span>
+                                          <span className="mono text-[11px] text-[color:var(--txt)] group-hover:text-[color:var(--accent)] transition-colors leading-tight">
+                                            {s}
+                                          </span>
+                                        </motion.div>
+                                      );
+                                    })}
+                                  </div>
                                 </div>
-                                {/* Skills grid */}
-                                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
-                                  {catSkills.map((s) => {
-                                    const Icon = skillIconMap[s];
-                                    return (
-                                      <motion.div
-                                        key={s}
-                                        whileHover={{ y: -2 }}
-                                        className="flex items-center gap-2.5 rounded-xl border border-[color:var(--line)] bg-[color:var(--card-strong)] px-3 py-2.5 hover:border-[color:var(--accent)] hover:text-[color:var(--accent)] transition-colors group"
-                                      >
-                                        <span className="w-4 h-4 flex items-center justify-center flex-shrink-0">
-                                          {Icon
-                                            ? <Icon size={13} className="text-[color:var(--accent)]" />
-                                            : <CatIcon size={11} className="text-[color:var(--accent)] opacity-60" />}
-                                        </span>
-                                        <span className="mono text-[11px] text-[color:var(--txt)] group-hover:text-[color:var(--accent)] transition-colors leading-tight">{s}</span>
-                                      </motion.div>
-                                    );
-                                  })}
-                                </div>
-                              </div>
-                            );
-                          });
+                              );
+                            },
+                          );
                         })()}
                       </div>
                     </div>
@@ -1164,7 +1228,9 @@ export default function App() {
                   rel="noopener noreferrer"
                   whileHover={{ y: -3 }}
                   className="group relative rounded-2xl border border-[color:var(--line)] bg-[color:var(--card-strong)] p-4 overflow-hidden text-center cursor-pointer"
-                  style={{ transition: "box-shadow 0.3s ease, border-color 0.3s ease" }}
+                  style={{
+                    transition: "box-shadow 0.3s ease, border-color 0.3s ease",
+                  }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.boxShadow = `0 8px 28px ${stat.color}28`;
                     e.currentTarget.style.borderColor = `${stat.color}55`;
@@ -1222,7 +1288,9 @@ export default function App() {
                   rel="noopener noreferrer"
                   whileHover={{ y: -4, scale: 1.03 }}
                   className="group relative rounded-2xl border border-[color:var(--line)] bg-[color:var(--card-strong)] p-3 flex flex-col items-center text-center gap-2 overflow-hidden"
-                  style={{ transition: "box-shadow 0.3s ease, border-color 0.3s ease" }}
+                  style={{
+                    transition: "box-shadow 0.3s ease, border-color 0.3s ease",
+                  }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.boxShadow = `0 8px 28px ${pl.color}28`;
                     e.currentTarget.style.borderColor = `${pl.color}55`;
@@ -1234,12 +1302,16 @@ export default function App() {
                 >
                   <div
                     className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"
-                    style={{ background: `radial-gradient(circle at center, ${pl.color}0e, transparent 70%)` }}
+                    style={{
+                      background: `radial-gradient(circle at center, ${pl.color}0e, transparent 70%)`,
+                    }}
                   />
                   {/* Initials badge */}
                   <div
                     className="relative w-9 h-9 rounded-xl flex items-center justify-center text-white font-bold text-[11px] tracking-tight flex-shrink-0"
-                    style={{ background: `linear-gradient(135deg, ${pl.color}ee, ${pl.color}88)` }}
+                    style={{
+                      background: `linear-gradient(135deg, ${pl.color}ee, ${pl.color}88)`,
+                    }}
                   >
                     {pl.initials}
                   </div>
@@ -1247,13 +1319,20 @@ export default function App() {
                     {pl.name}
                   </p>
                   {pl.rating && (
-                    <p className="text-base font-bold leading-none" style={{ color: pl.color }}>
+                    <p
+                      className="text-base font-bold leading-none"
+                      style={{ color: pl.color }}
+                    >
                       {pl.rating}
                     </p>
                   )}
                   <span
                     className="mono text-[9px] px-1.5 py-0.5 rounded-full border font-medium leading-none"
-                    style={{ borderColor: `${pl.color}55`, color: pl.color, background: `${pl.color}11` }}
+                    style={{
+                      borderColor: `${pl.color}55`,
+                      color: pl.color,
+                      background: `${pl.color}11`,
+                    }}
                   >
                     {pl.badge}
                   </span>
@@ -1273,7 +1352,6 @@ export default function App() {
 
             {/* GSSoC 2026 Open Source highlight */}
             <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
-
               <motion.div
                 whileHover={{ scale: 1.005 }}
                 className="relative rounded-2xl border overflow-hidden h-full"
@@ -1291,7 +1369,9 @@ export default function App() {
                   {/* Icon badge */}
                   <div
                     className="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center text-white font-bold text-[13px] shadow-lg"
-                    style={{ background: `linear-gradient(135deg, ${achievements.openSource.color}, ${achievements.openSource.color}99)` }}
+                    style={{
+                      background: `linear-gradient(135deg, ${achievements.openSource.color}, ${achievements.openSource.color}99)`,
+                    }}
                   >
                     GS
                   </div>
@@ -1411,7 +1491,8 @@ export default function App() {
                 className="relative rounded-2xl border overflow-hidden mb-4"
                 style={{
                   borderColor: "#EAB30844",
-                  background: "linear-gradient(135deg, #EAB30808 0%, transparent 50%)",
+                  background:
+                    "linear-gradient(135deg, #EAB30808 0%, transparent 50%)",
                 }}
               >
                 {/* Glow orb */}
@@ -1423,7 +1504,9 @@ export default function App() {
                   {/* Icon badge */}
                   <div
                     className="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-lg"
-                    style={{ background: "linear-gradient(135deg, #EAB308, #CA8A04)" }}
+                    style={{
+                      background: "linear-gradient(135deg, #EAB308, #CA8A04)",
+                    }}
                   >
                     𝛂
                   </div>
@@ -1447,10 +1530,17 @@ export default function App() {
                       </span>
                     </div>
                     <p className="mono text-xs text-[color:var(--muted)] leading-relaxed mb-3">
-                      Achieved 100/100 in Statistics and secured 93.43% overall, placing in the 99.91 percentile statewide in Class XII.
+                      Achieved 100/100 in Statistics and secured 93.43% overall,
+                      placing in the 99.91 percentile statewide in Class XII.
                     </p>
                     <div className="flex flex-wrap gap-1.5">
-                      {["Perfect Score · 100/100", "93.43% Overall", "99.91 Percentile", "Commerce Stream", "L.G. Dholakiya School"].map((tag) => (
+                      {[
+                        "Perfect Score · 100/100",
+                        "93.43% Overall",
+                        "99.91 Percentile",
+                        "Commerce Stream",
+                        "L.G. Dholakiya School",
+                      ].map((tag) => (
                         <span
                           key={tag}
                           className="mono text-[9px] px-2 py-0.5 rounded-full border font-medium"
@@ -1474,7 +1564,8 @@ export default function App() {
                 className="relative rounded-2xl border overflow-hidden mb-4"
                 style={{
                   borderColor: "#06B6D444",
-                  background: "linear-gradient(135deg, #06B6D408 0%, transparent 50%)",
+                  background:
+                    "linear-gradient(135deg, #06B6D408 0%, transparent 50%)",
                 }}
               >
                 {/* Glow orb */}
@@ -1486,7 +1577,9 @@ export default function App() {
                   {/* Icon badge */}
                   <div
                     className="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-lg"
-                    style={{ background: "linear-gradient(135deg, #06B6D4, #0891B2)" }}
+                    style={{
+                      background: "linear-gradient(135deg, #06B6D4, #0891B2)",
+                    }}
                   >
                     ⌬
                   </div>
@@ -1510,10 +1603,17 @@ export default function App() {
                       </span>
                     </div>
                     <p className="mono text-xs text-[color:var(--muted)] leading-relaxed mb-3">
-                      Achieved 96/100 in Science and secured 88.00% overall with a 99.03 percentile in Class X.
+                      Achieved 96/100 in Science and secured 88.00% overall with
+                      a 99.03 percentile in Class X.
                     </p>
                     <div className="flex flex-wrap gap-1.5">
-                      {["96/100 in Science", "88.00% Overall", "99.03 Percentile", "General Stream", "L.G. Dholakiya School"].map((tag) => (
+                      {[
+                        "96/100 in Science",
+                        "88.00% Overall",
+                        "99.03 Percentile",
+                        "General Stream",
+                        "L.G. Dholakiya School",
+                      ].map((tag) => (
                         <span
                           key={tag}
                           className="mono text-[9px] px-2 py-0.5 rounded-full border font-medium"
@@ -1531,7 +1631,6 @@ export default function App() {
                 </div>
               </motion.div>
             </div>
-
           </Section>
 
           {/* 9. Certifications */}
@@ -1555,7 +1654,7 @@ export default function App() {
                 LinkedIn: "#0A66C2",
                 HackerRank: "#00EA64",
                 "Scaler Topics": "#EC0775",
-                "Code360": "#F5761A",
+                Code360: "#F5761A",
                 Coursera: "#0056D2",
                 Udemy: "#A435F0",
                 Infosys: "#007CC3",
@@ -1582,7 +1681,8 @@ export default function App() {
                           e.currentTarget.style.boxShadow = "none";
                           e.currentTarget.style.borderColor = `${authorityColors[authority]}22`;
                         }}
-                      ><div
+                      >
+                        <div
                           className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                           style={{
                             background: `radial-gradient(circle at center, ${authorityColors[authority]}22 0%, transparent 75%)`,
@@ -1649,12 +1749,13 @@ export default function App() {
                                   className="cursor-pointer rounded-xl border border-[color:var(--line)] p-3 hover:border-[color:var(--accent)] transition-all"
                                 >
                                   <div className="flex gap-3 items-start">
-
                                     <Award
                                       size={18}
                                       className="flex-shrink-0 mt-1"
                                       style={{
-                                        color: authorityColors[selectedAuthority] || "#6B7280",
+                                        color:
+                                          authorityColors[selectedAuthority] ||
+                                          "#6B7280",
                                       }}
                                     />
 
@@ -1667,7 +1768,6 @@ export default function App() {
                                         {cert.year}
                                       </p>
                                     </div>
-
                                   </div>
                                 </div>
                               ))}
@@ -1758,7 +1858,8 @@ export default function App() {
 
                           {/* Count */}
                           <p className="mono text-xs text-[color:var(--muted)] mt-1 relative z-10">
-                            {issuerBadges.length} Badge{issuerBadges.length > 1 ? "s" : ""}
+                            {issuerBadges.length} Badge
+                            {issuerBadges.length > 1 ? "s" : ""}
                           </p>
                         </div>
                       );
@@ -1795,7 +1896,11 @@ export default function App() {
                               <div className="flex items-center gap-3">
                                 <span
                                   className="w-9 h-9 rounded-xl flex items-center justify-center text-white font-bold text-sm"
-                                  style={{ background: grouped[openBadgeIssuer]?.[0]?.color || "#6B7280" }}
+                                  style={{
+                                    background:
+                                      grouped[openBadgeIssuer]?.[0]?.color ||
+                                      "#6B7280",
+                                  }}
                                 >
                                   {openBadgeIssuer.charAt(0)}
                                 </span>
@@ -1804,7 +1909,10 @@ export default function App() {
                                     {openBadgeIssuer}
                                   </h3>
                                   <p className="mono text-[11px] text-[color:var(--muted)]">
-                                    {grouped[openBadgeIssuer]?.length} Badge{grouped[openBadgeIssuer]?.length > 1 ? "s" : ""}
+                                    {grouped[openBadgeIssuer]?.length} Badge
+                                    {grouped[openBadgeIssuer]?.length > 1
+                                      ? "s"
+                                      : ""}
                                   </p>
                                 </div>
                               </div>
@@ -1849,7 +1957,12 @@ export default function App() {
                                       />
                                     </div>
                                     {/* Badge name */}
-                                    <div className="px-4 pb-4 pt-3 border-t flex-1 flex items-center justify-center" style={{ borderColor: `${badge.color}25` }}>
+                                    <div
+                                      className="px-4 pb-4 pt-3 border-t flex-1 flex items-center justify-center"
+                                      style={{
+                                        borderColor: `${badge.color}25`,
+                                      }}
+                                    >
                                       <p className="text-[11px] font-semibold leading-snug line-clamp-2 text-center text-[color:var(--txt)]">
                                         {badge.name}
                                       </p>
@@ -1869,46 +1982,44 @@ export default function App() {
           </Section>
 
           {/* Certificate Preview Modal */}
-          {
-            previewCert && (
-              <div
-                className="fixed inset-0 z-[80] bg-black/70 backdrop-blur-sm flex items-center justify-center p-4"
-                onClick={() => setPreviewCert(null)}
+          {previewCert && (
+            <div
+              className="fixed inset-0 z-[80] bg-black/70 backdrop-blur-sm flex items-center justify-center p-4"
+              onClick={() => setPreviewCert(null)}
+            >
+              <motion.div
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.9, opacity: 0 }}
+                className="relative bg-[color:var(--card-strong)] rounded-2xl border border-[color:var(--line)] shadow-2xl max-w-3xl w-full overflow-hidden"
+                onClick={(e) => e.stopPropagation()}
               >
-                <motion.div
-                  initial={{ scale: 0.9, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  exit={{ scale: 0.9, opacity: 0 }}
-                  className="relative bg-[color:var(--card-strong)] rounded-2xl border border-[color:var(--line)] shadow-2xl max-w-3xl w-full overflow-hidden"
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  <div className="flex items-center justify-between px-4 py-3 border-b border-[color:var(--line)]">
-                    <div>
-                      <p className="text-sm font-semibold text-[color:var(--txt)]">
-                        {previewCert.name}
-                      </p>
-                      <p className="mono text-[10px] text-[color:var(--muted)]">
-                        {previewCert.authority} · {previewCert.year}
-                      </p>
-                    </div>
-                    <button
-                      onClick={() => setPreviewCert(null)}
-                      className="w-8 h-8 rounded-full border border-[color:var(--line)] flex items-center justify-center text-[color:var(--muted)] hover:text-[color:var(--txt)] hover:bg-[color:var(--accent-soft)] transition"
-                    >
-                      ✕
-                    </button>
+                <div className="flex items-center justify-between px-4 py-3 border-b border-[color:var(--line)]">
+                  <div>
+                    <p className="text-sm font-semibold text-[color:var(--txt)]">
+                      {previewCert.name}
+                    </p>
+                    <p className="mono text-[10px] text-[color:var(--muted)]">
+                      {previewCert.authority} · {previewCert.year}
+                    </p>
                   </div>
-                  <div className="p-4">
-                    <img
-                      src={previewCert.image}
-                      alt={previewCert.name}
-                      className="w-full rounded-xl object-contain max-h-[65vh]"
-                    />
-                  </div>
-                </motion.div>
-              </div>
-            )
-          }
+                  <button
+                    onClick={() => setPreviewCert(null)}
+                    className="w-8 h-8 rounded-full border border-[color:var(--line)] flex items-center justify-center text-[color:var(--muted)] hover:text-[color:var(--txt)] hover:bg-[color:var(--accent-soft)] transition"
+                  >
+                    ✕
+                  </button>
+                </div>
+                <div className="p-4">
+                  <img
+                    src={previewCert.image}
+                    alt={previewCert.name}
+                    className="w-full rounded-xl object-contain max-h-[65vh]"
+                  />
+                </div>
+              </motion.div>
+            </div>
+          )}
 
           <TechMarquee />
 
@@ -1918,7 +2029,7 @@ export default function App() {
               © {new Date().getFullYear()} Vatsal Gajera
             </p>
           </footer>
-        </main >
+        </main>
 
         <motion.div
           initial={{ opacity: 0, y: 24 }}
@@ -1980,8 +2091,8 @@ export default function App() {
             </div>
           </button>
         </motion.div>
-      </div >
+      </div>
       <Analytics />
-    </div >
+    </div>
   );
 }
