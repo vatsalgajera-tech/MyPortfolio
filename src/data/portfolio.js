@@ -1,6 +1,5 @@
 export const personalInfo = {
   name: "Vatsal Gajera",
-  age: 22,
   tagline: "Data Analyst · Data Scientist · Python Developer · AI Enthusiast",
   bio: [
     "MCA student at Dharmsinh Desai University, Nadiad (2025–2027), CGPA: 8.07. Previously completed BCA from Saurastra University, Rajkot (2022–2025), CGPA: 8.39.",
